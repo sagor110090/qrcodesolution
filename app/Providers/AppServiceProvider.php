@@ -11,7 +11,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        // $this->app->bind('support', function () {
+        //     return new \App\Helpers\Support();
+        // });
     }
 
     /**

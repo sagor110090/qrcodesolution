@@ -44,6 +44,22 @@ return [
             'throw' => false,
         ],
 
+        'ckeditor' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/ckeditor'),
+            'url' => env('APP_URL').'/storage/ckeditor',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/images'),
+            'url' => env('APP_URL').'/storage/images',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

@@ -14,6 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/categories', function () {
+
+    return \App\Models\Category::when(request()->search,fn($query,$search) => $query->where('name','like','%'.$search.'%'))
+    ->when(request()->exists('selected'),fn($query) => $query->whereIn('id',request()->selected))
+    ->get(['id','name']);
+})->name('api.category.index');
+
+Route::get('/tags', function () {
+    return \App\Models\Tag::when(request()->search,fn($query,$search) => $query->where('name','like','%'.$search.'%'))
+                ->when(request()->exists('selected'),fn($query) => $query->whereIn('id',request()->selected))
+                ->get(['id','name']);
+})->name('api.tag.index');
+
+

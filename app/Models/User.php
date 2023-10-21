@@ -42,4 +42,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    /**
+     * Get the qrcodes for the user.
+     */
+    public function qrCodes(){
+        return $this->hasMany(QrCode::class);
+    }
 }
