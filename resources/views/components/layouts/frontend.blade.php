@@ -9,7 +9,6 @@
     <x-ui.frontend.header />
 
     {{ $slot }}
-
 </x-layouts.main>
 
 

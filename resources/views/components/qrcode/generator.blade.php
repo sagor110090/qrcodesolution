@@ -25,7 +25,7 @@
     frame: @entangle('frame'),
     frame_label: @entangle('frame_label'),
     frame_label_font: @entangle('frame_label_font'),
-    frame_labelTextColor: @entangle('frame_labelTextColor'),
+    frame_label_text_color: @entangle('frame_label_text_color'),
 
     qrcodePreview: @entangle('qrcodePreview'),
     onlyDynamic: @entangle('onlyDynamic'),
@@ -1788,7 +1788,7 @@
                                     name="frame_label_font" class="col-span-2 mt-4"
                                     :optinons="json_encode(Support::frame_label_fonts())" />
                                 <x-tw.input label="Frame Color" placeholder="Frame Color" id="frameColor"
-                                    name="frame_labelTextColor" type="color" class="col-span-2 mt-4" size='lg'
+                                    name="frame_label_text_color" type="color" class="col-span-2 mt-4" size='lg'
                                     value="#000000" />
                             </div>
                         </x-tw.accordion-item>
@@ -1798,7 +1798,7 @@
         </div>
     </div>
 
-    <div class="col-span-12 md:col-span-3">
+    <div class="col-span-12 md:col-span-3"  wire:ignore>
         <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 text-center" data-te-sticky-init
             data-te-sticky-boundary="#sticky-top" data-te-sticky-direction="both">
 
@@ -1811,7 +1811,7 @@
             </div>
 
 
-            <div class="p-0 grid  justify-center"  wire:ignore>
+            <div class="p-0 grid  justify-center" >
                 <div class=" max-w-[18rem] rounded-lgdark:bg-neutral-700 grid justify-items-center">
                     <div class="relative overflow-hidden bg-cover bg-no-repeat">
 

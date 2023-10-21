@@ -80,30 +80,31 @@ new class extends Component {
 
     public $qrcodePreview = '';
 
-    public function qrcodeCreate()
+    public function qrCodeCreate()
     {
-       $this->qrcodePreview = Support::qrCodeGenerate(
-        $this->data,
-        $this->qr_style,
-        $this->qr_logo,
-        $this->qr_color,
-        $this->qr_bg_color,
-        $this->qr_eye_border,
-        $this->qr_eye_center,
-        $this->qr_gradient,
-        $this->qr_eye_color_in,
-        $this->qr_eye_color_out,
-        $this->qr_eye_style_in,
-        $this->qr_eye_style_out,
-        $this->qr_logo_background,
-        $this->qr_bg_image,
-        $this->qr_custom_logo,
-        $this->qr_custom_background,
-        $this->frame,
-        $this->frame_label,
-        $this->frame_label_font,
-        $this->frame_label_text_color
-       );
+        $data = [
+            'data' => $this->data,
+            'qr_style' => $this->qr_style,
+            'qr_logo' => $this->qr_logo,
+            'qr_color' => $this->qr_color,
+            'qr_bg_color' => $this->qr_bg_color,
+            'qr_eye_border' => $this->qr_eye_border,
+            'qr_eye_center' => $this->qr_eye_center,
+            'qr_gradient' => $this->qr_gradient,
+            'qr_eye_color_in' => $this->qr_eye_color_in,
+            'qr_eye_color_out' => $this->qr_eye_color_out,
+            'qr_eye_style_in' => $this->qr_eye_style_in,
+            'qr_eye_style_out' => $this->qr_eye_style_out,
+            'qr_logo_background' => $this->qr_logo_background,
+            'qr_bg_image' => $this->qr_bg_image,
+            'qr_custom_logo' => $this->qr_custom_logo,
+            'qr_custom_background' => $this->qr_custom_background,
+            'frame' => $this->frame,
+            'frame_label' => $this->frame_label,
+            'frame_label_font' => $this->frame_label_font,
+            'frame_label_text_color' => $this->frame_label_text_color,
+    ];
+       $this->qrcodePreview = Support::qrCodeGenerate($data);
     }
 
 
@@ -115,42 +116,24 @@ new class extends Component {
 
             $rules = ['url' => 'required|url'];
             $this->validate($rules);
-            $this->data = $this->url;
-            $this->qrcodeCreate();
 
         }
         elseif ($this->type == 'email') {
 
             $rules = ['email' => 'required|email', 'subject' => 'required', 'message' => 'required'];
             $this->validate($rules);
-            $this->data =  'mailto:' . $this->email . '?subject=' . $this->subject . '&body=' . rawurlencode($this->message);
-            $this->qrcodeCreate();
 
         }
         elseif ($this->type == 'sms') {
 
             $rules = ['sms' => 'required', 'sms_phone' => 'required'];
             $this->validate($rules);
-            $number = str_replace(' ', '', $this->sms_phone);
-
-            if ($number) {
-                $number = str_replace('+', '00', $number);
-                $this->data = 'SMSTO:' . $number . ':' . rawurlencode($this->sms);
-            }
-            $this->qrcodeCreate();
 
         }
         elseif ($this->type == 'phone') {
 
             $rules = ['call_phone' => 'required'];
             $this->validate($rules);
-            $number = str_replace(' ', '', $this->call_phone);
-
-            if ($number) {
-                $number = str_replace('+', '00', $number);
-                $this->data = 'tel:' . $number;
-            }
-            $this->qrcodeCreate();
 
         }
 
@@ -158,50 +141,43 @@ new class extends Component {
 
             $rules = ['network_name' => 'required', 'network_password' => 'required'];
             $this->validate($rules);
-            $ssid = $this->network_name;
-            $wifipass = $this->network_password;
-            $networktype = $this->network_type ? $this->network_type : 'WPA';
-            $wifihidden = $this->wifi_hidden == 'yes';
-            if ($ssid) {
-                $output_data = 'WIFI:S:' . $ssid . ';';
-                if ($networktype) {
-                    $output_data .= 'T:' . $networktype . ';';
-                }
-                if ($wifipass) {
-                    $output_data .= 'P:' . $wifipass . ';';
-                }
-                if ($wifihidden) {
-                    $output_data .= 'H:true;';
-                }
-                $output_data .= ';';
-            $this->data = $output_data;
-
-            }
-            $this->qrcodeCreate();
         }
 
         elseif ($this->type == 'text') {
             $rules = ['text_data' => 'required'];
             $this->validate($rules);
-            $this->data = $this->text_data;
-            $this->qrcodeCreate();
         }
 
         elseif($this->type == 'bitcoin') {
             $rules = ['bitcoin_address' => 'required', 'bitcoin_amount' => 'required'];
             $this->validate($rules);
-            $this->data = 'bitcoin:' . $this->bitcoin_address . '?amount=' . $this->bitcoin_amount;
-            $this->qrcodeCreate();
         }
 
         elseif($this->type == 'location') {
             $rules = ['latitude' => 'required|numeric', 'longitude' => 'required|numeric'];
             $this->validate($rules);
-            $this->data = 'geo:' . $this->latitude . ',' . $this->longitude;
-            $this->qrcodeCreate();
         }
 
-
+        $data = [
+            'url' => $this->url,
+            'email' => $this->email,
+            'subject' => $this->subject,
+            'message' => $this->message,
+            'sms' => $this->sms,
+            'sms_phone' => $this->sms_phone,
+            'call_phone' => $this->call_phone,
+            'network_name' => $this->network_name,
+            'network_password' => $this->network_password,
+            'network_type' => $this->network_type,
+            'wifi_hidden' => $this->wifi_hidden,
+            'text_data' => $this->text_data,
+            'bitcoin_address' => $this->bitcoin_address,
+            'bitcoin_amount' => $this->bitcoin_amount,
+            'latitude' => $this->latitude,
+            'longitude' => $this->longitude,
+        ];
+        $this->data = Support::staticQrCodeDataGenerate($this->type,$data);
+        $this->qrCodeCreate();
     }
 
 

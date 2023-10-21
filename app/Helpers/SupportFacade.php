@@ -47,30 +47,28 @@ class SupportFacade extends Facade
         }
     }
 
-    public static function qrCodeGenerate(
-        $data,
-        $qr_style,
-        $qr_logo,
-        $qr_color,
-        $qr_bg_color,
-        $qr_eye_border,
-        $qr_eye_center,
-        $qr_gradient,
-        $qr_eye_color_in,
-        $qr_eye_color_out,
-        $qr_eye_style_in,
-        $qr_eye_style_out,
-        $qr_logo_background,
-        $qr_bg_image,
-        $qr_custom_logo,
-        $qr_custom_background,
-        $frame,
-        $frame_label,
-        $frame_label_font,
-        $frame_label_text_color
-    ) {
+    public static function qrCodeGenerate($options) {
 
-
+        $data = $options['data'] ?? '';
+        $qr_style = $options['qr_style'] ?? '';
+        $qr_logo = $options['qr_logo'] ?? '';
+        $qr_color = $options['qr_color'] ?? '';
+        $qr_bg_color = $options['qr_bg_color'] ?? '';
+        $qr_eye_border = $options['qr_eye_border'] ?? '';
+        $qr_eye_center = $options['qr_eye_center'] ?? '';
+        $qr_gradient = $options['qr_gradient'] ?? '';
+        $qr_eye_color_in = $options['qr_eye_color_in'] ?? '';
+        $qr_eye_color_out = $options['qr_eye_color_out'] ?? '';
+        $qr_eye_style_in = $options['qr_eye_style_in'] ?? '';
+        $qr_eye_style_out = $options['qr_eye_style_out'] ?? '';
+        $qr_logo_background = $options['qr_logo_background'] ?? '';
+        $qr_bg_image = $options['qr_bg_image'] ?? '';
+        $qr_custom_logo = $options['qr_custom_logo'] ?? '';
+        $qr_custom_background = $options['qr_custom_background'] ?? '';
+        $frame = $options['frame'] ?? '';
+        $frame_label = $options['frame_label'] ?? '';
+        $frame_label_font = $options['frame_label_font'] ?? '';
+        $frame_label_text_color = $options['frame_label_text_color'] ?? '';
 
         require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/frames.php';
 
@@ -87,7 +85,7 @@ class SupportFacade extends Facade
 
         $words = explode(' ', $frame_label);
 
-        $frame_label = self::buildframe_label($words);
+        $frame_label = self::buildFrameLabel($words);
 
 
 
@@ -121,10 +119,10 @@ class SupportFacade extends Facade
         ];
 
 
-        $stringbackcolor = $qr_bg_color;
-        $stringfrontcolor = $qr_color;
-        $backcolor = qrcdr()->hexdecColor($stringbackcolor, '#FFFFFF');
-        $frontcolor = qrcdr()->hexdecColor($stringfrontcolor, '#000000');
+        $stringBackColor = $qr_bg_color;
+        $stringFrontColor = $qr_color;
+        $backColor = qrcdr()->hexdecColor($stringBackColor, '#FFFFFF');
+        $frontColor = qrcdr()->hexdecColor($stringFrontColor, '#000000');
 
         $level = 'Q';
         if (in_array($level, ['L', 'M', 'Q', 'H'])) {
@@ -138,12 +136,12 @@ class SupportFacade extends Facade
         $size = $size ? $size : 16;
         $matrixPointSize = min(max((int) $size, 4), 32);
 
-        $backcolor = qrcdr()->hexdecColor($stringbackcolor, '#FFFFFF');
+        $backColor = qrcdr()->hexdecColor($stringBackColor, '#FFFFFF');
         $filename = $PNG_TEMP_DIR . 'qrcode_' . uniqid() . '.png';
         $filenamesvg = $filename . '.svg';
 
         $codemargin = $frame !== 'none' ? $frames[$frame]['frame_border'] * 2 + 1 : 2;
-        $content = QRcdr::svg($data, $filenamesvg, $errorCorrectionLevel, $matrixPointSize, $codemargin, false, $backcolor, $frontcolor, $optionstyle);
+        $content = QRcdr::svg($data, $filenamesvg, $errorCorrectionLevel, $matrixPointSize, $codemargin, false, $backColor, $frontColor, $optionstyle);
 
         return $content;
     }
@@ -161,7 +159,8 @@ class SupportFacade extends Facade
     }
 
 
-    public static function createQrCode($data) {
+    public static function createQrCode($data)
+    {
         auth()->user()->qrCodes()->create($data);
         return true;
     }
@@ -189,7 +188,7 @@ class SupportFacade extends Facade
         }
     }
 
-    public static function buildframe_label($words)
+    public static function buildFrameLabel($words)
     {
         $frame_label = '';
         $rearrange = [];
@@ -331,8 +330,73 @@ class SupportFacade extends Facade
         return $rgb;
     }
 
-    //svg to png
-    public static function svg2png($svgPath)
-    {
+    //static qr code data generate
+    public static function staticQrCodeDataGenerate($type,$data) {
+
+
+        $url = $data['url'] ?? '';
+        $email = $data['email'] ?? '';
+        $subject = $data['subject'] ?? '';
+        $message = $data['message'] ?? '';
+        $sms_phone = $data['sms_phone'] ?? '';
+        $sms = $data['sms'] ?? '';
+        $call_phone = $data['call_phone'] ?? '';
+        $text_data = $data['text_data'] ?? '';
+        $bitcoin_address = $data['bitcoin_address'] ?? '';
+        $bitcoin_amount = $data['bitcoin_amount'] ?? '';
+        $network_name = $data['network_name'] ?? '';
+        $network_password = $data['network_password'] ?? '';
+        $network_type = $data['network_type'] ?? '';
+        $wifi_hidden = $data['wifi_hidden'] ?? '';
+        $latitude = $data['latitude'] ?? '';
+        $longitude = $data['longitude'] ?? '';
+
+
+
+        if ($type == 'url') {
+            $data = $url;
+        } elseif ($type == 'email') {
+            $data =  'mailto:' . $email . '?subject=' . $subject . '&body=' . rawurlencode($message);
+        } elseif ($type == 'sms') {
+            $number = str_replace(' ', '', $sms_phone);
+
+            if ($number) {
+                $number = str_replace('+', '00', $number);
+                $data = 'SMSTO:' . $number . ':' . rawurlencode($sms);
+            }
+        } elseif ($type == 'phone') {
+            $number = str_replace(' ', '', $call_phone);
+
+            if ($number) {
+                $number = str_replace('+', '00', $number);
+                $data = 'tel:' . $number;
+            }
+        } elseif ($type == 'wifi') {
+            $ssid = $network_name;
+            $wifipass = $network_password;
+            $networktype = $network_type ? $network_type : 'WPA';
+            $wifihidden = $wifi_hidden == 'yes';
+            if ($ssid) {
+                $output_data = 'WIFI:S:' . $ssid . ';';
+                if ($networktype) {
+                    $output_data .= 'T:' . $networktype . ';';
+                }
+                if ($wifipass) {
+                    $output_data .= 'P:' . $wifipass . ';';
+                }
+                if ($wifihidden) {
+                    $output_data .= 'H:true;';
+                }
+                $output_data .= ';';
+                $data = $output_data;
+            }
+        } elseif ($type == 'text') {
+            $data = $text_data;
+        } elseif ($type == 'bitcoin') {
+            $data = 'bitcoin:' . $bitcoin_address . '?amount=' . $bitcoin_amount;
+        } elseif ($type == 'location') {
+            $data = 'geo:' . $latitude . ',' . $longitude;
+        }
+        return $data;
     }
 }

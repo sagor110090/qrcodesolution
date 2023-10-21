@@ -35,7 +35,7 @@ return new class extends Migration
             $table->string('frame_label')->nullable();
             $table->string('frame_label_font')->nullable();
             $table->string('frame_label_text_color')->nullable();
-            $table->string('is_dynamic')->nullable();
+            $table->boolean('is_dynamic')->default(false);
             $table->json('qr_code_info')->nullable();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

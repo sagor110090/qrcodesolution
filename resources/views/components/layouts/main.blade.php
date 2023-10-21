@@ -26,8 +26,10 @@
     </head>
     <body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900">
         {{ $slot }}
-        {{-- <script src='https://cdn.ckeditor.com/4.15.1/full-all/ckeditor.js'></script> --}}
+        <x-layouts.footer />
         @stack('js')
         <livewire:toast />
+        @livewire('wire-elements-modal')
+
     </body>
 </html>
