@@ -16,7 +16,7 @@
 <div wire:ignore class="mt-2 mb-2 {{$class}}" >
     <select data-te-select-init {{$attributes}}    x-on:change="$wire.set('{{$name}}',$event.target.value)" id="{{$id}}" name="{{$name}}">
         @foreach ($options as $key => $option)
-            <option value="{{$option}}" >{{$option}}</option>
+            <option value="{{$option}}" {{ $selected == $option ? 'selected' : '' }}>{{$option}}</option>
         @endforeach
     </select>
 </div>

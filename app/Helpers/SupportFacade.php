@@ -47,7 +47,8 @@ class SupportFacade extends Facade
         }
     }
 
-    public static function qrCodeGenerate($options) {
+    public static function qrCodeGenerate($options)
+    {
 
         $data = $options['data'] ?? '';
         $qr_style = $options['qr_style'] ?? '';
@@ -331,7 +332,8 @@ class SupportFacade extends Facade
     }
 
     //static qr code data generate
-    public static function staticQrCodeDataGenerate($type,$data) {
+    public static function staticQrCodeDataGenerate($type, $data)
+    {
 
 
         $url = $data['url'] ?? '';
@@ -396,7 +398,17 @@ class SupportFacade extends Facade
             $data = 'bitcoin:' . $bitcoin_address . '?amount=' . $bitcoin_amount;
         } elseif ($type == 'location') {
             $data = 'geo:' . $latitude . ',' . $longitude;
+        } elseif ($type == 'vcard') {
+             $data = 'BEGIN:VCARD' . "\n". 'VERSION:3.0' . "\n". 'N:' . $data['vcard_last_name'] . ';' . $data['vcard_first_name'] . "\n". 'FN:' . $data['vcard_first_name'] . ' ' . $data['vcard_last_name'] . "\n". 'ORG:' . $data['vcard_company'] . "\n". 'TITLE:' . $data['vcard_job_title'] . "\n". 'TEL;TYPE=work,voice;VALUE=uri:tel:' . $data['vcard_phone_number'] . "\n". 'TEL;TYPE=home,voice;VALUE=uri:tel:' . $data['vcard_mobile'] . "\n". 'TEL;TYPE=work,fax;VALUE=uri:tel:' . $data['vcard_fax'] . "\n". 'ADR;TYPE=home;LABEL="' . $data['vcard_address'] . '":;;' . $data['vcard_address'] . ';' . $data['vcard_city'] . ';' . $data['vcard_post_code'] . ';' . $data['vcard_country'] . "\n". 'EMAIL:' . $data['vcard_email'] . "\n". 'URL:' . $data['vcard_website'] . "\n". 'END:VCARD';
+
         }
         return $data;
     }
+
+    //dynamicQrCodeDataGenerate
+    public static function dynamicQrCodeDataGenerate($type, $code)
+    {
+        return  env('APP_URL') . '/q/' . $code;
+    }
+
 }

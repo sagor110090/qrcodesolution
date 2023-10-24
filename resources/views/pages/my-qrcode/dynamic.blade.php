@@ -3,20 +3,34 @@
 use function Laravel\Folio\{middleware, name};
 use function Livewire\Volt\{state,usesPagination,with};
 
-name('my-qrcodes.static');
+name('my-qrcode.dynamic');
 middleware(['auth', 'verified']);
 usesPagination();
 
 
 with('qrcodes', function() {
-    return auth()->user()->qrcodes()->isStatic()->paginate(10);
+    return auth()->user()->qrcodes()->isdynamic()->latest()->paginate(10);
 });
 
 state('showModal', false);
 
 $edit = function ($id) {
-    state('showModal', true);
+    return redirect()->route('my-qrcode.edit',['qrCode' => $id]);
 };
+
+$delete = function ($id) {
+    $qrcode = auth()->user()->qrcodes()->findOrFail($id);
+    $qrcode->delete();
+    $this->dispatch('toast', message: 'Successfully deleted qrcode.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
+};
+
+
+$makeDynamic = function ($id) {
+    $qrcode = auth()->user()->qrcodes()->findOrFail($id);
+    $qrcode->update(['is_dynamic' => true]);
+    $this->dispatch('toast', message: 'Successfully updated qrcode.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
+};
+
 
 
 
@@ -25,28 +39,27 @@ $edit = function ($id) {
 <x-layouts.app>
     <x-slot name="header">
         <h2 class="text-lg font-semibold leading-tight text-gray-800 dark:text-gray-200">
-            {{ __('Static QR Codes') }}
+            {{ __('Dynamic QR Code') }}
         </h2>
     </x-slot>
 
-    @volt('my-qrcodes.static')
+    @volt('my-qrcodes.dynamic')
     <div class="h-full py-12">
         <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
             <div class="relative min-h-[500px] w-full h-full">
 
                 @forelse ($qrcodes as $qrcode)
-                <x-tw.card class="h-full">
+                <x-tw.card class="h-full mt-4">
 
-                    <div class="grid grid-cols-12 gap-4" x-data="{ imageType: 'png', qrcodePreview: '',download(imageType) {
-                        this.imageType = imageType;
-                        if (this.imageType === 'svg') {
+                    <div class="grid grid-cols-12 gap-4" x-data="{ imageType: '', qrcodePreview: '',download(imageType) {
+                        if (imageType === 'svg') {
                             let svg = document.querySelector('#qrcodePreview svg');
                             let data = new XMLSerializer().serializeToString(svg);
                             let downloadLink = document.createElement('a');
-                            downloadLink.download = 'qrcode.' + this.imageType;
+                            downloadLink.download = 'qrcode.' + imageType;
                             downloadLink.href = 'data:image/svg+xml;base64,' + btoa(data);
                             downloadLink.click();
-                        } else if (this.imageType === 'png') {
+                        } else if (imageType === 'png') {
                             let svg = document.querySelector('#qrcodePreview svg');
                             let canvas = document.createElement('canvas');
                             let ctx = canvas.getContext('2d');
@@ -66,7 +79,7 @@ $edit = function ($id) {
                             canvas.setAttribute('height', height);
                             canvas.setAttribute('width', width);
 
-                        } else if (this.imageType === 'jpeg') {
+                        } else if (imageType === 'jpeg') {
                             let svg = document.querySelector('#qrcodePreview svg');
                             let canvas = document.createElement('canvas');
                             let ctx = canvas.getContext('2d');
@@ -86,9 +99,10 @@ $edit = function ($id) {
                             canvas.setAttribute('height', height);
                             canvas.setAttribute('width', width);
                         }
+                        imageType = '';
 
 
-                    } }">
+                        } }">
 
                         <div class="col-span-12 md:col-span-3">
                             <div class="p-0 grid  justify-center">
@@ -97,29 +111,26 @@ $edit = function ($id) {
 
                                         <div class="border-2 shadow-sm rounded-lg">
                                             <div id="qrcodePreview">
-                                                {!! $qrcode->static_qr_code_svg !!}
+                                                {!! $qrcode->dynamic_qr_code_svg !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="grid grid-cols-3 gap-4 p-2 ">
                                         <div class="cursor-pointer" @click="download('png')">
-                                            <div class="border border-indigo-600 flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100 "
-                                                :class="{'border-indigo-600': imageType === 'png' }"
-                                                x-on:click="$wire.set('imageType',$event.target.value)">
+                                            <div
+                                                class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100 ">
                                                 PNG
                                             </div>
                                         </div>
                                         <div class="cursor-pointer" @click="download('jpeg')">
-                                            <div class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2 from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100"
-                                                :class="{'border-indigo-600': imageType === 'jpeg' }"
-                                                x-on:click="$wire.set('imageType',$event.target.value)">
+                                            <div
+                                                class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2 from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
                                                 JPEG
                                             </div>
                                         </div>
                                         <div class="cursor-pointer" @click="download('svg')">
-                                            <div class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2 from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100"
-                                                :class="{'border-indigo-600': imageType === 'svg' }"
-                                                x-on:click="$wire.set('imageType',$event.target.value)">
+                                            <div
+                                                class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2 from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
                                                 SVG
                                             </div>
                                         </div>
@@ -147,7 +158,8 @@ $edit = function ($id) {
                         <div class="col-span-12 md:col-span-3 border-l border-gray-200 dark:border-gray-700">
 
                             <div class="grid grid-cols-2 gap-2 p-2 justify-end items-center">
-                                <x-ui.button type="primary" wire:click="$dispatch('openModal', { component: 'my-qrcode.edit' })" size="md"
+                                <x-ui.button type="primary"
+                                    wire:click="edit({{$qrcode->id}})" size="md"
                                     submit="false">
                                     Edit
                                 </x-ui.button>
@@ -162,7 +174,7 @@ $edit = function ($id) {
                                     For track your qrcode you can update your qrcode to dynamic qrcode.
                                 </p>
                                 <div class="mt-2">
-                                    <x-ui.button type="info" wire:click="edit({{ $qrcode->id }})" size="md"
+                                    <x-ui.button type="info" wire:click="makeDynamic({{ $qrcode->id }})" size="md"
                                         submit="false">
                                         Update to Dynamic
                                     </x-ui.button>
@@ -175,24 +187,25 @@ $edit = function ($id) {
 
                         </div>
                     </div>
-
+                </x-tw.card>
+                @empty
+                <x-ui.placeholder />
+                @endforelse
             </div>
-            </x-tw.card>
-            @empty
-            <x-ui.placeholder />
-            @endforelse
+            <div class="mt-4">
+                {{ $qrcodes->links() }}
+            </div>
         </div>
-        <div class="mt-4">
-            {{ $qrcodes->links() }}
-        </div>
-
-    </div>
     </div>
     @endvolt
+
+    @push('css')
     <style>
         svg.qrcodesvg {
-            height: 187px;
-            width: 188px;
+            height: 157px;
+            width: 157px;
         }
     </style>
+    @endpush
+
 </x-layouts.app>

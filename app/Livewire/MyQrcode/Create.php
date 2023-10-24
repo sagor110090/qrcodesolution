@@ -3,19 +3,14 @@
 namespace App\Livewire\MyQrcode;
 
 use Support;
-use App\Models\QrCode;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
-
-class Edit extends Component
+class Create extends Component
 {
+
     use WithFileUploads;
-
-
-    public $qrCode;
-    public $type;
 
 
 
@@ -42,6 +37,8 @@ class Edit extends Component
     //---> QR Code design-related options  ---//
 
 
+
+    public $type = 'vcard';
 
     //url
     public $url = '';
@@ -92,10 +89,6 @@ class Edit extends Component
     public $vcard_country = '';
 
 
-    //name
-    public $name = '';
-
-
 
 
     public $data = 'Qrcode Solution';
@@ -104,89 +97,6 @@ class Edit extends Component
 
 
     public $qrcodePreview = '';
-
-    public function mount(QrCode $qrCode)
-    {
-        $this->qrCode = $qrCode;
-        $this->name = $qrCode->name;
-        $this->type = $qrCode->type;
-        $this->qr_style = $qrCode->qr_style;
-        $this->qr_logo = $qrCode->qr_logo;
-        $this->qr_logo_background = $qrCode->qr_logo_background;
-        $this->qr_color = $qrCode->qr_color;
-        $this->qr_bg_color = $qrCode->qr_bg_color;
-        $this->qr_eye_border = $qrCode->qr_eye_border;
-        $this->qr_eye_center = $qrCode->qr_eye_center;
-        $this->qr_eye_color_in = $qrCode->qr_eye_color_in;
-        $this->qr_eye_color_out = $qrCode->qr_eye_color_out;
-        $this->qr_eye_style_in = $qrCode->qr_eye_style_in;
-        $this->qr_eye_style_out = $qrCode->qr_eye_style_out;
-        $this->qr_gradient = $qrCode->qr_gradient;
-        $this->qr_bg_image = $qrCode->qr_bg_image;
-        $this->qr_custom_logo = $qrCode->qr_custom_logo;
-        $this->qr_custom_background = $qrCode->qr_custom_background;
-        $this->frame = $qrCode->frame;
-        $this->frame_label = $qrCode->frame_label;
-        $this->frame_label_font = $qrCode->frame_label_font;
-        $this->frame_label_text_color = $qrCode->frame_label_text_color;
-
-        //data for type
-
-        //url
-        $this->url = $qrCode->qr_code_info['url'] ?? '';
-
-        //email
-        $this->email = $qrCode->qr_code_info['email'] ?? '';
-        $this->subject = $qrCode->qr_code_info['subject'] ?? '';
-        $this->message = $qrCode->qr_code_info['message'] ?? '';
-
-        //sms
-        $this->sms = $qrCode->qr_code_info['sms'] ?? '';
-        $this->sms_phone = $qrCode->qr_code_info['sms_phone'] ?? '';
-
-        //call
-        $this->call_phone = $qrCode->qr_code_info['call_phone'] ?? '';
-
-        //wifi
-        $this->network_name = $qrCode->qr_code_info['network_name'] ?? '';
-        $this->network_password = $qrCode->qr_code_info['network_password'] ?? '';
-        $this->network_type = $qrCode->qr_code_info['network_type'] ?? '';
-        $this->wifi_hidden = $qrCode->qr_code_info['wifi_hidden'] ?? '';
-
-        //text
-        $this->text_data = $qrCode->qr_code_info['text_data'] ?? '';
-
-        //bitcoin
-        $this->bitcoin_address = $qrCode->qr_code_info['bitcoin_address'] ?? '';
-        $this->bitcoin_amount = $qrCode->qr_code_info['bitcoin_amount'] ?? '';
-
-        //location
-        $this->latitude = $qrCode->qr_code_info['latitude'] ?? '';
-        $this->longitude = $qrCode->qr_code_info['longitude'] ?? '';
-
-
-        //vCard
-        $this->vcard_first_name = $qrCode->qr_code_info['vcard_first_name'] ?? '';
-        $this->vcard_last_name = $qrCode->qr_code_info['vcard_last_name'] ?? '';
-        $this->vcard_phone_number = $qrCode->qr_code_info['vcard_phone_number'] ?? '';
-        $this->vcard_mobile = $qrCode->qr_code_info['vcard_mobile'] ?? '';
-        $this->vcard_email = $qrCode->qr_code_info['vcard_email'] ?? '';
-        $this->vcard_website = $qrCode->qr_code_info['vcard_website'] ?? '';
-        $this->vcard_company = $qrCode->qr_code_info['vcard_company'] ?? '';
-        $this->vcard_job_title = $qrCode->qr_code_info['vcard_job_title'] ?? '';
-        $this->vcard_address = $qrCode->qr_code_info['vcard_address'] ?? '';
-        $this->vcard_fax = $qrCode->qr_code_info['vcard_fax'] ?? '';
-        $this->vcard_city = $qrCode->qr_code_info['vcard_city'] ?? '';
-        $this->vcard_post_code = $qrCode->qr_code_info['vcard_post_code'] ?? '';
-        $this->vcard_country = $qrCode->qr_code_info['vcard_country'] ?? '';
-
-        $this->data = Support::staticQrCodeDataGenerate($this->type, $qrCode->qr_code_info);
-    }
-
-
-
-
-
 
     public function qrCodeCreate()
     {
@@ -445,7 +355,7 @@ class Edit extends Component
 
 
         $data = [
-            'name' => Str::ucfirst($this->name),
+            'name' => Str::ucfirst($this->type),
             'type' => $this->type,
             'qr_style' => $this->qr_style,
             'qr_logo' => $this->qr_logo,
@@ -470,10 +380,10 @@ class Edit extends Component
             'code' => Support::hashCode(),
         ];
 
-        auth()->user()->qrCodes()->find($this->qrCode->id)->update($data);
+        auth()->user()->qrCodes()->create($data);
         toastr()->success('QR Code Created Successfully');
 
-        if ($this->qrCode->is_dynamic) {
+        if ($this->onlyDynamic) {
             return redirect()->route('my-qrcode.dynamic');
         }
         return redirect()->route('my-qrcode.static');
@@ -483,7 +393,6 @@ class Edit extends Component
 
     public function render()
     {
-        $this->qrCodeCreate();
-        return view('livewire.my-qrcode.edit');
+        return view('livewire.my-qrcode.create');
     }
 }

@@ -19,11 +19,16 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 
 Route::redirect('home', '/')->name('home');
 
+Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show');
+
 
 
 Route::get('/login/{social}',[LoginController::class,'socialLogin'])->where('social','twitter|facebook|linkedin|google|github|bitbucket')->name('login.social');
 Route::get('/login/{social}/callback',[LoginController::class,'handleProviderCallback'])->where('social','twitter|facebook|linkedin|google|github|bitbucket');
 Route::middleware('auth')->group(function () {
+
+    // Route::get('/my-qrcode/{qrCode}/edit', App\Livewire\MyQrcode\Edit::class)->name('my-qrcode.edit');
+
     Route::get('email/verify/{id}/{hash}', EmailVerificationController::class)
         ->middleware('signed')
         ->name('verification.verify');

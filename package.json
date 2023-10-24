@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@ckeditor/ckeditor5-build-classic": "^40.0.0",
+        "sweetalert2": "^11.7.32",
         "tw-elements": "^1.0.0",
         "vanilla-picker": "^2.12.2"
     }
