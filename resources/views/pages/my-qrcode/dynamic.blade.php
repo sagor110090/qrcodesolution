@@ -9,10 +9,13 @@ usesPagination();
 
 
 with('qrcodes', function() {
-    return auth()->user()->qrcodes()->isdynamic()->latest()->paginate(10);
+    return auth()->user()->qrcodes()->isdynamic()->with('qrCodeTracks')->latest()->paginate(10);
 });
 
-state('showModal', false);
+state([
+    'showModal' => false,
+    'locations' => null,
+]);
 
 $edit = function ($id) {
     return redirect()->route('my-qrcode.edit',['qrCode' => $id]);
@@ -25,11 +28,13 @@ $delete = function ($id) {
 };
 
 
-$makeDynamic = function ($id) {
+$makeStatic = function ($id) {
     $qrcode = auth()->user()->qrcodes()->findOrFail($id);
-    $qrcode->update(['is_dynamic' => true]);
+    $qrcode->update(['is_dynamic' => false]);
     $this->dispatch('toast', message: 'Successfully updated qrcode.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
 };
+
+
 
 
 
@@ -51,59 +56,7 @@ $makeDynamic = function ($id) {
                 @forelse ($qrcodes as $qrcode)
                 <x-tw.card class="h-full mt-4">
 
-                    <div class="grid grid-cols-12 gap-4" x-data="{ imageType: '', qrcodePreview: '',download(imageType) {
-                        if (imageType === 'svg') {
-                            let svg = document.querySelector('#qrcodePreview svg');
-                            let data = new XMLSerializer().serializeToString(svg);
-                            let downloadLink = document.createElement('a');
-                            downloadLink.download = 'qrcode.' + imageType;
-                            downloadLink.href = 'data:image/svg+xml;base64,' + btoa(data);
-                            downloadLink.click();
-                        } else if (imageType === 'png') {
-                            let svg = document.querySelector('#qrcodePreview svg');
-                            let canvas = document.createElement('canvas');
-                            let ctx = canvas.getContext('2d');
-                            let data = new XMLSerializer().serializeToString(svg);
-                            let img = new Image();
-
-                            img.onload = function () {
-                                ctx.drawImage(img, 0, 0);
-                                let downloadLink = document.createElement('a');
-                                downloadLink.download = 'qrcode.png';
-                                downloadLink.href = canvas.toDataURL('image/png;base64');
-                                downloadLink.click();
-                            };
-                            let height = parseInt(svg.getAttribute('height'));
-                            let width = parseInt(svg.getAttribute('width'));
-                            img.setAttribute('src', 'data:image/svg+xml;base64,' + btoa(data));
-                            canvas.setAttribute('height', height);
-                            canvas.setAttribute('width', width);
-
-                        } else if (imageType === 'jpeg') {
-                            let svg = document.querySelector('#qrcodePreview svg');
-                            let canvas = document.createElement('canvas');
-                            let ctx = canvas.getContext('2d');
-                            let data = new XMLSerializer().serializeToString(svg);
-                            let img = new Image();
-
-                            img.onload = function () {
-                                ctx.drawImage(img, 0, 0);
-                                let downloadLink = document.createElement('a');
-                                downloadLink.download = 'qrcode.jpeg';
-                                downloadLink.href = canvas.toDataURL('image/jpeg;base64');
-                                downloadLink.click();
-                            };
-                            let height = parseInt(svg.getAttribute('height'));
-                            let width = parseInt(svg.getAttribute('width'));
-                            img.setAttribute('src', 'data:image/svg+xml;base64,' + btoa(data));
-                            canvas.setAttribute('height', height);
-                            canvas.setAttribute('width', width);
-                        }
-                        imageType = '';
-
-
-                        } }">
-
+                    <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-12 md:col-span-3">
                             <div class="p-0 grid  justify-center">
                                 <div class=" max-w-[18rem] rounded-lgdark:bg-neutral-700 grid justify-items-center">
@@ -115,34 +68,14 @@ $makeDynamic = function ($id) {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="grid grid-cols-3 gap-4 p-2 ">
-                                        <div class="cursor-pointer" @click="download('png')">
-                                            <div
-                                                class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100 ">
-                                                PNG
-                                            </div>
-                                        </div>
-                                        <div class="cursor-pointer" @click="download('jpeg')">
-                                            <div
-                                                class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2 from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
-                                                JPEG
-                                            </div>
-                                        </div>
-                                        <div class="cursor-pointer" @click="download('svg')">
-                                            <div
-                                                class="border flex items-center justify-center bg-gradient-to-br rounded-lg p-2 from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
-                                                SVG
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                    <x-qrcode.qr-download-btn />
                                 </div>
 
                             </div>
                         </div>
 
                         <div class="col-span-12 md:col-span-6 border-l  border-gray-200 dark:border-gray-700">
-                            <div class="p-2 grid  justify-start items-center mt-2 ml-2">
+                            <div class="p-1 grid  justify-start items-center mt-2 ml-2">
                                 <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">
                                     {{ $qrcode->name }}
                                 </div>
@@ -153,14 +86,28 @@ $makeDynamic = function ($id) {
                                     Created at {{ $qrcode->created_at->format('d M Y') }}
                                 </div>
                             </div>
+                            <div class="flex items-center justify-center mt-4">
+                                <div class="ml-2">
+                                    <p class="text-md text-gray-600 dark:text-gray-200">
+                                        <span class="font-bold">{{ $qrcode->scan_count }}</span> Scans
+                                    </p>
+                                    <div class="mt-2">
+                                        <x-ui.button type="info"
+                                        size="md"
+                                        wire:click="$dispatch('openModal', { component: 'my-qrcode.track', arguments: { locations: {{ $qrcode->qrCodeTracks }} }})"
+                                            submit="false">
+                                            Track
+                                        </x-ui.button>
+
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-span-12 md:col-span-3 border-l border-gray-200 dark:border-gray-700">
 
                             <div class="grid grid-cols-2 gap-2 p-2 justify-end items-center">
-                                <x-ui.button type="primary"
-                                    wire:click="edit({{$qrcode->id}})" size="md"
-                                    submit="false">
+                                <x-ui.button type="primary" wire:click="edit({{$qrcode->id}})" size="md" submit="false">
                                     Edit
                                 </x-ui.button>
                                 <x-ui.button type="danger" wire:click="delete({{ $qrcode->id }})" size="md"
@@ -169,14 +116,17 @@ $makeDynamic = function ($id) {
                                 </x-ui.button>
                             </div>
 
+                            <div>
+                            </div>
+
                             <div class="p-2 mt-10 border-t border-b border-gray-200 dark:border-gray-700">
                                 <p class="text-sm text-gray-500 dark:text-gray-400">
-                                    For track your qrcode you can update your qrcode to dynamic qrcode.
+                                    If you want to make this QR Code static, click the button below.
                                 </p>
                                 <div class="mt-2">
-                                    <x-ui.button type="info" wire:click="makeDynamic({{ $qrcode->id }})" size="md"
+                                    <x-ui.button type="info" wire:click="makeStatic({{ $qrcode->id }})" size="md"
                                         submit="false">
-                                        Update to Dynamic
+                                        Make Static
                                     </x-ui.button>
                                 </div>
 
@@ -196,7 +146,15 @@ $makeDynamic = function ($id) {
                 {{ $qrcodes->links() }}
             </div>
         </div>
+        <x-ui.modal :show="$showModal" name="Track">
+            <div>
+                <h1>
+                    test
+                </h1>
+            </div>
+        </x-ui.modal>
     </div>
+
     @endvolt
 
     @push('css')

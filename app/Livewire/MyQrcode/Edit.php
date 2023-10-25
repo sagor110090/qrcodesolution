@@ -16,6 +16,7 @@ class Edit extends Component
 
     public $qrCode;
     public $type;
+    public $showModal = false;
 
 
 
@@ -180,7 +181,6 @@ class Edit extends Component
         $this->vcard_post_code = $qrCode->qr_code_info['vcard_post_code'] ?? '';
         $this->vcard_country = $qrCode->qr_code_info['vcard_country'] ?? '';
 
-        $this->data = Support::staticQrCodeDataGenerate($this->type, $qrCode->qr_code_info);
     }
 
 
@@ -331,7 +331,11 @@ class Edit extends Component
             'vcard_post_code' => $this->vcard_post_code,
             'vcard_country' => $this->vcard_country,
         ];
-        $this->data = Support::staticQrCodeDataGenerate($this->type, $data);
+        if($this->qrCode->is_dynamic){
+            $this->data = Support::dynamicQrCodeDataGenerate($this->type, $this->qrCode->code);
+        }else{
+            $this->data = Support::staticQrCodeDataGenerate($this->type, $data);
+        }
         $this->qrCodeCreate();
     }
 
@@ -467,7 +471,7 @@ class Edit extends Component
             'frame_label_font' => $this->frame_label_font,
             'frame_label_text_color' => $this->frame_label_text_color,
             'qr_code_info' => $qrCodeInfo,
-            'code' => Support::hashCode(),
+            'code' => $this->qrCode->code,
         ];
 
         auth()->user()->qrCodes()->find($this->qrCode->id)->update($data);
@@ -477,6 +481,12 @@ class Edit extends Component
             return redirect()->route('my-qrcode.dynamic');
         }
         return redirect()->route('my-qrcode.static');
+    }
+
+    //track
+    public function track()
+    {
+        $this->showModal = true;
     }
 
 

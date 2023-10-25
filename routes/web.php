@@ -19,7 +19,7 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 
 Route::redirect('home', '/')->name('home');
 
-Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show');
+Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 
 
 

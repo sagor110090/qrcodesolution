@@ -7,6 +7,8 @@ use App\Models\QrCode;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Storage;
+use JeroenDesloovere\VCard\VCard;
+
 
 require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/functions.php';
 require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/phpqrcode.php';
@@ -409,6 +411,26 @@ class SupportFacade extends Facade
     public static function dynamicQrCodeDataGenerate($type, $code)
     {
         return  env('APP_URL') . '/q/' . $code;
+    }
+
+    //vCardQrCodeDataGenerate
+    public static function vCardQrCodeDataGenerate($data){
+        $vcard = new VCard();
+
+        $vcard->addName($data['vcard_last_name'], $data['vcard_first_name']);
+        $vcard->addCompany($data['vcard_company']);
+        $vcard->addJobtitle($data['vcard_job_title']);
+        $vcard->addEmail($data['vcard_email']);
+        $vcard->addPhoneNumber($data['vcard_phone_number'], 'PREF;WORK');
+        $vcard->addPhoneNumber($data['vcard_mobile'], 'WORK');
+        $vcard->addPhoneNumber($data['vcard_fax'], 'WORK');
+        $vcard->addAddress(null, null, $data['vcard_address'], $data['vcard_city'], null, $data['vcard_post_code'], $data['vcard_country']);
+        $vcard->addURL($data['vcard_website']);
+
+
+        // $vcard->addPhoto(__DIR__ . '/landscape.jpeg');
+        return $vcard->download();
+
     }
 
 }

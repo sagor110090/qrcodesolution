@@ -42,7 +42,7 @@
     <x-layouts.footer />
     @stack('js')
     <livewire:toast />
-
+    @livewire('wire-elements-modal')
 </body>
 
 </html>

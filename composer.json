@@ -9,6 +9,7 @@
         "devdojo/genesis": "dev-main",
         "guzzlehttp/guzzle": "^7.2",
         "jantinnerezo/livewire-alert": "^3.0",
+        "jeroendesloovere/vcard": "^1.7",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.9",
@@ -16,6 +17,7 @@
         "orangehill/iseed": "^3.0",
         "rappasoft/laravel-livewire-tables": "^3.0@beta",
         "ryangjchandler/laravel-comments": "^0.2.0",
+        "stevebauman/location": "^7.0",
         "wire-elements/modal": "^2.0",
         "wireui/wireui": "^1.18",
         "yoeunes/toastr": "^2.3"

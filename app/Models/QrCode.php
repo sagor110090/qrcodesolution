@@ -138,4 +138,9 @@ class QrCode extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function qrCodeTracks()
+    {
+        return $this->hasMany(QrCodeTrack::class)->latest();
+    }
 }

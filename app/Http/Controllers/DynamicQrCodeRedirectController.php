@@ -18,11 +18,14 @@ class DynamicQrCodeRedirectController extends Controller
         if(!$qrCode->is_dynamic){
             abort(404);
         }
+        $qrCode->increment('scan_count');
 
-        // $qrCode->increment('scan_count');
+        $qrCode->qrCodeTracks()->create($request->all());
+
 
         if($qrCode->type == 'vcard'){
-
+            $url = SupportFacade::vCardQrCodeDataGenerate($qrCode->qr_code_info);
+            return redirect()->away($url);
         }
 
         $url  = SupportFacade::staticQrCodeDataGenerate($qrCode->type,$qrCode->qr_code_info);
