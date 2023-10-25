@@ -101,13 +101,13 @@
                         <a href="#!" class="text-neutral-600 dark:text-neutral-200">Pricing</a>
                     </p>
                     <p class="mb-4">
-                        <a href="#!" class="text-neutral-600 dark:text-neutral-200">Contact</a>
+                        <a href="mailto:mehedihasansagor.cse@gmail.com" class="text-neutral-600 dark:text-neutral-200">Contact</a>
                     </p>
                     <p class="mb-4">
-                        <a href="#!" class="text-neutral-600 dark:text-neutral-200">Terms</a>
+                        <a href="{{route('terms')}}" class="text-neutral-600 dark:text-neutral-200">Terms</a>
                     </p>
                     <p>
-                        <a href="#!" class="text-neutral-600 dark:text-neutral-200">Privacy</a>
+                        <a href="{{route('privacy-policy')}}" class="text-neutral-600 dark:text-neutral-200">Privacy</a>
                     </p>
                 </div>
             </div>
