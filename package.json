@@ -19,6 +19,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@alpinejs/intersect": "^3.13.2",
         "@ckeditor/ckeditor5-build-classic": "^40.0.0",
         "sweetalert2": "^11.7.32",
         "tw-elements": "^1.0.0",

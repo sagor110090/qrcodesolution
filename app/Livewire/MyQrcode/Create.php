@@ -12,6 +12,9 @@ class Create extends Component
 
     use WithFileUploads;
 
+    //query string
+    protected $queryString = ['type'];
+
 
 
     //---> QR Code design-related options  ---//
@@ -38,7 +41,7 @@ class Create extends Component
 
 
 
-    public $type = 'vcard';
+    public $type = 'url';
 
     //url
     public $url = '';
@@ -94,6 +97,8 @@ class Create extends Component
     public $data = 'Qrcode Solution';
     public $error = '';
     public $onlyDynamic = false;
+
+    public $dynamic = false;
 
 
     public $qrcodePreview = '';
@@ -378,12 +383,13 @@ class Create extends Component
             'frame_label_text_color' => $this->frame_label_text_color,
             'qr_code_info' => $qrCodeInfo,
             'code' => Support::hashCode(),
+            'is_dynamic' => $this->dynamic ? true : false,
         ];
 
         auth()->user()->qrCodes()->create($data);
         toastr()->success('QR Code Created Successfully');
 
-        if ($this->onlyDynamic) {
+        if ($this->dynamic) {
             return redirect()->route('my-qrcode.dynamic');
         }
         return redirect()->route('my-qrcode.static');

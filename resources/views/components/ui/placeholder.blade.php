@@ -8,5 +8,12 @@
         </defs>
         <rect stroke="none" fill="url(#pattern-b55d3ce5-d478-4029-95b9-44c415d04f63)" width="100%" height="100%"></rect>
         </svg>
+        <div class="absolute inset-0 flex items-center justify-center">
+        <div class="flex flex-col items-center space-y-1 text-center">
+            <svg class="w-12 h-12 text-gray-900/20 dark:text-gray-200/20" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2a10 10 0 0 0-7.64 16.32l-1.06 4.24a1 1 0 0 0 1.24 1.24l4.24-1.06A10 10 0 1 0 12 2zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"></path>
+            </svg>
+            <span class="text-sm font-medium text-gray-900 dark:text-gray-200">No QR Code</span>
+        </div>
     </div>
 </div>

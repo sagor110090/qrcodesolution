@@ -11,7 +11,7 @@
     <div class="mt-2 text-sm  text-neutral-500 dark:text-neutral-300 text-weight-300">
        <x-tw.input label="Website (URL)" placeholder="https://qrcodesolution.com" id="link"  style="height: 50px; width: 100%; "  type="link" size="lg"
        helper="Ex: https://qrcodesolution.com"
-       name="url" value="{{ $url }}"
+       name="url" value="{{ $url ?: 'https://' }}"
        />
 
     </div>

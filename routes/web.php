@@ -16,8 +16,7 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::redirect('home', '/')->name('home');
+// Route::redirect('home', '/')->name('home');
 
 Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 

@@ -13,13 +13,13 @@
                 }
             }
         //loading screen remove  when page is fully loaded
-        window.addEventListener("load", function() {
-            setTimeout(function() {
-                loading.dispose();
-                document.body.classList.remove("overflow-hidden");
-            }, 300);
+        // window.addEventListener("load", function() {
+        //     setTimeout(function() {
+        //         loading.dispose();
+        //         document.body.classList.remove("overflow-hidden");
+        //     }, 300);
 
-        });
+        // });
 
     </script>
 
@@ -43,6 +43,7 @@
     @stack('js')
     <livewire:toast />
     @livewire('wire-elements-modal')
+    <x-loader />
 </body>
 
 </html>
