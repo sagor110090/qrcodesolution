@@ -12,27 +12,17 @@
                     document.documentElement.classList.add('dark');
                 }
             }
-        //loading screen remove  when page is fully loaded
-        // window.addEventListener("load", function() {
-        //     setTimeout(function() {
-        //         loading.dispose();
-        //         document.body.classList.remove("overflow-hidden");
-        //     }, 300);
-
-        // });
 
     </script>
+
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('css')
-    <script>
-        document.addEventListener('live d', function() {
-
-            })
-    </script>
 
     <title>{{ $title ?? config('app.name') }}</title>
+    {{-- icon --}}
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" sizes="16x16">
 </head>
 
 <body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900" >
