@@ -11,6 +11,7 @@ class LogoutController extends Controller
     public function __invoke(): RedirectResponse
     {
         Auth::logout();
+        // dd('logout');
 
         return redirect()->route('home');
     }

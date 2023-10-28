@@ -26,7 +26,7 @@ $register = function(){
 
     $this->dispatch('toast', message: 'Successfully registered.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
     $this->js('document.getElementById("closeModalRegister").click()');
-    return redirect()->intended('/');
+    return redirect()->intended(route('my-qrcode.create'));
 
 }
 

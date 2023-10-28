@@ -18,7 +18,7 @@ $authenticate = function () {
     event(new Login(auth()->guard('web'), User::where('email', $this->email)->first(), $this->remember));
 
     $this->dispatch('toast', message: 'Successfully logged in.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
-    return redirect()->intended('/');
+    return redirect()->intended(route('dashboard'));
 };
 
 ?>

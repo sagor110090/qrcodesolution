@@ -8,7 +8,6 @@
 
 @pushOnce('scripts')
     <script>
-        document.addEventListener('live d', function() {
             const editor = CKEDITOR.replace('{{ $id }}', {
                 filebrowserUploadUrl: "{{ route('ckeditor.image-upload', ['_token' => csrf_token()]) }}",
                 filebrowserUploadMethod: 'form',
@@ -16,6 +15,5 @@
             editor.on('change', function(event) {
                 @this.set('{{ $id }}', event.editor.getData());
             });
-        })
     </script>
 @endpushOnce

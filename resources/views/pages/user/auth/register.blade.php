@@ -26,7 +26,7 @@ $register = function(){
 
     Auth::login($user, true);
 
-    return redirect()->intended('/');
+    return redirect()->intended(route('my-qrcode.create'));
 }
 
 ?>

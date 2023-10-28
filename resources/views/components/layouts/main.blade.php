@@ -11,10 +11,19 @@
                 if(localStorage.getItem('dark_mode') && localStorage.getItem('dark_mode') == 'true'){
                     document.documentElement.classList.add('dark');
                 }
+        }
+         //for first time load page follow the system mode
+         if (typeof(Storage) !== "undefined") {
+            if(!localStorage.getItem('dark_mode')){
+                if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+                    document.documentElement.classList.add('dark');
+                }
             }
+        }
+
+
 
     </script>
-
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -26,8 +35,6 @@
 </head>
 
 <body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900" >
-    <div id="full-screen-loader">
-    </div>
     {{ $slot }}
     <x-layouts.footer />
     @stack('js')
