@@ -2,6 +2,9 @@
 
 use App\Models\Post;
 use function Livewire\Volt\{with, state, rules, mount, usesPagination};
+use function Laravel\Folio\{middleware, name};
+
+name('blog');
 
 usesPagination();
 
