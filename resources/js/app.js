@@ -1,12 +1,12 @@
 import {
     Datepicker, Input, initTE, Collapse, Select, Sticky, Modal,
-    Ripple,LoadingManagement
+    Ripple,LoadingManagement,Stepper
 } from "tw-elements";
 
 
 
 
-initTE({ Datepicker, Input, Collapse, Select, Sticky, Modal, Ripple,LoadingManagement });
+initTE({ Datepicker, Input, Collapse, Select, Sticky, Modal, Ripple,LoadingManagement,Stepper });
 
 import Picker from 'vanilla-picker'
 

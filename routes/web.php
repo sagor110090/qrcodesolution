@@ -27,7 +27,7 @@ Route::domain('app.' . config('app.domain'))->middleware('auth')->group(function
 
 
 
-Route::domain('admin' . config('app.domain'))->middleware('admin')->prefix('admin')->group(function () {
+Route::domain('admin.' . config('app.domain'))->middleware('admin')->prefix('admin')->group(function () {
     Route::post('logout', function () {
         Auth::guard('admin')->logout();
         return redirect()->route('home');

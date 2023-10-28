@@ -28,5 +28,6 @@ class FolioServiceProvider extends ServiceProvider
         Folio::domain(config('app.domain'))
             ->path(resource_path('views/pages/guest'));
 
+
     }
 }
