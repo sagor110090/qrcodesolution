@@ -3,7 +3,7 @@
     <style>
         .loader {
             margin-top: 20%;
-            margin-left: 50%;
+            margin-left: 48%;
         }
 
         .main{

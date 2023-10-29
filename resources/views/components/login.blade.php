@@ -29,14 +29,12 @@ $authenticate = function () {
     class="fixed left-0 top-0 z-[1055] hidden h-full w-full overflow-y-auto overflow-x-hidden outline-none"
     id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
     <div data-te-modal-dialog-ref
-        class="pointer-events-none relative w-auto translate-y-[-50px] opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:max-w-[500px]">
+    class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
         <div
             class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
-            <div
-                class="flex flex-shrink-0 items-center justify-end rounded-t-md  p-4">
+            <div class="flex flex-shrink-0 items-center justify-end rounded-t-md  p-4">
 
-                <button type="button"
-                id="closeModalLogin"
+                <button type="button" id="closeModalLogin"
                     class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                     data-te-modal-dismiss aria-label="Close">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -55,16 +53,16 @@ $authenticate = function () {
                         <h2 class="mt-5 text-2xl font-extrabold leading-9 text-center text-gray-800 dark:text-gray-200">
                             Sign in to
                             your account</h2>
-                        <div class="text-sm leading-5 text-center text-gray-600 dark:text-gray-400 space-x-0.5" data-te-modal-dismiss>
+                        <div class="text-sm leading-5 text-center text-gray-600 dark:text-gray-400 space-x-0.5"
+                            data-te-modal-dismiss>
                             <span>Or</span>
                             <div data-te-ripple-init data-te-ripple-color="light" data-te-toggle="modal"
-                            data-te-target="#registerModal" data-te-ripple-init data-te-ripple-color="light"
+                                data-te-target="#registerModal" data-te-ripple-init data-te-ripple-color="light"
                                 class="px-2 py-1 text-blue-500 cursor-pointer">Create a new account</div>
                         </div>
                     </div>
                     <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-                        <div
-                            class="px-10 py-0 sm:py-8">
+                        <div class="px-10 py-0 sm:py-8">
                             @volt('login')
                             <div>
                                 <form wire:submit="authenticate" class="space-y-6">

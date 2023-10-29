@@ -7,6 +7,8 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 
 
+//
+
 Route::domain(config('app.domain'))->group(function () {
     Route::redirect('/home', '/');
 });

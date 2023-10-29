@@ -1,12 +1,12 @@
 import {
     Datepicker, Input, initTE, Collapse, Select, Sticky, Modal,
-    Ripple,LoadingManagement,Stepper
+    Ripple,LoadingManagement
 } from "tw-elements";
 
 
 
 
-initTE({ Datepicker, Input, Collapse, Select, Sticky, Modal, Ripple,LoadingManagement,Stepper });
+initTE({ Datepicker, Input, Collapse, Select, Sticky, Modal, Ripple,LoadingManagement });
 
 import Picker from 'vanilla-picker'
 
@@ -26,4 +26,6 @@ const swalWithBootstrapButtons = Swal.mixin({
   });
 
 window.swalWithBootstrapButtons = swalWithBootstrapButtons;
+
+
 

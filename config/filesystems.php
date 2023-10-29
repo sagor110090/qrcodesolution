@@ -59,6 +59,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'event' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/event'),
+            'url' => env('APP_URL').'/storage/event',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

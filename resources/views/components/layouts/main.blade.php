@@ -25,9 +25,13 @@
 
     </script>
 
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <wireui:scripts />
+
 
     @stack('css')
+
 
     <title>{{ $title ?? config('app.name') }}</title>
     {{-- icon --}}

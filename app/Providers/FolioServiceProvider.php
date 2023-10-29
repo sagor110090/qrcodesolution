@@ -21,13 +21,16 @@ class FolioServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
         Folio::domain('admin.' . config('app.domain'))
             ->path(resource_path('views/pages/admin'));
-        Folio::domain('app.'.config('app.domain'))
+        Folio::domain('app.' . config('app.domain'))
             ->path(resource_path('views/pages/user'));
         Folio::domain(config('app.domain'))
             ->path(resource_path('views/pages/guest'));
-
-
+        Folio::domain(config('app.domain'))
+            ->path(resource_path('views/pages/dynamic'));
+            Folio::domain('app.' . config('app.domain'))
+            ->path(resource_path('views/pages/dynamic'));
     }
 }

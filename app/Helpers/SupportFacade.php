@@ -168,28 +168,7 @@ class SupportFacade extends Facade
         return true;
     }
 
-    public static function base64_upload($image_64, $type = 'social_media')
-    {
-        // check if image is base64
-        if (substr($image_64, 0, 10) == 'data:image') {
-            $extension = explode('/', explode(':', substr($image_64, 0, strpos($image_64, ';')))[1])[1]; // .jpg .png .pdf
-            $replace = substr($image_64, 0, strpos($image_64, ',') + 1);
-            $image = str_replace($replace, '', $image_64);
-            $image = str_replace(' ', '+', $image);
-            $imageName = '/' . Str::random(10) . '.' . $extension;
-            Storage::disk($type)->put($imageName, base64_decode($image));
-            return $imageName;
-        } elseif ($type == 'event') {
-            $base_url = url('/') . '/storage/event';
-            $image_64 = str_replace($base_url, '', $image_64);
-            return $image_64;
-        } else {
-            // base url
-            $base_url = url('/') . '/storage/social_media';
-            $image_64 = str_replace($base_url, '', $image_64);
-            return $image_64;
-        }
-    }
+
 
     public static function buildFrameLabel($words)
     {
@@ -432,5 +411,110 @@ class SupportFacade extends Facade
         return $vcard->download();
 
     }
+
+
+    //event font list
+    public static function eventFonts()
+    {
+        $fonts = [
+            [
+                'name' => 'Abril Fatface',
+            ],
+            [
+                'name' => 'Arial',
+            ],
+            [
+                'name' => 'Cormorant Garamond',
+            ],
+            [
+                'name' => 'Fredoka One',
+            ],
+            [
+                'name' => 'Galindo',
+            ],
+            [
+                'name' => 'Oleo Script',
+            ],
+            [
+                'name' => 'Playfair Display',
+            ],
+            [
+                'name' => 'Shrikhand',
+            ],
+            [
+                'name' => 'ZCOOL KuaiLe',
+            ],
+        ];
+
+        return $fonts;
+    }
+
+    //basic qrcode data generate
+    public static function basicDataForQrCode(){
+        $qr_style = "default";
+        $qr_logo = '';
+        $qr_logo_background = false;
+        $qr_color = null;
+        $qr_bg_color = '255,255,255';
+        $qr_eye_border = 'default';
+        $qr_eye_center = 'default';
+        $qr_eye_color_in = '';
+        $qr_eye_color_out = '';
+        $qr_eye_style_in = '';
+        $qr_eye_style_out = '';
+        $qr_gradient = null;
+        $qr_bg_image = '';
+        $qr_custom_logo = null;
+        $qr_custom_background = null;
+        $frame = 'none';
+        $frame_label = 'Scan me';
+        $frame_label_font = 'AbrilFatface.svg';
+        $frame_label_text_color = '#FFFFFF';
+
+        $data = [
+            'qr_style' => $qr_style,
+            'qr_logo' => $qr_logo,
+            'qr_logo_background' => $qr_logo_background,
+            'qr_color' => $qr_color,
+            'qr_bg_color' => $qr_bg_color,
+            'qr_eye_border' => $qr_eye_border,
+            'qr_eye_center' => $qr_eye_center,
+            'qr_eye_color_in' => $qr_eye_color_in,
+            'qr_eye_color_out' => $qr_eye_color_out,
+            'qr_eye_style_in' => $qr_eye_style_in,
+            'qr_eye_style_out' => $qr_eye_style_out,
+            'qr_gradient' => $qr_gradient,
+            'qr_bg_image' => $qr_bg_image,
+            'qr_custom_logo' => $qr_custom_logo,
+            'qr_custom_background' => $qr_custom_background,
+            'frame' => $frame,
+            'frame_label' => $frame_label,
+            'frame_label_font' => $frame_label_font,
+            'frame_label_text_color' => $frame_label_text_color,
+            'code' => self::hashCode(),
+        ];
+        return $data;
+    }
+
+    //bit 64 to image
+    public static function base64_to_jpeg($base64_string, $output_file)
+    {
+        $ifp = fopen($output_file, "wb");
+        $data = explode(',', $base64_string);
+        fwrite($ifp, base64_decode($data[1]));
+        fclose($ifp);
+        return $output_file;
+    }
+
+    //uploadImage
+    public static function uploadImage($image, $disk, $path)
+    {
+        $base64_to_jpeg = self::base64_to_jpeg($image, $path);
+        $imageName = '/' . Str::random(10) . '.png';
+        Storage::disk($disk)->put($path . $imageName, file_get_contents($base64_to_jpeg));
+        return $disk . '/' . $path . $imageName;
+    }
+
+
 
 }

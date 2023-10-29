@@ -36,6 +36,7 @@ class QrCode extends Model
         'frame_label_text_color',
         'is_dynamic',
         'qr_code_info',
+        'subdomain',
     ];
 
     protected $casts = [

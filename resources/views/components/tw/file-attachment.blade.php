@@ -10,7 +10,6 @@
     imagePreview: false,
     preview() {
         const file = this.$refs.{{$name.'1'}}.files[0];
-        console.log(file);
         const reader = new FileReader();
         reader.onload = (e) => {
             this.$refs.{{$name}}.src = e.target.result;
