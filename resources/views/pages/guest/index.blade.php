@@ -37,11 +37,10 @@ name('home');
                 @guest
                 <div class="flex items-center justify-center w-full max-w-sm px-5 mx-auto mt-8 space-x-5">
                     <x-ui.button
+                    tag="a"
+                    href="{{ route('register') }}"
                     type="primary"
-                    data-te-toggle="modal"
-                    data-te-target="#loginModal"
-                    data-te-ripple-init
-                    data-te-ripple-color="light"
+                    submit="false"
                     >Get Started</x-ui.button>
                 </div>
                 @endguest
@@ -56,8 +55,6 @@ name('home');
 
 
 
-        <x-login />
-        <x-register />
 
 
     </div>
