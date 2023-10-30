@@ -110,7 +110,7 @@
                     :sms="$sms"
                 />
                 <x-qrcode.phone :phone="$call_phone" />
-                <x-qrcode.event />
+                <x-qrcode.event :qrCode="$qrCode"/>
                 <x-qrcode.location
                     :latitude="$latitude"
                     :longitude="$longitude"

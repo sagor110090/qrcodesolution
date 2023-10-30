@@ -515,6 +515,38 @@ class SupportFacade extends Facade
         return $disk . '/' . $path . $imageName;
     }
 
+    //session store
+    public static function saveRequestData($data)
+    {
+        session()->put('data', $data);
+        return true;
+    }
+
+    //get from session
+    public static function getFromSession()
+    {
+        if ($data = session()->get('data')) {
+            return $data;
+        }
+        return false;
+    }
+
+    //forgetFromSession
+    public static function forgetFromSession()
+    {
+        session()->forget('data');
+        return true;
+    }
+
+
+    //image to base64
+    public static function imageToBase64($path)
+    {
+        $type = pathinfo($path, PATHINFO_EXTENSION);
+        $data =  Storage::url($path);
+        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        return $base64;
+    }
 
 
 }

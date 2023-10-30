@@ -26,6 +26,12 @@ $register = function(){
 
     Auth::login($user, true);
 
+    if ($data = Support::getFromSession()) {
+        auth()->user()->qrCodes()->create($data);
+        Support::forgetFromSession();
+        return $data['is_dynamic'] ? redirect()->route('my-qrcode.dynamic') : redirect()->route('my-qrcode.static');
+    }
+
     return redirect()->intended(route('my-qrcode.create'));
 }
 

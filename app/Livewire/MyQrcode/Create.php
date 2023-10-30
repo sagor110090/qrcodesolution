@@ -7,6 +7,8 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 
+use function Laravel\Folio\middleware;
+
 class Create extends Component
 {
 
@@ -133,7 +135,9 @@ class Create extends Component
 
     public function updated()
     {
-        $this->onlyDynamic = Support::onlyDynamic($this->type);
+        if (Support::onlyDynamic($this->type)) {
+            return;
+        }
 
         if ($this->type == 'url') {
 
@@ -215,6 +219,8 @@ class Create extends Component
             $this->validate($rules, $message);
         }
 
+
+
         $data = [
             'url' => $this->url,
             'email' => $this->email,
@@ -254,6 +260,11 @@ class Create extends Component
     // save
     public function save()
     {
+
+        if (Support::onlyDynamic($this->type)) {
+            return;
+        }
+
         if ($this->type == 'url') {
             $rules = ['url' => 'required|url'];
             $this->validate($rules);
@@ -359,6 +370,8 @@ class Create extends Component
         }
 
 
+
+
         $data = [
             'name' => Str::ucfirst($this->type),
             'type' => $this->type,
@@ -385,6 +398,11 @@ class Create extends Component
             'code' => Support::hashCode(),
             'is_dynamic' => $this->dynamic ? true : false,
         ];
+
+        if(auth()->check() == false){
+            Support::saveRequestData($data);
+            return redirect()->route('login');
+        }
 
         auth()->user()->qrCodes()->create($data);
         toastr()->success('QR Code Created Successfully');

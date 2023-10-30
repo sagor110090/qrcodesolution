@@ -17,6 +17,8 @@ middleware(['auth', 'verified']);
 
     @volt('dashboard')
     <div class="h-full py-12">
+    @dump(Support::getFromSession())
+
         <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
 
             <div class="relative min-h-[500px] w-full h-full">

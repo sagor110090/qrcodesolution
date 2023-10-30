@@ -2,10 +2,22 @@
 
 use function Laravel\Folio\{middleware, name};
 use Livewire\Volt\Component;
-use function Livewire\Volt\{state, rules,updated};
+use function Livewire\Volt\{state, rules,updated,mount};
 
+name('my-qrcode.event.edit');
 
-name('event.create');
+middleware(['auth', 'verified']);
+
+//query string
+
+mount(function (){
+    $qrCode = auth()->user()->qrCodes()->findOrFail(request()->get('qrCode'));
+    $this->event = $qrCode->qr_code_info;
+    $this->event_url = $qrCode->subdomain;
+    $this->cover_image = null;
+    $this->QrcodeId = $qrCode->id;
+
+});
 
 
 state([
@@ -28,6 +40,7 @@ state([
     ],
     'currentStep' => 'step1',
     'cover_image' => '',
+    'QrcodeId' => '',
     'event' => [
         'name' => '',
         'description' => '',
@@ -46,6 +59,8 @@ state([
     ],
     'event_url' => '',
 ]);
+
+
 
 $setCurrentStep = function ($step) {
     // remove all errors
@@ -118,7 +133,7 @@ $setCurrentStep = function ($step) {
             return redirect()->route('login');
         }
 
-        auth()->user()->qrCodes()->create($data);
+        auth()->user()->qrCodes()->find($this->QrcodeId)->update($data);
 
         toastr()->success('QR Code Created Successfully');
         return redirect()->route('my-qrcode.dynamic');
@@ -135,9 +150,9 @@ updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_im
 ?>
 
 
-<x-layouts.frontend>
+<x-layouts.app>
     <div class="h-full">
-    @volt('event.create')
+    @volt('my-qrcode.event.edit')
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-20 bg-white dark:bg-gray-800 rounded-lg shadow  p-6">
         <div class="grid grid-cols-12 gap-4">
             <div class="col-span-12 md:col-span-4">
@@ -266,7 +281,7 @@ updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_im
     </div>
     @endvolt
     </div>
-</x-layouts.frontend>
+</x-layouts.app>
 
 @push('css')
 <style>

@@ -15,9 +15,40 @@ name('about');
         <div class="flex items-center justify-center w-full pt-24">
             <div class="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
                 <h1 class="text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-6xl grid justify-center mt-5">
-                    Coming Soon
+                    About Us
                 </h1>
-                {{-- <p class="relative mt-6 text-lg leading-8 text-slate-600 dark:text-slate-400 sm:max-w-md lg:max-w-none">Genesis combines the power of Laravel, the TALL Stack, Folio, and Volt. This powerful combination will help you bring your ideas to life effortlessly.</p> --}}
+                <div class="container mx-auto p-4">
+                    <section class="mt-8">
+                        <h2 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Our Mission</h2>
+                        <p class="mt-4 text-slate-900 dark:text-slate-100">Our mission is to empower individuals and businesses by harnessing the power of QR codes. We are committed to delivering user-friendly, innovative, and value-driven QR code solutions that help you connect with your audience, simplify processes, and stay ahead in this rapidly evolving digital landscape.</p>
+                    </section>
+
+                    <section class="mt-8">
+                        <h2 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Why Choose Us?</h2>
+                        <div class="mt-4 space-y-4">
+                            <p class="text-slate-900 dark:text-slate-100">
+                                <span class="text-blue-500 font-semibold">1. Simplicity and Accessibility:</span> We make QR codes accessible to all. Our user-friendly platform ensures that you can generate and customize QR codes with ease, even if you have no technical background.
+                            </p>
+                            <p class="text-slate-900 dark:text-slate-100">
+                                <span class="text-blue-500 font-semibold">2. Versatility:</span> We offer a wide range of QR code types, from simple website links to complex data encoding. Whether you need QR codes for marketing campaigns, contactless payments, or inventory management, we have you covered.
+                            </p>
+                            <p class="text-slate-900 dark:text-slate-100">
+                                <span class="text-blue-500 font-semibold">3. Reliability:</span> We take quality seriously. Our QR codes are designed to be robust, ensuring that they scan accurately and consistently across various devices and environments.
+                            </p>
+                            <p class="text-slate-900 dark:text-slate-100">
+                                <span class="text-blue-500 font-semibold">4. Innovation:</span> QR codes are constantly evolving, and so are we. We stay at the forefront of QR code technology to provide you with cutting-edge solutions that meet your ever-changing needs.
+                            </p>
+                            <p class="text-slate-900 dark:text-slate-100">
+                                <span class="text-blue-500 font-semibold">5. Customer-Centric Approach:</span> Your success is our success. We are here to support you every step of the way, offering responsive customer service and resources to assist you in making the most of QR codes.
+                            </p>
+                        </div>
+                    </section>
+
+                    <section class="mt-8">
+                        <h2 class="text-2xl font-semibold text-slate-900 dark:text-slate-100">Join Our QR Code Revolution</h2>
+                        <p class="mt-4 text-slate-900 dark:text-slate-100">At QRCodeSolution.com, we are not just about QR codes; we are about simplifying your life and your business. Whether you're looking to enhance your marketing strategy, streamline operations, or create interactive customer experiences, we have the solutions you need.</p>
+                    </section>
+                </div>
             </div>
         </div>
 

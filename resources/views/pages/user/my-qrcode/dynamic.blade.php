@@ -118,20 +118,22 @@ $makeStatic = function ($id) {
 
                             <div>
                             </div>
+                            @if (!Support::onlyDynamic($qrcode->type))
+                                <div class="p-2 mt-10 border-t border-b border-gray-200 dark:border-gray-700">
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                                        If you want to make this QR Code static, click the button below.
+                                    </p>
+                                    <div class="mt-2">
 
-                            <div class="p-2 mt-10 border-t border-b border-gray-200 dark:border-gray-700">
-                                <p class="text-sm text-gray-500 dark:text-gray-400">
-                                    If you want to make this QR Code static, click the button below.
-                                </p>
-                                <div class="mt-2">
-                                    <x-ui.button type="info" wire:click="makeStatic({{ $qrcode->id }})" size="md"
-                                        submit="false">
-                                        Make Static
-                                    </x-ui.button>
+                                        <x-ui.button type="info" wire:click="makeStatic({{ $qrcode->id }})" size="md"
+                                            submit="false">
+                                            Make Static
+                                        </x-ui.button>
+                                    </div>
+
+
                                 </div>
-
-
-                            </div>
+                            @endif
 
 
 
