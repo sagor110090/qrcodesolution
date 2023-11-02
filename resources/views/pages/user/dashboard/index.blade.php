@@ -17,15 +17,14 @@ middleware(['auth', 'verified']);
 
     @volt('dashboard')
     <div class="h-full py-12">
-    @dump(Support::getFromSession())
 
         <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
 
             <div class="relative min-h-[500px] w-full h-full">
                 <div class="container flex flex-col mx-auto rounded-3xl shadow-main ">
                     <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white rounded-3xl shadow-main dark:bg-neutral-700 shadow-lg">
-                            <span class="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-main">
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+                            <span class="flex items-center justify-center w-16 h-16">
                                 <i class="bi bi bi-activity text-4xl text-dark-grey-900 text-blue-500"></i>
                             </span>
                             <p class="text-2xl font-bold text-center text-dark-grey-900 dark:text-white">
@@ -35,8 +34,8 @@ middleware(['auth', 'verified']);
                                 Total QR Codes
                             </p>
                         </div>
-                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white rounded-3xl shadow-main dark:bg-neutral-700 shadow-lg">
-                            <span class="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-main">
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+                            <span class="flex items-center justify-center w-16 h-16">
                                 <i class="bi bi bi-activity text-4xl text-dark-grey-900 text-blue-500"></i>
                             </span>
                             <p class="text-2xl font-bold text-center text-dark-grey-900 dark:text-white">
@@ -46,8 +45,8 @@ middleware(['auth', 'verified']);
                                 Total Static QR Codes
                             </p>
                         </div>
-                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white rounded-3xl shadow-main dark:bg-neutral-700 shadow-lg">
-                            <span class="flex items-center justify-center w-16 h-16 bg-white rounded-full shadow-main">
+                        <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+                            <span class="flex items-center justify-center w-16 h-16">
                                 <i class="bi bi bi-activity text-4xl text-dark-grey-900 text-blue-500"></i>
                             </span>
                             <p class="text-2xl font-bold text-center text-dark-grey-900 dark:text-white">

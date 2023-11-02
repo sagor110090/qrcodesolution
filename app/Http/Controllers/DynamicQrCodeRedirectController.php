@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\SupportFacade;
+use App\Helpers\Support;
 use App\Models\QrCode;
 use Illuminate\Http\Request;
 
@@ -24,11 +24,13 @@ class DynamicQrCodeRedirectController extends Controller
 
 
         if($qrCode->type == 'vcard'){
-            $url = SupportFacade::vCardQrCodeDataGenerate($qrCode->qr_code_info);
+            $url = Support::vCardQrCodeDataGenerate($qrCode->qr_code_info);
+            return redirect()->away($url);
+        }elseif($qrCode->type == 'event'){
+            $url = Support::eventQrCodeDataGenerate($qrCode->qr_code_info);
             return redirect()->away($url);
         }
-
-        $url  = SupportFacade::staticQrCodeDataGenerate($qrCode->type,$qrCode->qr_code_info);
+        $url  = Support::staticQrCodeDataGenerate($qrCode->type,$qrCode->qr_code_info);
         return redirect()->away($url);
 
 

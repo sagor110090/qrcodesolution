@@ -234,7 +234,7 @@
                     </svg></label>
             </div>
         </x-tw.button-select>
-        <x-tw.button-select @click="qr_eye_center = 'sparkle_dot'" value="default"
+        <x-tw.button-select @click="qr_eye_center = 'sparkle_dot'" value="sparkle_dot"
             type="qr_eye_center">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eff-b2ca3f7c"
                 class="w-embed">

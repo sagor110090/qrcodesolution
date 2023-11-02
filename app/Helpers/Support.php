@@ -14,7 +14,7 @@ require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/functions.php';
 require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/phpqrcode.php';
 require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/class-qrcdr.php';
 
-class SupportFacade extends Facade
+class Support extends Facade
 {
 
     //type of qr code
@@ -411,6 +411,7 @@ class SupportFacade extends Facade
         return $vcard->download();
 
     }
+
 
 
     //event font list

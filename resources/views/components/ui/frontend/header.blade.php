@@ -38,8 +38,8 @@
                     Admin Dashboard
                 </x-ui.button>
             </div>
-
             @else
+
                 <div class="flex items-center w-auto">
                     <x-ui.button type="secondary" submit="true" tag="a"   href="{{ route('login') }}">Login</x-ui.button>
                 </div>

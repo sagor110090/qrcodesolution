@@ -54,7 +54,7 @@ $makeStatic = function ($id) {
             <div class="relative min-h-[500px] w-full h-full">
 
                 @forelse ($qrcodes as $qrcode)
-                <x-tw.card class="h-full mt-4">
+                <x-tw.card class="h-full mt-4 ">
 
                     <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-12 md:col-span-3">

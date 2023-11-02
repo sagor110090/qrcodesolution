@@ -82,7 +82,7 @@
 
 
         <div class="col-span-12 md:col-span-9">
-            <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 text-center">
+            <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
                 <div class=" n p-4 border-b dark:border-neutral-600">
                     <x-tw.input label="QR Code Name" placeholder="QR Code Name" id="name"  required class="col-span-2" name="name" value="{{ $name }}"/>
@@ -178,7 +178,7 @@
         </div>
 
         <div class="col-span-12 md:col-span-3" wire:ignore>
-            <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 text-center" data-te-sticky-init
+            <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10" data-te-sticky-init
                 data-te-sticky-boundary="#sticky-top" data-te-sticky-direction="both">
 
                 <div class="border-neutral-100 px-6 py-4 dark:border-neutral-500">

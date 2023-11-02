@@ -78,7 +78,7 @@
       }">
 
     <div class="col-span-12 md:col-span-3">
-        <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 text-center">
+        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
             <div class="border-neutral-100 px-6 py-4  dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
@@ -110,7 +110,7 @@
     </div>
 
     <div class="col-span-12 md:col-span-6">
-        <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 text-center">
+        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
             <x-qrcode.url />
             <x-qrcode.email />
@@ -175,12 +175,12 @@
     </div>
 
     <div class="col-span-12 md:col-span-3" wire:ignore>
-        <div class="block rounded-lg bg-white shadow-lg dark:bg-neutral-700 text-center" data-te-sticky-init
+        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10" data-te-sticky-init
             data-te-sticky-boundary="#sticky-top" data-te-sticky-direction="both">
 
             <div class="border-neutral-100 px-6 py-4 dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
-                    <x-tw.label class="mr-2 font-bold text-md">
+                    <x-tw.label class="mr-2 font-bold text-md text-center">
                         Preview your QR Code
                     </x-tw.label>
                 </h5>

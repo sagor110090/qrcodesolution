@@ -9,7 +9,7 @@
         @endforeach
     </div>
     <div>
-        <x-tw.label class="font-bold text-md mb-5 mt-10">
+        <x-tw.label class="font-bold text-md mb-5 mt-10 text-center">
             Or
         </x-tw.label>
         <div class="grid grid-cols-1 gap-4">

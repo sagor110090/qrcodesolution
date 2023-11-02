@@ -30,7 +30,7 @@ class FolioServiceProvider extends ServiceProvider
             ->path(resource_path('views/pages/guest'));
         Folio::domain(config('app.domain'))
             ->path(resource_path('views/pages/dynamic'));
-            Folio::domain('app.' . config('app.domain'))
+        Folio::domain('app.' . config('app.domain'))
             ->path(resource_path('views/pages/dynamic'));
     }
 }

@@ -4,11 +4,11 @@
     'show' => false,
 ])
 
-<div class="border border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800" wire:ignore>
+<div class="border border-neutral-200 bg-white dark:bg-gray-900/50 dark:border dark:border-gray-200/10" wire:ignore>
 
     <h2 class="mb-0" id="heading{{$id}}">
         <button
-            class="group relative flex w-full items-center border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white  [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]  font-semibold leading-6 tracking-wider uppercase rounded-t-lg "
+            class="group relative flex w-full items-center border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none uppercase dark:bg-gray-900/50 dark:border dark:border-gray-200/10 dark:text-white "
             type="button" data-te-collapse-init data-te-target="#{{$id}}" aria-expanded="{{$show}}"
             aria-controls="{{$id}}">
            {{ $label }}

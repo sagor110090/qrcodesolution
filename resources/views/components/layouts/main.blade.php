@@ -40,7 +40,7 @@
 
 <body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900" >
     {{ $slot }}
-    <x-layouts.footer />
+
     @stack('js')
     <livewire:toast />
     @livewire('wire-elements-modal')

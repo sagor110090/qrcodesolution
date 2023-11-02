@@ -6,7 +6,7 @@
                 value="#ffffff" />
         </div>
 
-        <x-tw.label class="font-bold text-md mb-5 mt-10">
+        <x-tw.label class="font-bold text-md mb-5 mt-10  text-center">
             And
         </x-tw.label>
 

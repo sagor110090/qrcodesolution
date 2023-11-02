@@ -113,8 +113,8 @@ $setCurrentStep = function ($step) {
             'cover_image.required' => 'Event cover image is required',
         ]);
 
-        if ($this->event['cover_image']) {
-            $this->event['cover_image'] = Support::uploadImage($this->event['cover_image'], 'event', Str::slug($this->event['name']));
+        if ($this->cover_image) {
+            $this->event['cover_image'] = Support::uploadImage($this->cover_image, 'event', Str::slug($this->event['name']));
         }
 
 
@@ -127,11 +127,6 @@ $setCurrentStep = function ($step) {
         ];
 
         $data = array_merge($data,Support::basicDataForQrCode());
-
-        if (auth()->check() == false) {
-            Support::saveRequestData($data);
-            return redirect()->route('login');
-        }
 
         auth()->user()->qrCodes()->find($this->QrcodeId)->update($data);
 
@@ -254,6 +249,7 @@ updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_im
 
                     <div class="col-span-12">
                         <x-tw.file-attachment name="cover_image" class="col-span-6 mt-3"
+                        value="{{ $cover_image }}"
                             profile-class="w-24 h-24 rounded-lg" accept="image/jpg,image/jpeg,image/png">
                             <span class="ml-2 text-gray-600">Upload logo | <span class="text-sm">PNG or
                                     JPEG</span></span>

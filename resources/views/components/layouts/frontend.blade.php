@@ -40,4 +40,7 @@
         {{ $slot }}
     </div>
 
+    <x-layouts.footer />
+
+
 </x-layouts.main>
