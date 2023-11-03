@@ -13,7 +13,13 @@ class DynamicQrCodeRedirectController extends Controller
      */
     public function __invoke(Request $request,$code)
     {
-        $qrCode = QrCode::where('code',$code)->firstOrFail();
+        $qrCode = QrCode::where('code',$code)->first();
+        if(!$qrCode){
+            $qrCode = QrCode::where('subdomain',$code)->first();
+            if($qrCode->type == 'event'){
+                return view('dynamic.event-preview',['event'=>(object)$qrCode->qr_code_info]);
+            }
+        }
 
         if(!$qrCode->is_dynamic){
             abort(404);
@@ -22,12 +28,14 @@ class DynamicQrCodeRedirectController extends Controller
 
         $qrCode->qrCodeTracks()->create($request->all());
 
+        if(Support::onlyDynamic($qrCode->type)){
+            $url = 'https://'.$qrCode->subdomain . '.' . config('app.domain');
+            return redirect()->away($url);
+        }
+
 
         if($qrCode->type == 'vcard'){
             $url = Support::vCardQrCodeDataGenerate($qrCode->qr_code_info);
-            return redirect()->away($url);
-        }elseif($qrCode->type == 'event'){
-            $url = Support::eventQrCodeDataGenerate($qrCode->qr_code_info);
             return redirect()->away($url);
         }
         $url  = Support::staticQrCodeDataGenerate($qrCode->type,$qrCode->qr_code_info);
@@ -35,4 +43,6 @@ class DynamicQrCodeRedirectController extends Controller
 
 
     }
+
+
 }

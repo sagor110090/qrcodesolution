@@ -12,8 +12,8 @@ state([
     'steps' => [
         'step1' => [
             'name' => 'Basic info',
-                'details' => 'Event name, description, and URL.',
-                'icon' => '',
+            'details' => 'Event name, description, and URL.',
+            'icon' => '',
         ],
         'step2' => [
             'name' => 'Location',
@@ -27,7 +27,9 @@ state([
         ],
     ],
     'currentStep' => 'step1',
-    'cover_image' => '',
+    'logo_image' => '',
+    'banner_image' => '',
+    'QrcodeId' => '',
     'event' => [
         'name' => '',
         'description' => '',
@@ -39,10 +41,10 @@ state([
         'date_time' => '',
 
         'duration' => '',
-        'cover_image' =>'',
+        'logo_image' => '',
+        'banner_image' => '',
         'color' => '',
         'font' => '',
-
     ],
     'event_url' => '',
 ]);
@@ -50,58 +52,67 @@ state([
 $setCurrentStep = function ($step) {
     // remove all errors
     $this->resetErrorBag();
-    if($step=='step2'){
-        $this->validate([
-            'event.name' => 'required|min:3|max:255',
-            'event_url' => 'required|min:3|max:255',
-            'event.description' => 'required|min:20|max:500',
-        ],[
-            'event.name.required' => 'Event name is required',
-            'event_url.required' => 'Event URL is required',
-            'event.description.required' => 'Event description is required',
-            'event.name.min' => 'Event name must be at least 3 characters',
-            'event_url.min' => 'Event URL must be at least 3 characters',
-            'event.description.min' => 'Event description must be at least 20 characters',
-            'event.name.max' => 'Event name must be at most 255 characters',
-            'event_url.max' => 'Event URL must be at most 255 characters',
-            'event.description.max' => 'Event description must be at most 500 characters',
-            'event_url.url' => 'Event URL must be a valid URL',
-            'event_url.unique' => 'Event URL must be unique',
-        ]);
+    if ($step == 'step2') {
+        $this->validate(
+            [
+                'event.name' => 'required|min:3|max:255',
+                'event_url' => 'required|min:3|max:255',
+                'event.description' => 'required|min:20|max:500',
+            ],
+            [
+                'event.name.required' => 'Event name is required',
+                'event_url.required' => 'Event URL is required',
+                'event.description.required' => 'Event description is required',
+                'event.name.min' => 'Event name must be at least 3 characters',
+                'event_url.min' => 'Event URL must be at least 3 characters',
+                'event.description.min' => 'Event description must be at least 20 characters',
+                'event.name.max' => 'Event name must be at most 255 characters',
+                'event_url.max' => 'Event URL must be at most 255 characters',
+                'event.description.max' => 'Event description must be at most 500 characters',
+                'event_url.url' => 'Event URL must be a valid URL',
+                'event_url.unique' => 'Event URL must be unique',
+            ],
+        );
+    } elseif ($step == 'step3') {
+        $this->validate(
+            [
+                'event.location' => 'required|min:3|max:255',
+                'event.start_date_time' => 'required_if:event.one_day_event,false',
+                'event.end_date_time' => 'required_if:event.one_day_event,false',
+                'event.date_time' => 'required_if:event.one_day_event,true',
+                'event.duration' => 'required_if:event.one_day_event,true|min:3|max:255',
+            ],
+            [
+                'event.location.required' => 'Event location is required',
+                'event.location.min' => 'Event location must be at least 3 characters',
+                'event.location.max' => 'Event location must be at most 255 characters',
+                'event.start_date_time.required_if' => 'Event start date and time is required',
+                'event.end_date_time.required_if' => 'Event end date and time is required',
+                'event.date_time.required_if' => 'Event date and time is required',
+                'event.duration.required' => 'Event duration is required',
+            ],
+        );
+    } elseif ($step == 'submit') {
+        $this->validate(
+            [
+                'event.color' => 'nullable',
+                'event.font' => 'nullable',
+                'logo_image' => 'nullable',
+                'banner_image' => 'nullable',
+            ],
+            [
+                'event.color.required' => 'Event color is required',
+                'event.font.required' => 'Event font is required',
+                'cover_image.required' => 'Event cover image is required',
+            ],
+        );
 
-    }elseif ($step=='step3') {
-        $this->validate([
-            'event.location' => 'required|min:3|max:255',
-            'event.start_date_time' => 'required_if:event.one_day_event,false',
-            'event.end_date_time' => 'required_if:event.one_day_event,false',
-            'event.date_time' => 'required_if:event.one_day_event,true',
-            'event.duration' => 'required_if:event.one_day_event,true|min:3|max:255',
-
-        ],[
-            'event.location.required' => 'Event location is required',
-            'event.location.min' => 'Event location must be at least 3 characters',
-            'event.location.max' => 'Event location must be at most 255 characters',
-            'event.start_date_time.required_if' => 'Event start date and time is required',
-            'event.end_date_time.required_if' => 'Event end date and time is required',
-            'event.date_time.required_if' => 'Event date and time is required',
-            'event.duration.required' => 'Event duration is required',
-
-        ]);
-    }elseif ($step=='submit') {
-        $this->validate([
-            'event.color' => 'nullable',
-            'event.font' => 'nullable',
-            'cover_image' => 'nullable',
-        ],[
-            'event.color.required' => 'Event color is required',
-            'event.font.required' => 'Event font is required',
-            'cover_image.required' => 'Event cover image is required',
-        ]);
-
-        if ($this->event['cover_image']) {
-            $this->event['cover_image'] = Support::uploadImage($this->event['cover_image'], 'event', Str::slug($this->event['name']));
+        if ($this->logo_image) {
+            $this->event['logo_image'] = Support::uploadImage($this->logo_image, 'event', Str::slug($this->event['name']));
         }
-
+        if ($this->banner_image) {
+            $this->event['banner_image'] = Support::uploadImage($this->banner_image, 'event', Str::slug($this->event['name']));
+        }
 
         $data = [
             'qr_code_info' => $this->event,
@@ -111,25 +122,19 @@ $setCurrentStep = function ($step) {
             'is_dynamic' => true,
         ];
 
-        $data = array_merge($data,Support::basicDataForQrCode());
+        $data = array_merge($data, Support::basicDataForQrCode());
 
-        if (auth()->check() == false) {
-            Support::saveRequestData($data);
-            return redirect()->route('login');
-        }
-
-        auth()->user()->qrCodes()->create($data);
+        auth()
+            ->user()
+            ->qrCodes()
+            ->create($data);
 
         toastr()->success('QR Code Created Successfully');
         return redirect()->route('my-qrcode.dynamic');
-
     }
 
     $this->currentStep = $step;
-
 };
-
-updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_image]);
 
 
 ?>
@@ -147,7 +152,7 @@ updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_im
                         <li class="mb-10 ml-6" wire:click="setCurrentStep('{{ $key }}')">
                             <span class="absolute flex items-center justify-center w-8 h-8 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900
                         {{ $currentStep == $key ? 'bg-green-200  dark:bg-green-900' : 'bg-gray-200' }}">
-                                <svg class="w-3.5 h-3.5 {{  $currentStep == $key ? 'text-green-500 dark:text-green-400' : ''}}"
+                                <svg class="w-3.5 h-3.5 {{ $currentStep == $key ? 'text-green-500 dark:text-green-400' : '' }}"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 16 12">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -165,7 +170,7 @@ updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_im
                     </ol>
                 </div>
                 <div class="col-span-12 md:col-span-8">
-                    <div class="grid grid-cols-12 gap-4 {{$currentStep == 'step1' ? 'block' : 'hidden'}}">
+                    <div class="grid grid-cols-12 gap-4 {{ $currentStep == 'step1' ? 'block' : 'hidden' }}">
                         <div class="col-span-12">
                             <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Basic info</h1>
                             <p class="text-sm text-gray-500 dark:text-gray-400">Event name, description, and time zone.
@@ -190,7 +195,7 @@ updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_im
 
 
                     </div>
-                    <div class="grid grid-cols-12 gap-4 {{$currentStep == 'step2' ? 'block' : 'hidden'}}">
+                    <div class="grid grid-cols-12 gap-4 {{ $currentStep == 'step2' ? 'block' : 'hidden' }}">
                         <div class="col-span-12">
                             <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Location</h1>
                             <p class="text-sm text-gray-500 dark:text-gray-400">Event location and online event setup.
@@ -239,16 +244,23 @@ updated(['cover_image' => fn () => $this->event['cover_image'] = $this->cover_im
 
 
                     </div>
-                    <div class="grid grid-cols-12 gap-4 {{$currentStep == 'step3' ? 'block' : 'hidden'}}">
+                    <div class="grid grid-cols-12 gap-4 {{ $currentStep == 'step3' ? 'block' : 'hidden' }}">
                         <div class="col-span-12">
                             <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Design</h1>
                             <p class="text-sm text-gray-500 dark:text-gray-400">Event cover image, font and color.</p>
                         </div>
 
                         <div class="col-span-12">
-                            <x-tw.file-attachment name="cover_image" class="col-span-6 mt-3"
-                                profile-class="w-24 h-24 rounded-lg" accept="image/jpg,image/jpeg,image/png">
+                            <x-tw.file-attachment name="logo_image" class="col-span-6 mt-3"
+                                value="{{ $event['logo_image'] ?? '' }}" profile-class="w-24 h-24 rounded-lg"
+                                accept="image/jpg,image/jpeg,image/png">
                                 <span class="ml-2 text-gray-600">Upload logo | <span class="text-sm">PNG or
+                                        JPEG</span></span>
+                            </x-tw.file-attachment>
+                            <x-tw.file-attachment name="banner_image" class="col-span-6 mt-3"
+                                value="{{ $event['banner_image'] ?? '' }}" profile-class="w-24 h-24 rounded-lg"
+                                accept="image/jpg,image/jpeg,image/png">
+                                <span class="ml-2 text-gray-600">Upload Banner | <span class="text-sm">PNG or
                                         JPEG</span></span>
                             </x-tw.file-attachment>
                             <x-color-picker placeholder="Select the color" wire:model="event.color"

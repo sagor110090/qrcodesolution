@@ -27,7 +27,6 @@ class Support extends Facade
             'image',
             'video',
             'audio',
-            'vcard',
         ];
         if (in_array($type, $types)) {
             return true;
@@ -548,6 +547,62 @@ class Support extends Facade
         $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
         return $base64;
     }
+
+    public static function hexInvert(string $color):string {
+        $color = trim($color);
+        $prependHash = false;
+        if (strpos($color, '#') !== false) {
+            $prependHash = true;
+            $color = str_replace('#', '', $color);
+        }
+        $len = strlen($color);
+        if($len==3 || $len==6){
+            if($len==3) $color = preg_replace('/(.)(.)(.)/', "\\1\\1\\2\\2\\3\\3", $color);
+        } else {
+            throw new \Exception("Invalid hex length ($len). Length must be 3 or 6 characters");
+        }
+        if (!preg_match('/^[a-f0-9]{6}$/i', $color)) {
+            throw new \Exception(sprintf('Invalid hex string #%s', htmlspecialchars($color, ENT_QUOTES)));
+        }
+
+        $r = dechex(255 - hexdec(substr($color, 0, 2)));
+        $r = (strlen($r) > 1) ? $r : '0' . $r;
+        $g = dechex(255 - hexdec(substr($color, 2, 2)));
+        $g = (strlen($g) > 1) ? $g : '0' . $g;
+        $b = dechex(255 - hexdec(substr($color, 4, 2)));
+        $b = (strlen($b) > 1) ? $b : '0' . $b;
+
+        return ($prependHash ? '#' : '') . $r . $g . $b;
+    }
+
+    // visibleColor
+    public static function visibleColor($color)
+    {
+        $color = trim($color);
+        $prependHash = false;
+        if (strpos($color, '#') !== false) {
+            $prependHash = true;
+            $color = str_replace('#', '', $color);
+        }
+        $len = strlen($color);
+        if($len==3 || $len==6){
+            if($len==3) $color = preg_replace('/(.)(.)(.)/', "\\1\\1\\2\\2\\3\\3", $color);
+        } else {
+            throw new \Exception("Invalid hex length ($len). Length must be 3 or 6 characters");
+        }
+        if (!preg_match('/^[a-f0-9]{6}$/i', $color)) {
+            throw new \Exception(sprintf('Invalid hex string #%s', htmlspecialchars($color, ENT_QUOTES)));
+        }
+
+        $r = hexdec(substr($color, 0, 2));
+        $g = hexdec(substr($color, 2, 2));
+        $b = hexdec(substr($color, 4, 2));
+
+        $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+
+        return ($yiq >= 128) ? '#000000' : '#ffffff';
+    }
+
 
 
 }

@@ -25,7 +25,7 @@ export default {
         },
     },
 
-    plugins: [require("tw-elements/dist/plugin.cjs")]
+    plugins: [require("@tailwindcss/typography"),require("tw-elements/dist/plugin.cjs")]
     // plugins: [forms],
     // plugins: [forms,require("@tailwindcss/typography"), require("@tailwindcss/forms")],
 

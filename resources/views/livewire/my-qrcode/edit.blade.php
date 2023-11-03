@@ -83,13 +83,11 @@
 
         <div class="col-span-12 md:col-span-9">
             <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
-
                 <div class=" n p-4 border-b dark:border-neutral-600">
                     <x-tw.input label="QR Code Name" placeholder="QR Code Name" id="name"  required class="col-span-2" name="name" value="{{ $name }}"/>
-
                 </div>
                 <x-qrcode.url  :url="$url" />
-                <x-qrcode.email :email="$email" :subject="$subject" :body="$message" />
+                <x-qrcode.email :email="$email" :subject="$subject" :message="$message" />
                 <x-qrcode.vcard
                     :vcard_first_name="$vcard_first_name"
                     :vcard_last_name="$vcard_last_name"

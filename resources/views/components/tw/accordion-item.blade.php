@@ -8,7 +8,7 @@
 
     <h2 class="mb-0" id="heading{{$id}}">
         <button
-            class="group relative flex w-full items-center border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none uppercase dark:bg-gray-900/50 dark:border dark:border-gray-200/10 dark:text-white "
+            class="group relative flex w-full items-center border-0 bg-white px-5 py-4 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none uppercase dark:bg-gray-900/50 dark:border dark:border-gray-200/10 dark:text-white border-gray-200/10"
             type="button" data-te-collapse-init data-te-target="#{{$id}}" aria-expanded="{{$show}}"
             aria-controls="{{$id}}">
            {{ $label }}
