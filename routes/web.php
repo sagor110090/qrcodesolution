@@ -9,9 +9,9 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 
 //
 
-// Route::domain(config('app.domain'))->group(function () {
-//     Route::redirect('/home', '/');
-// });
+Route::domain(config('app.domain'))->group(function () {
+    Route::redirect('/home', '/');
+});
 
 Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 //event show

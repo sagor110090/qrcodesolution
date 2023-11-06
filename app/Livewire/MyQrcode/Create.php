@@ -47,7 +47,7 @@ class Create extends Component
 
 
     #[Url]
-    public $type = 'pdf';
+    public $type = 'url';
 
     //url
     public $url = '';
