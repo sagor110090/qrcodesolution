@@ -82,7 +82,7 @@
 
             <div class="border-neutral-100 px-6 py-4  dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
-                    <x-tw.label class="mr-2 font-bold text-md">
+                    <x-tw.label class="mr-2 font-bold text-md text-center">
                         Destinations
                     </x-tw.label>
                 </h5>
@@ -174,9 +174,8 @@
         </div>
     </div>
 
-    <div class="col-span-12 md:col-span-3" wire:ignore>
-        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10" data-te-sticky-init
-            data-te-sticky-boundary="#sticky-top" data-te-sticky-direction="both">
+    <div class="col-span-12 md:col-span-3" style="position: sticky; top: 0; z-index: 10;height: 450px;">
+        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
             <div class="border-neutral-100 px-6 py-4 dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
@@ -193,6 +192,14 @@
                     <div class="relative overflow-hidden bg-cover bg-no-repeat">
 
                         <div class="border-2 shadow-sm rounded-lg">
+                            @if ($dynamic)
+                                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-200 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600">
+                                    <div class="flex items-center justify-center h-full text-center text-gray-500 dark:text-gray-300">
+                                        Save your QR code to download and use it.
+                                    </div>
+                                </div>
+
+                            @endif
                             <div x-html="qrcodePreview" id="qrcodePreview">
                             </div>
                             <img src="{{ asset('images/placeholder.svg') }}" x-show='!qrcodePreview' alt="placeholder"
@@ -227,11 +234,15 @@
                         </span>
                     </a>
 
+
                     <a href="javascript:void(0)" wire:click="save()"
                         class="flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
                         <i class="bi bi-save text-xl"></i>
                         <span class="ml-2 font-bold text-md">
                             Save
+                            <div wire:loading>
+                                <x-spinner class="w-6 h-6 text-gray-500" />
+                            </div>
                         </span>
                     </a>
 

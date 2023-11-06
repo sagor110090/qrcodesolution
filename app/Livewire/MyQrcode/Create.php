@@ -2,20 +2,24 @@
 
 namespace App\Livewire\MyQrcode;
 
-use Support;
+use App\Helpers\Support;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Url;
 
-use function Laravel\Folio\middleware;
 
 class Create extends Component
 {
 
+    //listen
+    protected $listeners = ['fileUpload' => 'handleFileUpload'];
+
     use WithFileUploads;
 
     //query string
-    protected $queryString = ['type'];
+    // protected $queryString = ['type'];
 
 
 
@@ -42,8 +46,8 @@ class Create extends Component
     //---> QR Code design-related options  ---//
 
 
-
-    public $type = 'url';
+    #[Url]
+    public $type = 'pdf';
 
     //url
     public $url = '';
@@ -92,6 +96,18 @@ class Create extends Component
     public $vcard_city = '';
     public $vcard_post_code = '';
     public $vcard_country = '';
+
+    //pdf
+    public $pdf = '';
+
+    //image
+    public $image = '';
+
+    //video
+    public $video = '';
+
+    //audio
+    public $audio = '';
 
 
 
@@ -217,6 +233,18 @@ class Create extends Component
 
             ];
             $this->validate($rules, $message);
+        } elseif ($this->type == 'pdf') {
+            $rules = ['pdf' => 'required'];
+            $this->validate($rules);
+        } elseif ($this->type == 'image') {
+            $rules = ['image' => 'required'];
+            $this->validate($rules);
+        } elseif ($this->type == 'video') {
+            $rules = ['video' => 'required'];
+            $this->validate($rules);
+        } elseif ($this->type == 'audio') {
+            $rules = ['audio' => 'required'];
+            $this->validate($rules);
         }
 
 
@@ -261,7 +289,7 @@ class Create extends Component
     public function save()
     {
 
-        if (Support::onlyDynamic($this->type)) {
+        if (Support::dynamicQrCodeFromOutsideCreatePage($this->type)) {
             return;
         }
 
@@ -367,6 +395,22 @@ class Create extends Component
             $qrCodeInfo['vcard_city'] = $this->vcard_city;
             $qrCodeInfo['vcard_post_code'] = $this->vcard_post_code;
             $qrCodeInfo['vcard_country'] = $this->vcard_country;
+        } elseif ($this->type == 'pdf') {
+            $rules = ['pdf' => 'required'];
+            $this->validate($rules);
+            $qrCodeInfo['pdf'] = Support::uploadFile($this->pdf, 'pdf');
+        } elseif ($this->type == 'image') {
+            $rules = ['image' => 'required'];
+            $this->validate($rules);
+            $qrCodeInfo['image'] = Support::uploadFile($this->image, 'image');
+        } elseif ($this->type == 'video') {
+            $rules = ['video' => 'required'];
+            $this->validate($rules);
+            $qrCodeInfo['video'] = Support::uploadFile($this->video, 'video');
+        } elseif ($this->type == 'audio') {
+            $rules = ['audio' => 'required'];
+            $this->validate($rules);
+            $qrCodeInfo['audio'] = Support::uploadFile($this->audio, 'audio');
         }
 
 
@@ -413,10 +457,28 @@ class Create extends Component
         return redirect()->route('my-qrcode.static');
     }
 
+    // handleFileUpload
+    public function handleFileUpload($file=null, $fileName=null, $type=null)
+    {
+        $this->resetErrorBag();
+        if ($type == 'pdf'){
+            $this->pdf = $file;
+        } elseif ($type == 'image'){
+            $this->image = $file;
+        } elseif ($type == 'video'){
+            $this->video = $file;
+        } elseif ($type == 'audio'){
+            $this->audio = $file;
+        }
+
+    }
 
 
     public function render()
     {
+        if (Support::onlyDynamic($this->type)) {
+            $this->dynamic = true;
+        }
         return view('livewire.my-qrcode.create');
     }
 }

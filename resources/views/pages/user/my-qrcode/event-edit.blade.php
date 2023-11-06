@@ -69,7 +69,7 @@ $setCurrentStep = function ($step) {
         $this->validate(
             [
                 'event.name' => 'required|min:3|max:255',
-                'event_url' => 'required|min:3|max:255',
+                'event_url' => 'required|min:3|max:255|url|unique:qr_codes,subdomain'.$this->QrcodeId,
                 'event.description' => 'required|min:20|max:500',
             ],
             [
@@ -121,10 +121,10 @@ $setCurrentStep = function ($step) {
         );
 
         if ($this->logo_image) {
-            $this->event['logo_image'] = Support::uploadImage($this->logo_image, 'event', Str::slug($this->event['name']));
+            $this->event['logo_image'] = 'storage/'.Support::uploadImage($this->logo_image, 'event', Str::slug($this->event['name']));
         }
         if ($this->banner_image) {
-            $this->event['banner_image'] = Support::uploadImage($this->banner_image, 'event', Str::slug($this->event['name']));
+            $this->event['banner_image'] = 'storage/'.Support::uploadImage($this->banner_image, 'event', Str::slug($this->event['name']));
         }
 
         $data = [

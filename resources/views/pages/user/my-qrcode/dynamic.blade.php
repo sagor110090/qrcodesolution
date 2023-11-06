@@ -1,12 +1,18 @@
 <?php
 
 use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{state,usesPagination,with};
+use function Livewire\Volt\{state,usesPagination,with,on};
 
 name('my-qrcode.dynamic');
 middleware(['auth', 'verified']);
 usesPagination();
 
+
+on(['updateQrCode' => function () {
+    // refresh
+
+
+}]);
 
 with('qrcodes', function() {
     return auth()->user()->qrcodes()->isdynamic()->with('qrCodeTracks')->latest()->paginate(10);
@@ -51,6 +57,26 @@ $makeStatic = function ($id) {
     @volt('my-qrcodes.dynamic')
     <div class="h-full py-12">
         <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <x-qrcode.banner>
+                <span class="mr-2 [&>svg]:h-5 [&>svg]:w-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                        stroke="currentColor" class="text-white">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+                    </svg>
+                </span>
+                <strong class="mr-1"> Expired </strong>
+                <span class="text-sm text-white">Your trail has expired. Please subscribe to continue using our
+                    services.</span>
+                <x-slot name="button">
+                    <x-ui.button type="primary" size="md" tag="a" href="">
+                        Subscribe
+                    </x-ui.button>
+                </x-slot>
+            </x-qrcode.banner>
+
             <div class="relative min-h-[500px] w-full h-full">
 
                 @forelse ($qrcodes as $qrcode)
@@ -85,6 +111,16 @@ $makeStatic = function ($id) {
                                 <div class="text-sm text-gray-500 dark:text-gray-400">
                                     Created at {{ $qrcode->created_at->format('d M Y') }}
                                 </div>
+                                <div class="flex items-end justify-start mt-4">
+                                    <div>
+                                        <x-ui.button type="info" size="md"
+                                            wire:click="$dispatch('openModal', { component: 'my-qrcode.custom-link', arguments: { qrcode: {{ $qrcode }} }})"
+                                            submit="false">
+                                            Custom Link
+                                        </x-ui.button>
+                                    </div>
+
+                                </div>
                             </div>
                             <div class="flex items-center justify-center mt-4">
                                 <div class="ml-2">
@@ -92,9 +128,8 @@ $makeStatic = function ($id) {
                                         <span class="font-bold">{{ $qrcode->scan_count }}</span> Scans
                                     </p>
                                     <div class="mt-2">
-                                        <x-ui.button type="info"
-                                        size="md"
-                                        wire:click="$dispatch('openModal', { component: 'my-qrcode.track', arguments: { locations: {{ $qrcode->qrCodeTracks }} }})"
+                                        <x-ui.button type="info" size="md"
+                                            wire:click="$dispatch('openModal', { component: 'my-qrcode.track', arguments: { locations: {{ $qrcode->qrCodeTracks }} }})"
                                             submit="false">
                                             Track
                                         </x-ui.button>
@@ -119,20 +154,20 @@ $makeStatic = function ($id) {
                             <div>
                             </div>
                             @if (!Support::onlyDynamic($qrcode->type))
-                                <div class="p-2 mt-10 border-t border-b border-gray-200 dark:border-gray-700">
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">
-                                        If you want to make this QR Code static, click the button below.
-                                    </p>
-                                    <div class="mt-2">
+                            <div class="p-2 mt-10 border-t border-b border-gray-200 dark:border-gray-700">
+                                <p class="text-sm text-gray-500 dark:text-gray-400">
+                                    If you want to make this QR Code static, click the button below.
+                                </p>
+                                <div class="mt-2">
 
-                                        <x-ui.button type="info" wire:click="makeStatic({{ $qrcode->id }})" size="md"
-                                            submit="false">
-                                            Make Static
-                                        </x-ui.button>
-                                    </div>
-
-
+                                    <x-ui.button type="info" wire:click="makeStatic({{ $qrcode->id }})" size="md"
+                                        submit="false">
+                                        Make Static
+                                    </x-ui.button>
                                 </div>
+
+
+                            </div>
                             @endif
 
 
@@ -155,7 +190,10 @@ $makeStatic = function ($id) {
                 </h1>
             </div>
         </x-ui.modal>
+
     </div>
+
+
 
     @endvolt
 

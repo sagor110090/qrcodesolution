@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Support;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -56,6 +57,9 @@ class QrCode extends Model
     //get static qrCode data
     public function getStaticQrCodeSvgAttribute()
     {
+        if ($this->is_dynamic == true) {
+            return;
+        }
         $data = [
             'data' => Support::staticQrCodeDataGenerate(
                 $this->type,
@@ -90,6 +94,9 @@ class QrCode extends Model
     //dynamic_qr_code_svg
     public function getDynamicQrCodeSvgAttribute()
     {
+        if ($this->is_dynamic == false) {
+            return;
+        }
         $data = [
             'data' => Support::dynamicQrCodeDataGenerate(
                 $this->type,
@@ -143,5 +150,27 @@ class QrCode extends Model
     public function qrCodeTracks()
     {
         return $this->hasMany(QrCodeTrack::class)->latest();
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::created(function ($qrCode) {
+            $qrCode->subdomain = $qrCode->generateSubdomain($qrCode->subdomain ?? $qrCode->type);
+            $qrCode->save();
+        });
+    }
+    private function generateSubdomain($name)
+    {
+        if (static::whereSubdomain($subdomain = Str::slug($name))->exists()) {
+            $max = static::whereSubdomain($name)->latest('id')->skip(1)->value('subdomain');
+            if (isset($max[-1]) && is_numeric($max[-1])) {
+                return preg_replace_callback('/(\d+)$/', function($mathces) {
+                    return $mathces[1] + 1;
+                }, $max);
+            }
+            return "{$subdomain}-2";
+        }
+        return $subdomain;
     }
 }

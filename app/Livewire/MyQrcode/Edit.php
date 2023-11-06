@@ -13,6 +13,8 @@ class Edit extends Component
 {
     use WithFileUploads;
 
+    //listen
+    protected $listeners = ['fileUpload' => 'handleFileUpload'];
 
     public $qrCode;
     public $type;
@@ -95,6 +97,18 @@ class Edit extends Component
 
     //name
     public $name = '';
+
+    //pdf
+    public $pdf = '';
+
+    //audio
+    public $audio = '';
+
+    //video
+    public $video = '';
+
+    //image
+    public $image = '';
 
 
 
@@ -180,6 +194,18 @@ class Edit extends Component
         $this->vcard_post_code = $qrCode->qr_code_info['vcard_post_code'] ?? '';
         $this->vcard_country = $qrCode->qr_code_info['vcard_country'] ?? '';
 
+        //pdf
+        $this->pdf = $qrCode->qr_code_info['pdf'] ?? '';
+
+        //audio
+        $this->audio = $qrCode->qr_code_info['audio'] ?? '';
+
+        //video
+        $this->video = $qrCode->qr_code_info['video'] ?? '';
+
+        //image
+        $this->image = $qrCode->qr_code_info['image'] ?? '';
+
         $this->loadData();
     }
 
@@ -220,7 +246,7 @@ class Edit extends Component
     // save
     public function save()
     {
-        if (Support::onlyDynamic($this->type)) {
+        if (Support::dynamicQrCodeFromOutsideCreatePage($this->type)) {
             return;
         }
 
@@ -326,6 +352,38 @@ class Edit extends Component
             $qrCodeInfo['vcard_city'] = $this->vcard_city;
             $qrCodeInfo['vcard_post_code'] = $this->vcard_post_code;
             $qrCodeInfo['vcard_country'] = $this->vcard_country;
+        } elseif ($this->type == 'pdf') {
+            $rules = ['pdf' => 'required'];
+            $this->validate($rules);
+            if ($this->pdf != $this->qrCode->qr_code_info['pdf']) {
+                $qrCodeInfo['pdf'] = Support::uploadFile($this->pdf, 'pdf');
+            }else{
+                $qrCodeInfo['pdf'] = $this->qrCode->qr_code_info['pdf'];
+            }
+        } elseif ($this->type == 'image') {
+            $rules = ['image' => 'required'];
+            $this->validate($rules);
+            if ($this->image != $this->qrCode->qr_code_info['image']) {
+                $qrCodeInfo['image'] = Support::uploadFile($this->image, 'image');
+            }else{
+                $qrCodeInfo['image'] = $this->qrCode->qr_code_info['image'];
+            }
+        } elseif ($this->type == 'video') {
+            $rules = ['video' => 'required'];
+            $this->validate($rules);
+            if ($this->video != $this->qrCode->qr_code_info['video']) {
+                $qrCodeInfo['video'] = Support::uploadFile($this->video, 'video');
+            }else{
+                $qrCodeInfo['video'] = $this->qrCode->qr_code_info['video'];
+            }
+        } elseif ($this->type == 'audio') {
+            $rules = ['audio' => 'required'];
+            $this->validate($rules);
+            if ($this->audio != $this->qrCode->qr_code_info['audio']) {
+                $qrCodeInfo['audio'] = Support::uploadFile($this->audio, 'audio');
+            }else{
+                $qrCodeInfo['audio'] = $this->qrCode->qr_code_info['audio'];
+            }
         }
 
 
@@ -379,8 +437,12 @@ class Edit extends Component
         return view('livewire.my-qrcode.edit');
     }
 
-    public function loadData() {
-        $this->onlyDynamic = Support::onlyDynamic($this->type);
+    public function loadData()
+    {
+
+        if (Support::dynamicQrCodeFromOutsideCreatePage($this->type)) {
+            return;
+        }
 
         if ($this->type == 'url') {
 
@@ -460,6 +522,20 @@ class Edit extends Component
 
             ];
             $this->validate($rules, $message);
+        } elseif ($this->type == 'pdf') {
+            $rules = ['pdf' => 'required'];
+            $this->validate($rules);
+        } elseif ($this->type == 'image') {
+
+            $rules = ['image' => 'required'];
+            $this->validate($rules);
+        } elseif ($this->type == 'video') {
+
+            $rules = ['video' => 'required'];
+            $this->validate($rules);
+        } elseif ($this->type == 'audio') {
+            $rules = ['audio' => 'required'];
+            $this->validate($rules);
         }
 
         $data = [
@@ -493,11 +569,27 @@ class Edit extends Component
             'vcard_post_code' => $this->vcard_post_code,
             'vcard_country' => $this->vcard_country,
         ];
-        if($this->qrCode->is_dynamic){
+
+        if ($this->qrCode->is_dynamic) {
             $this->data = Support::dynamicQrCodeDataGenerate($this->type, $this->qrCode->code);
-        }else{
+        } else {
             $this->data = Support::staticQrCodeDataGenerate($this->type, $data);
         }
         $this->qrCodeCreate();
+    }
+
+    // handleFileUpload
+    public function handleFileUpload($file = null, $fileName = null, $type = null)
+    {
+        $this->resetErrorBag();
+        if ($type == 'pdf') {
+            $this->pdf = $file;
+        } elseif ($type == 'image') {
+            $this->image = $file;
+        } elseif ($type == 'video') {
+            $this->video = $file;
+        } elseif ($type == 'audio') {
+            $this->audio = $file;
+        }
     }
 }

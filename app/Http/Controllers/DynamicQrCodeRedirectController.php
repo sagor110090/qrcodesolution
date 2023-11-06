@@ -18,6 +18,14 @@ class DynamicQrCodeRedirectController extends Controller
             $qrCode = QrCode::where('subdomain',$code)->first();
             if($qrCode->type == 'event'){
                 return view('dynamic.event-preview',['event'=>(object)$qrCode->qr_code_info]);
+            }elseif($qrCode->type == 'pdf'){
+                return view('dynamic.pdf-preview',['pdf'=>(object)$qrCode->qr_code_info]);
+            }elseif($qrCode->type == 'video'){
+                return view('dynamic.video-preview',['video'=>(object)$qrCode->qr_code_info]);
+            }elseif($qrCode->type == 'audio'){
+                return view('dynamic.audio-preview',['audio'=>(object)$qrCode->qr_code_info]);
+            }elseif($qrCode->type == 'image'){
+                return view('dynamic.image-preview',['image'=>(object)$qrCode->qr_code_info]);
             }
         }
 

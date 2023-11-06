@@ -9,9 +9,9 @@ use App\Http\Controllers\Auth\EmailVerificationController;
 
 //
 
-Route::domain(config('app.domain'))->group(function () {
-    Route::redirect('/home', '/');
-});
+// Route::domain(config('app.domain'))->group(function () {
+//     Route::redirect('/home', '/');
+// });
 
 Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 //event show
@@ -46,4 +46,7 @@ Route::domain('admin.' . config('app.domain'))->middleware('admin')->group(funct
     Route::get('pages', App\Livewire\Page\Index::class)->name('pages.index');
     Route::get('pages/create', App\Livewire\Page\CreatePage::class)->name('pages.create');
     Route::get('pages/{id}/edit', App\Livewire\Page\EditPage::class)->name('pages.edit');
+    //plans
+    Route::get('plans', App\Livewire\Plan\Index::class)->name('plans.index');
+    Route::get('users', App\Livewire\User\Index::class)->name('users.index');
 });

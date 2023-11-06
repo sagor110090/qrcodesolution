@@ -66,6 +66,34 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'pdf' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/pdf'),
+            'url' => env('APP_URL').'/storage/pdf',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'video' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/video'),
+            'url' => env('APP_URL').'/storage/video',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'audio' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/audio'),
+            'url' => env('APP_URL').'/storage/audio',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+        'image' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/image'),
+            'url' => env('APP_URL').'/storage/image',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

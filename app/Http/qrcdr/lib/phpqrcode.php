@@ -2228,6 +2228,7 @@ class QRsplit
     //----------------------------------------------------------------------
     public function splitString()
     {
+        // dd($this->dataStr);
         while (strlen($this->dataStr) > 0) {
             if ($this->dataStr == '')
                 return 0;

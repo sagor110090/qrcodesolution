@@ -27,6 +27,35 @@ class Support extends Facade
             'image',
             'video',
             'audio',
+            'pdf',
+        ];
+        if (in_array($type, $types)) {
+            return true;
+        }
+        return false;
+    }
+
+    //dynamic qr code from create page
+    public static function dynamicQrCodeFromCreatePage($type)
+    {
+        $types = [
+            'image',
+            'video',
+            'audio',
+            'pdf',
+        ];
+        if (in_array($type, $types)) {
+            return true;
+        }
+        return false;
+    }
+
+    //dynamic qr code from outside create page
+    public static function dynamicQrCodeFromOutsideCreatePage($type)
+    {
+        $types = [
+            'event',
+            'social_media',
         ];
         if (in_array($type, $types)) {
             return true;
@@ -601,6 +630,30 @@ class Support extends Facade
         $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
 
         return ($yiq >= 128) ? '#000000' : '#ffffff';
+    }
+
+
+    //uploadFile
+    public static function uploadFile($file, $disk)
+    {
+            //take the file extension means after dot (.) sign
+            // $file_type = str_split($file, strrpos($file, '.') + 1);
+            $file_type = explode('.', $file);
+            $file_type = $file_type[1];
+            $file_name = Str::random(20) . '.' . $file_type;
+            $file_path = $file_name;
+            Storage::disk($disk)->put($file_path, file_get_contents($file));
+            return $disk . '/' . $file_path;
+    }
+
+    // currency to symbol
+    public static function currencyToSymbol($name){
+        $currencies = [
+            'usd' => '$',
+            'eur' => '€',
+            'gbp' => '£',
+        ];
+        return $currencies[$name];
     }
 
 

@@ -126,10 +126,18 @@
                     :bitcoin_address="$bitcoin_address"
                     :bitcoin_amount="$bitcoin_amount"
                     />
-                <x-qrcode.pdf />
-                <x-qrcode.image />
-                <x-qrcode.audio />
-                <x-qrcode.video />
+                <x-qrcode.pdf
+                :pdf="$pdf"
+                />
+                <x-qrcode.image
+                :image="$image"
+                />
+                <x-qrcode.audio
+                :audio="$audio"
+                />
+                <x-qrcode.video
+                :video="$video"
+                />
 
                 <div class="p-6">
                     <div class="mb-2 text-base text-neutral-500 dark:text-neutral-300">
@@ -175,13 +183,12 @@
             </div>
         </div>
 
-        <div class="col-span-12 md:col-span-3" wire:ignore>
-            <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10" data-te-sticky-init
-                data-te-sticky-boundary="#sticky-top" data-te-sticky-direction="both">
+        <div class="col-span-12 md:col-span-3" style="position: sticky; top: 0; z-index: 10;height: 450px;">
+            <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
                 <div class="border-neutral-100 px-6 py-4 dark:border-neutral-500">
                     <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
-                        <x-tw.label class="mr-2 font-bold text-md">
+                        <x-tw.label class="mr-2 font-bold text-md text-center">
                             Preview your QR Code
                         </x-tw.label>
                     </h5>
