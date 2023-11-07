@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use Support;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Helpers\Support;
 
 class QrCode extends Model
 {
@@ -156,21 +156,9 @@ class QrCode extends Model
     {
         parent::boot();
         static::created(function ($qrCode) {
-            $qrCode->subdomain = $qrCode->generateSubdomain($qrCode->subdomain ?? $qrCode->type);
+            $qrCode->subdomain = Support::createSubdomain($qrCode->subdomain ?? $qrCode->type);
             $qrCode->save();
         });
     }
-    private function generateSubdomain($name)
-    {
-        if (static::whereSubdomain($subdomain = Str::slug($name))->exists()) {
-            $max = static::whereSubdomain($name)->latest('id')->skip(1)->value('subdomain');
-            if (isset($max[-1]) && is_numeric($max[-1])) {
-                return preg_replace_callback('/(\d+)$/', function($mathces) {
-                    return $mathces[1] + 1;
-                }, $max);
-            }
-            return "{$subdomain}-2";
-        }
-        return $subdomain;
-    }
+
 }

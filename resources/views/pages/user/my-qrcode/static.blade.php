@@ -46,6 +46,7 @@ $makeDynamic = function ($id) {
     @volt('my-qrcodes.static')
     <div class="h-full py-12">
         <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <x-qrcode.subscription-alert />
             <div class="relative min-h-[500px] w-full h-full">
 
                 @forelse ($qrcodes as $qrcode)

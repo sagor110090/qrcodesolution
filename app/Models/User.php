@@ -45,6 +45,32 @@ class User extends Authenticatable
     ];
 
 
+    //isOnTrial
+    public static function isOnTrial(){
+        $user = auth()->user();
+        if($user->created_at->diffInDays() <= 14){
+            return true;
+        }
+        return false;
+    }
+
+    //isNotOnSubscription
+    public static function isNotOnSubscription(){
+        $user = auth()->user();
+        if(!$user->subscriptions()->active()
+        ->first()){
+            return true;
+        }
+        return false;
+    }
+
+    //trialDaysLeft
+    public static function trialDaysLeft(){
+        $user = auth()->user();
+        return 14 - $user->created_at->diffInDays();
+    }
+
+
     /**
      * Get the qrcodes for the user.
      */

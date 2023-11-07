@@ -180,13 +180,7 @@ class Support extends Facade
     //hash code create
     public static function hashCode($length = 10)
     {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $hash = '';
-        for ($i = 0; $i < $length; $i++) {
-            $hash .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $hash;
+        return random_int(1000000000, 9999999999);
     }
 
 
@@ -638,9 +632,10 @@ class Support extends Facade
     {
             //take the file extension means after dot (.) sign
             // $file_type = str_split($file, strrpos($file, '.') + 1);
-            $file_type = explode('.', $file);
+            $file_type = explode('-.', $file);
             $file_type = $file_type[1];
             $file_name = Str::random(20) . '.' . $file_type;
+            // dd($file_name);
             $file_path = $file_name;
             Storage::disk($disk)->put($file_path, file_get_contents($file));
             return $disk . '/' . $file_path;
@@ -657,5 +652,30 @@ class Support extends Facade
     }
 
 
+    public static function createSubdomain($title, $id = 0)
+    {
+        $slug = Str::slug($title);
+        $allSlugs = self::getRelatedSubdomains($slug, $id);
+        if (!$allSlugs->contains('subdomain', $slug)) {
+            return $slug;
+        }
+
+        $i = 1;
+        $is_contain = true;
+        do {
+            $newSlug = $slug . '-' . $i;
+            if (!$allSlugs->contains('subdomain', $newSlug)) {
+                $is_contain = false;
+                return $newSlug;
+            }
+            $i++;
+        } while ($is_contain);
+    }
+    protected static function getRelatedSubdomains($slug, $id = 0)
+    {
+        return \DB::table('qr_codes')->select('subdomain')->where('subdomain', 'like', $slug . '%')
+            ->where('id', '<>', $id)
+            ->get();
+    }
 
 }

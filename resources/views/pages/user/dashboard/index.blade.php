@@ -19,7 +19,7 @@ middleware(['auth', 'verified']);
     <div class="h-full py-12">
 
         <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
-
+            <x-qrcode.subscription-alert />
             <div class="relative min-h-[500px] w-full h-full">
                 <div class="container flex flex-col mx-auto rounded-3xl shadow-main ">
                     <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">

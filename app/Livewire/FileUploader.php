@@ -32,7 +32,6 @@ class FileUploader extends Component
 
     public function render()
     {
-        sleep(1);
         return view('livewire.file-uploader');
     }
 

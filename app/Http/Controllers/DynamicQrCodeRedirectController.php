@@ -13,9 +13,12 @@ class DynamicQrCodeRedirectController extends Controller
      */
     public function __invoke(Request $request,$code)
     {
+
+
+
         $qrCode = QrCode::where('code',$code)->first();
         if(!$qrCode){
-            $qrCode = QrCode::where('subdomain',$code)->first();
+            $qrCode = QrCode::where('subdomain',$code)->firstOrFail();
             if($qrCode->type == 'event'){
                 return view('dynamic.event-preview',['event'=>(object)$qrCode->qr_code_info]);
             }elseif($qrCode->type == 'pdf'){

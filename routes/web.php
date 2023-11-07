@@ -50,3 +50,10 @@ Route::domain('admin.' . config('app.domain'))->middleware('admin')->group(funct
     Route::get('plans', App\Livewire\Plan\Index::class)->name('plans.index');
     Route::get('users', App\Livewire\User\Index::class)->name('users.index');
 });
+
+Route::get('/user/invoice/{invoiceId}', function ($invoiceId) {
+    return auth()->user()->downloadInvoice($invoiceId, [
+        'vendor'  => 'qrcodesolution.com',
+        'product' => 'Qr Code Solution',
+    ]);
+})->name('invoice.download')->middleware('auth');
