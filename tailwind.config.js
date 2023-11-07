@@ -1,6 +1,6 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
-
+const colors = require('tailwindcss/colors')
 /** @type {import('tailwindcss').Config} */
 export default {
     presets: [
@@ -22,9 +22,17 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                primary: colors.indigo,
+                secondary: colors.gray,
+                positive: colors.emerald,
+                negative: colors.red,
+                warning: colors.amber,
+                info: colors.blue
+            }
         },
     },
-
+    darkMode: "class",
     plugins: [require("@tailwindcss/typography"),require("tw-elements/dist/plugin.cjs")]
     // plugins: [forms],
     // plugins: [forms,require("@tailwindcss/typography"), require("@tailwindcss/forms")],

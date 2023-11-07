@@ -11,7 +11,7 @@
 
 <div class="{{$class}}">
     <div class="relative mt-2 " data-te-input-wrapper-init wire:ignore>
-        <textarea
+        {{-- <textarea
           class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
           id="{{$id}}"
           rows="3"
@@ -25,10 +25,13 @@
           >
             {{ $label }}
           </label
-        >
+        > --}}
+    <x-textarea wire:model.live="{{ $name }}"  placeholder="{{ $placeholder }}" id="{{ $id }}" type="{{ $type }}" size="{{ $size }}" {{ $attributes }}  />
+
       </div>
 
-    <x-tw.error :field="$name" />
+    {{-- <x-tw.error :field="$name" /> --}}
+
 
 </div>
 

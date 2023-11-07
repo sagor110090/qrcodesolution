@@ -22,7 +22,7 @@
         frame_label_text_color: @entangle('frame_label_text_color'),
 
         qrcodePreview: @entangle('qrcodePreview'),
-        onlyDynamic: @entangle('onlyDynamic'),
+        dynamic:false,
 
         download() {
             if (this.imageType === 'svg') {
@@ -74,8 +74,23 @@
             }
 
 
+        },
+        checkTypeDynamic(value){
+            let type = value;
+            let listDynamic = @js(Support::onlyDynamicList());
+            console.log(listDynamic);
+            let check = listDynamic.includes(type);
+            if(check){
+                this.dynamic = true;
+            }else{
+                this.dynamic = false;
+            }
+            console.log(this.dynamic);
+
         }
-      }">
+      }"
+      x-init="$watch('type', value => checkTypeDynamic(value)),checkTypeDynamic(type)"
+      >
 
     <div class="col-span-12 md:col-span-3">
         <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
@@ -131,8 +146,8 @@
             <div class="p-6">
                 <div class="mb-2 text-base text-neutral-500 dark:text-neutral-300">
                     <div class="flex justify-center">
-                        <x-tw.radio label="Static" name="dynamic" id="static" :value="false" />
-                        <x-tw.radio label="Dynamic" name="dynamic" id="dynamic" :value="true" />
+                        <x-tw.radio label="Static" name="dynamic" id="static" :value="false" x-value="false" x-model="dynamic"/>
+                        <x-tw.radio label="Dynamic" name="dynamic" id="dynamic" :value="true" x-value="true" x-model="dynamic"/>
                     </div>
                     <x-tw.label class="font-bold text-md mb-5 mt-10">
                         Design Your QR Code
@@ -234,6 +249,7 @@
                         </span>
                     </a>
 
+                    <x-button dark label="Dark" />
 
                     <a href="javascript:void(0)" wire:click="save()"
                         class="flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">

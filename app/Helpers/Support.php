@@ -21,7 +21,17 @@ class Support extends Facade
     public static function onlyDynamic($type)
     {
 
-        $types = [
+        $types = self::onlyDynamicList();
+        if (in_array($type, $types)) {
+            return true;
+        }
+        return false;
+    }
+
+    //only dynamic qr code list
+    public static function onlyDynamicList()
+    {
+        return [
             'event',
             'social_media',
             'image',
@@ -29,10 +39,6 @@ class Support extends Facade
             'audio',
             'pdf',
         ];
-        if (in_array($type, $types)) {
-            return true;
-        }
-        return false;
     }
 
     //dynamic qr code from create page

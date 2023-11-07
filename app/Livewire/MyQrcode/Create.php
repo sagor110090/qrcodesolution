@@ -50,7 +50,7 @@ class Create extends Component
     public $type = 'url';
 
     //url
-    public $url = '';
+    public $url = 'https://';
 
     //email
     public $email = '';
@@ -114,7 +114,6 @@ class Create extends Component
 
     public $data = 'Qrcode Solution';
     public $error = '';
-    public $onlyDynamic = false;
 
     public $dynamic = false;
 
@@ -149,11 +148,15 @@ class Create extends Component
     }
 
 
+
+
     public function updated()
     {
         if (Support::onlyDynamic($this->type)) {
+            $this->dynamic = true;
             return;
         }
+        $this->resetErrorBag();
 
         if ($this->type == 'url') {
 
@@ -442,6 +445,10 @@ class Create extends Component
             'code' => Support::hashCode(),
             'is_dynamic' => $this->dynamic ? true : false,
         ];
+
+        if (Support::onlyDynamic($this->type)) {
+            $this->dynamic = true;
+        }
 
         if(auth()->check() == false){
             Support::saveRequestData($data);

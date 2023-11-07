@@ -1,12 +1,10 @@
 import {
     Datepicker, Input, initTE, Collapse, Select, Sticky, Modal,
-    Ripple,LoadingManagement
+    Ripple, LoadingManagement
 } from "tw-elements";
+// initTE({ Datepicker, Input, Collapse, Select, Sticky, Modal, Ripple, LoadingManagement });
 
-
-
-
-initTE({ Datepicker, Input, Collapse, Select, Sticky, Modal, Ripple,LoadingManagement });
+initTE({  Collapse});
 
 import Picker from 'vanilla-picker'
 
@@ -19,11 +17,11 @@ window.Swal = Swal;
 
 const swalWithBootstrapButtons = Swal.mixin({
     customClass: {
-      confirmButton: 'btn btn-success',
-      cancelButton: 'btn btn-danger'
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
     },
     buttonsStyling: false
-  });
+});
 
 window.swalWithBootstrapButtons = swalWithBootstrapButtons;
 
