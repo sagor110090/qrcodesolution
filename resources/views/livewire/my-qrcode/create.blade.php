@@ -149,7 +149,7 @@
                             </svg>
                         </x-slot>
                     </x-qrcode.type>
-                    <x-qrcode.type  name="Event" @click="type = 'event'">
+                    <x-qrcode.type name="Event" @click="type = 'event'">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
@@ -178,7 +178,7 @@
                             </svg>
                         </x-slot>
                     </x-qrcode.type>
-                    <x-qrcode.type  name="Wifi" @click="type = 'wifi'">
+                    <x-qrcode.type name="Wifi" @click="type = 'wifi'">
                         <x-slot name="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -189,10 +189,11 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="BitCoin" @click="type = 'bitcoin'">
                         <x-slot name="icon">
-                            <svg  class="h-6 w-6 text-gray dark:text-white"
-                            fill="currentColor" viewBox="0 0 37.866 37.866">
+                            <svg class="h-6 w-6 text-gray dark:text-white" fill="currentColor"
+                                viewBox="0 0 37.866 37.866">
                                 <g>
-                                    <path d="M24.617,19.115c-0.377-0.219-0.922-0.418-1.635-0.601c0.664-0.226,1.198-0.51,1.604-0.855
+                                    <path
+                                        d="M24.617,19.115c-0.377-0.219-0.922-0.418-1.635-0.601c0.664-0.226,1.198-0.51,1.604-0.855
                                         c0.404-0.346,0.715-0.743,0.931-1.193c0.215-0.451,0.321-0.927,0.321-1.429c0-0.69-0.202-1.325-0.609-1.903
                                         c-0.406-0.578-0.987-1.021-1.743-1.33c-0.292-0.12-0.641-0.209-1.02-0.283V8.838H19.89v2.501h-1.656V8.838h-2.576v2.501h-3.929
                                         v2.104h0.6c0.399,0,0.67,0.036,0.812,0.109s0.242,0.171,0.3,0.294c0.058,0.124,0.087,0.411,0.087,0.861v8.481
@@ -226,30 +227,38 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="PDF" @click="type = 'pdf'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
                         </x-slot>
                     </x-qrcode.type>
                     <x-qrcode.type name="Image" @click="type = 'image'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
                         </x-slot>
                     </x-qrcode.type>
                     <x-qrcode.type name="Audio" @click="type = 'audio'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                            </svg>
                         </x-slot>
                     </x-qrcode.type>
                     <x-qrcode.type name="Video" @click="type = 'video'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
                         </x-slot>
                     </x-qrcode.type>
                 </div>
@@ -339,68 +348,7 @@
 
 
 
-            <div class="p-0 grid  justify-center">
-                <div class=" max-w-[18rem] rounded-lgdark:bg-neutral-700 grid justify-items-center">
-                    <div class="relative overflow-hidden bg-cover bg-no-repeat">
-
-                        <div class="border-2 shadow-sm rounded-lg">
-                            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gray-200 to-gray-200 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 rounded-lg"
-                                x-show='dynamic' x-transition>
-                                <div
-                                    class="flex items-center justify-center h-full text-center text-gray-500 dark:text-gray-300">
-                                    Save your QR code to download and use it.
-                                </div>
-                            </div>
-                            <div x-html="qrcodePreview" id="qrcodePreview">
-                            </div>
-                            <img src="{{ asset('images/placeholder.svg') }}" x-show='!qrcodePreview' x-transition
-                                alt="placeholder" class="w-48 h-48 rounded-lg">
-
-                        </div>
-                    </div>
-                    <div class="p-0">
-                        <p class="text-base text-neutral-600 dark:text-neutral-200">
-                            Scan me to get the link
-                        </p>
-                    </div>
-                    <div class="grid grid-cols-3 gap-4 p-2">
-                        <x-tw.button-select @click="imageType = 'png'" value="png" type="imageType">
-                            PNG
-                        </x-tw.button-select>
-                        <x-tw.button-select @click="imageType = 'jpeg'" value="jpeg" type="imageType">
-                            JPEG
-                        </x-tw.button-select>
-                        <x-tw.button-select @click="imageType = 'svg'" value="svg" type="imageType">
-                            SVG
-                        </x-tw.button-select>
-
-                    </div>
-                </div>
-                <div class="mt-4 p-2 grid grid-cols-2 gap-4">
-                    <a href="javascript:void(0)" @click="download()"
-                        class="flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
-                        <i class="bi bi-download text-xl"></i>
-                        <span class="ml-2 font-bold text-md">
-                            Download
-                        </span>
-                    </a>
-
-
-                    <a href="javascript:void(0)" wire:click="save()"
-                        class="flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
-                        <i class="bi bi-save text-xl"></i>
-                        <span class="ml-2 font-bold text-md">
-                            Save
-                            <div wire:loading>
-                                <x-spinner class="w-6 h-6 text-gray-500" />
-                            </div>
-                        </span>
-                    </a>
-
-
-                </div>
-
-            </div>
+            <x-qrcode.preview />
 
         </div>
     </div>

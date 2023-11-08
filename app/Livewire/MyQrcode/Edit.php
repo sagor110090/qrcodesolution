@@ -246,9 +246,9 @@ class Edit extends Component
     // save
     public function save()
     {
-        if (Support::dynamicQrCodeFromOutsideCreatePage($this->type)) {
-            return;
-        }
+        // if (Support::dynamicQrCodeFromOutsideCreatePage($this->type)) {
+        //     return;
+        // }
 
         if ($this->type == 'url') {
             $rules = ['url' => 'required|url'];
@@ -384,6 +384,8 @@ class Edit extends Component
             }else{
                 $qrCodeInfo['audio'] = $this->qrCode->qr_code_info['audio'];
             }
+        } elseif ($this->type == 'event') {
+            $qrCodeInfo = $this->qrCode->qr_code_info;
         }
 
 

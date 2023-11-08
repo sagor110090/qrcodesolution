@@ -69,7 +69,7 @@ $setCurrentStep = function ($step) {
         $this->validate(
             [
                 'event.name' => 'required|min:3|max:255',
-                'event_url' => 'required|min:3|max:255|url|unique:qr_codes,subdomain'.$this->QrcodeId,
+                'event_url' => 'required|min:3|max:255|unique:qr_codes,subdomain,'.$this->QrcodeId,
                 'event.description' => 'required|min:20|max:500',
             ],
             [

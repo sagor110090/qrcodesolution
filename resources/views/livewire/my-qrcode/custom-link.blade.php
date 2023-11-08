@@ -1,6 +1,6 @@
 <div>
     <div class='flex items-center justify-center'>
-        <div class='w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl dark:bg-gray-800'>
+        <div class='w-full max-w-lg px-10 py-8 mx-auto bg-white rounded-lg shadow-xl dark:bg-gray-800 dark:border dark:border-gray-200/10'>
             <h3>
                 <div class='flex items-center justify-between'>
                     <span class='text-xl  text-gray-900 dark:text-gray-100'>
