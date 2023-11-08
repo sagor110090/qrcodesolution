@@ -1,5 +1,12 @@
 <x-layouts.main>
-    
+
+        <x-slot name="seo">
+            {{$seo ?? ''}}
+            @if (!isset($seo))
+                <title>{{ config('app.name') }}</title>
+            @endif
+        </x-slot>
+
     <x-ui.app.header />
 
     <!-- Page Heading -->
@@ -10,7 +17,7 @@
             </div>
         </header>
     @endif
-    
+
     {{ $slot }}
 
 </x-layouts.main>
