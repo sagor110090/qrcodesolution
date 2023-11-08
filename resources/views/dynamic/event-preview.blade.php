@@ -19,12 +19,43 @@
                         <img src="{{asset($event->logo_image)}}" alt="logo" class="main-content-logo">
                         @endif
                     </div>
-                    <h2 class="mb-6 font-sans text-xl font-bold text-center text-gray-900">
+                    <h2 class="mb-6 font-sans text-xl font-bold text-center text-gray-900" style="color:{{ Support::visibleColor($event->color) }}; font-family: {{$event->font}};font-size:20px;">
                         {{$event->name}}
                     </h2>
                 </a>
                 <div class="bg-white rounded-lg shadow-lg p-5 md:p-20 text-gray-800 leading-normal text-center sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20"
                     style="background:{{ $event->color }};">
+                    <div class="flex flex-col items-center justify-center mb-5">
+                        @if ($event->one_day_event)
+                        <p class="text-base text-gray-700 md:text-lg"
+                            style="color:{{ Support::visibleColor($event->color) }}; font-family: {{$event->font}};font-size:20px;">
+                            {{date('d M Y H:i', strtotime($event->date_time))}}
+                        </p>
+                        {{-- duration --}}
+                        <p class="text-base text-gray-700 md:text-lg">
+                            {{$event->duration}}
+                        </p>
+                        @else
+                        <p class="text-base text-gray-700 md:text-lg"
+                            style="color:{{ Support::visibleColor($event->color) }}; font-family: {{$event->font}};font-size:20px;">
+                            {{date('d M Y H:i', strtotime($event->start_date_time))}} - {{date('d M Y H:i', strtotime($event->end_date_time))}}
+                        </p>
+                        @endif
+                        {{-- location --}}
+                        @if ($event->location)
+                        <p class="text-base text-gray-700 md:text-lg"
+                            style="color:{{ Support::visibleColor($event->color) }}; font-family: {{$event->font}};font-size:20px;">
+                            <div class="flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                  </svg> {{$event->location}}
+                            </div>
+                        </p>
+                        @endif
+                    </div>
+
+                    {{-- ticket_price --}}
                     <p class="text-base text-gray-700 md:text-lg"
                         style="color:{{ Support::visibleColor($event->color) }}; font-family: {{$event->font}};font-size:20px;">
                         {{$event->description}}
