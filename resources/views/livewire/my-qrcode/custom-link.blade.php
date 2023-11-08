@@ -18,9 +18,8 @@
             <div class='max-w-md mx-auto space-y-6'>
                 <form wire:submit.prevent="submit">
                     <div class="mt-4 mb-4">
-                        <x-input class="pr-28" label="Link" placeholder="Link" suffix=".qrcodesolution.com"
+                        <x-input class="pr-28"  placeholder="Custom Link" suffix=".qrcodesolution.com"
                             wire:model="link" />
-                        @error('link') <span class="text-red-500 mt-1 text-sm">{{ $message }}</span> @enderror
                     </div>
                     <x-button primary label="Submit" wire:click="submit" />
                 </form>

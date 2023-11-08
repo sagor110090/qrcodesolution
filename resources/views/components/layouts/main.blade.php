@@ -29,6 +29,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <wireui:scripts />
 
+    <style>
+    [x-cloak] { display: none !important; }
+    </style>
 
     @stack('css')
 

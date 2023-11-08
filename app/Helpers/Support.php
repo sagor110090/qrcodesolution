@@ -2,12 +2,13 @@
 
 namespace App\Helpers;
 
-use App\Http\Qrcdr\QRcdr;
 use App\Models\QrCode;
+use App\Http\Qrcdr\QRcdr;
 use Illuminate\Support\Str;
+use JeroenDesloovere\VCard\VCard;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Storage;
-use JeroenDesloovere\VCard\VCard;
 
 
 require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/functions.php';
@@ -679,7 +680,7 @@ class Support extends Facade
     }
     protected static function getRelatedSubdomains($slug, $id = 0)
     {
-        return \DB::table('qr_codes')->select('subdomain')->where('subdomain', 'like', $slug . '%')
+        return DB::table('qr_codes')->select('subdomain')->where('subdomain', 'like', $slug . '%')
             ->where('id', '<>', $id)
             ->get();
     }

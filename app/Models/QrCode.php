@@ -38,11 +38,13 @@ class QrCode extends Model
         'is_dynamic',
         'qr_code_info',
         'subdomain',
+        'status'
     ];
 
     protected $casts = [
         'qr_code_info' => 'array',
         'is_dynamic' => 'boolean',
+        'status' => 'boolean'
     ];
 
     //append static qrCode data
@@ -156,7 +158,7 @@ class QrCode extends Model
     {
         parent::boot();
         static::created(function ($qrCode) {
-            $qrCode->subdomain = Support::createSubdomain($qrCode->subdomain ?? $qrCode->type);
+            $qrCode->subdomain = Support::createSubdomain($qrCode->subdomain ?? $qrCode->type, $qrCode->id);
             $qrCode->save();
         });
     }

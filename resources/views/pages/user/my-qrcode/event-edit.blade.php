@@ -39,7 +39,7 @@ state([
             'icon' => '',
         ],
     ],
-    'currentStep' => 'step3',
+    'currentStep' => 'step1',
     'logo_image' => '',
     'banner_image' => '',
     'QrcodeId' => '',

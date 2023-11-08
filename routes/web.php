@@ -14,6 +14,10 @@ Route::domain(config('app.domain'))->group(function () {
 });
 
 Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
+
+//event create
+Route::view('/event-create','dynamic.event-create')->name('event.create');
+
 //event show
 Route::domain('{code}.' . config('app.domain'))->get('/', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 

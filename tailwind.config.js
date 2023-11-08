@@ -10,7 +10,6 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
-        "./node_modules/tw-elements/dist/js/**/*.js",
 
         './vendor/wireui/wireui/resources/**/*.blade.php',
         './vendor/wireui/wireui/ts/**/*.ts',
@@ -33,7 +32,7 @@ export default {
         },
     },
     darkMode: "class",
-    plugins: [require("@tailwindcss/typography"),require("tw-elements/dist/plugin.cjs")]
+    plugins: [require("@tailwindcss/typography")]
     // plugins: [forms],
     // plugins: [forms,require("@tailwindcss/typography"), require("@tailwindcss/forms")],
 

@@ -1,12 +1,9 @@
 <?php
-
-use function Laravel\Folio\{middleware, name};
+ 
 use Livewire\Volt\Component;
 use function Livewire\Volt\{state, rules,updated};
-
-
-name('event.create');
-
+  
+ 
 
 state([
     'steps' => [
@@ -124,6 +121,11 @@ $setCurrentStep = function ($step) {
 
         $data = array_merge($data, Support::basicDataForQrCode());
 
+         if(auth()->check() == false){
+            Support::saveRequestData($data);
+            return redirect()->route('login');
+        }
+
         auth()
             ->user()
             ->qrCodes()
@@ -138,12 +140,13 @@ $setCurrentStep = function ($step) {
 
 
 ?>
-
+ 
 
 <x-layouts.frontend>
     <div class="h-full">
         @volt('event.create')
         <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-20 bg-white dark:bg-gray-800 rounded-lg shadow  p-6">
+
             <div class="grid grid-cols-12 gap-4">
                 <div class="col-span-12 md:col-span-4">
                     <ol
