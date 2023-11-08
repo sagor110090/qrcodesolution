@@ -109,7 +109,7 @@ with(fn () => [
                                 <svg class="dark:text-gray-400 -mt-0.5 h-3.5 inline-block w-3.5" data-icon="tabler:clock" height="1em" viewBox="0 0 24 24" width="1em"><symbol id="ai:tabler:clock"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"></path><path d="M12 7v5l3 3"></path></g></symbol><use xlink  :href="#ai:tabler:clock"></use></svg>
                                 <time class="inline-block dark:text-gray-400">{{ date('F j, Y', $post->updated_at->timestamp) }}</time><span class="mx-2">·</span>
                                 @foreach ($post->categories as $category)
-                                    <a class="font-medium underline capitalize hover:underline dark:text-gray-400"   href="/category/documentation">{{ $category->name }}</a>
+                                    <a class="font-medium underline capitalize hover:underline dark:text-gray-400">{{ $category->name }}</a>
 
                                 @endforeach
 
@@ -118,7 +118,7 @@ with(fn () => [
                             <p class="flex-grow text-lg font-light text-muted dark:text-slate-400">{{ substr(strip_tags($post->content), 0, 200) }}@if(strlen(strip_tags($post->content)) > 200){{ '...' }}@endif</p>
                             <ul class="mt-5 text-sm">
                                 @foreach ($post->tags as $tag)
-                                    <li class="inline-block px-3 pt-1 pb-1.5 mb-2 mr-2 text-xs font-medium text-gray-500 hover:text-gray-700 lowercase bg-gray-200 rounded-full dark:bg-slate-700"><a class="dark:hover:text-gray-200 dark:text-slate-300 hover:text-primary"   href="/tag/{{ $tag->name }}">{{ $tag->name }}</a></li>
+                                    <li class="inline-block px-3 pt-1 pb-1.5 mb-2 mr-2 text-xs font-medium text-gray-500 hover:text-gray-700 lowercase bg-gray-200 rounded-full dark:bg-slate-700"><a class="dark:hover:text-gray-200 dark:text-slate-300 hover:text-primary">{{ $tag->name }}</a></li>
 
                                 @endforeach
                             </ul>

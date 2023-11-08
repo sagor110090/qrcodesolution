@@ -20,20 +20,20 @@
         {{-- Google / Search Engine Tags --}}
         <meta itemprop="name" content="{{ $post->meta_title ?? $post->title }}">
         <meta itemprop="description" content="{{ $post->meta_description ?? Str::limit($post->content, 160) }}">
-        <meta itemprop="image" content="{{ $post->image ?? '' }}">
+        <meta itemprop="image" content="{{ $post->thumbnail ?? '' }}">
 
         {{-- Facebook Meta Tags --}}
         <meta property="og:url" content="https://qrcodesolution.com/blog/{{ $post->slug }}">
         <meta property="og:type" content="website">
         <meta property="og:title" content="{{ $post->meta_title ?? $post->title }}">
         <meta property="og:description" content="{{ $post->meta_description ?? Str::limit($post->content, 160) }}">
-        <meta property="og:image" content="{{ $post->image ?? '' }}">
+        <meta property="og:image" content="{{ $post->thumbnail ?? '' }}">
 
         {{-- Twitter Meta Tags --}}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="{{ $post->meta_title ?? $post->title }}">
         <meta name="twitter:description" content="{{ $post->meta_description ?? Str::limit($post->content, 160) }}">
-        <meta name="twitter:image" content="{{ $post->image ?? '' }}">
+        <meta name="twitter:image" content="{{ $post->thumbnail ?? '' }}">
         <meta name="twitter:site" content="@qrcodesolution">
         <meta name="twitter:creator" content="@qrcodesolution">
 
@@ -64,13 +64,13 @@
                 </div>
             </div>
 
-            @if ($post->image)
-                <img src="@if(str_starts_with($post->image, 'https') || str_starts_with($post->image, 'http')){{ $post->image }}@else{{ asset('storage/' . $post->image) }}@endif" alt="{{ $post->title }}" class="w-full mx-auto mt-4">
+            @if ($post->thumbnail)
+                <img src="@if(str_starts_with($post->thumbnail, 'https') || str_starts_with($post->thumbnail, 'http')){{ $post->thumbnail }}@else{{ asset('storage/' . $post->thumbnail) }}@endif" alt="{{ $post->title }}" class="w-full mx-auto mt-4">
             @endif
 
             <div class="flex items-center justify-center mt-4 text-left">
                 <div class="max-w-full -mt-5 text-lg text-gray-600 whitespace-pre-line dark:text-gray-300">
-                    {!! $post->body !!}
+                    {!! $post->content !!}
                 </div>
             </div>
         </div>
