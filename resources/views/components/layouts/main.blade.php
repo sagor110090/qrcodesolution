@@ -5,9 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {{ $seo ?? '' }}
-    @if ($seo ?? true)
-        <title>{{ config('app.name') }}</title>
-    @endif
     <!-- Used to add dark mode right away, adding here prevents any flicker -->
     <script>
         if (typeof(Storage) !== "undefined") {

@@ -3,6 +3,9 @@
     @if ($seo ?? true)
         <x-slot name="seo">
             {{$seo ?? ''}}
+            @if (!isset($seo))
+                <title>{{ config('app.name') }}</title>
+            @endif
         </x-slot>
     @endif
 

@@ -1,8 +1,9 @@
 <x-layouts.frontend>
 
     <x-slot name="seo">
-        <title> {{ $post->meta_title ?? $post->title }} | Qrcode Solution</title>
+        <title>{{ $post->meta_title ?? $post->title }} | Qrcode Solution</title>
         <meta name="description" content="{{ $post->meta_description ?? Str::limit($post->content, 160) }}">
+        <meta name="keywords" content="{{ $post->meta_keywords ?? '' }}">
         <meta name="author" content="Qrcode Solution">
         <meta name="robots" content="index,follow">
         <meta name="googlebot" content="index,follow">
@@ -15,11 +16,6 @@
         <meta name="identifier-URL" content="https://qrcodesolution.com/blog/{{ $post->slug }}">
         <meta name="coverage" content="Worldwide">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        {{-- HTML Meta Tags --}}
-        <title>{{ $post->meta_title ?? $post->title }} | Qrcode Solution</title>
-        <meta name="description" content="{{ $post->meta_description ?? Str::limit($post->content, 160) }}">
-        <meta name="keywords" content="{{ $post->meta_keywords ?? '' }}">
 
         {{-- Google / Search Engine Tags --}}
         <meta itemprop="name" content="{{ $post->meta_title ?? $post->title }}">

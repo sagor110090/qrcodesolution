@@ -43,8 +43,10 @@ with(fn () => [
 <x-layouts.frontend>
 
     <x-slot name="seo">
-        <title> Blog | Qrcode Solution</title>
-        <meta name="description" content="Our QR Code solution is an all-in-one platform that includes a QR Code generator, a mobile landing page builder, and a tracking tool.">
+        <title>Blog | Qrcode Solution</title>
+        <meta name="description" content="Free QR Code Generator and online QR code creator. No sign-up required. Create unlimited non-expiring free QR codes for a website URL, YouTube video, Google Maps location, FaceBook link, contact details or any one of 22 QR code types.">
+        <meta name="keywords" content="QR code, QR code generator, QR code creator, free QR code, QR code maker, QR code reader, QR code tracking, QR code analytics, QR code campaign, QR code marketing, QR code coupon, QR code vCard, QR code contact, QR code design">
+
         <meta name="author" content="Qrcode Solution">
         <meta name="robots" content="index,follow">
         <meta name="googlebot" content="index,follow">
@@ -57,11 +59,6 @@ with(fn () => [
         <meta name="identifier-URL" content="https://qrcodesolution.com">
         <meta name="coverage" content="Worldwide">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        {{-- HTML Meta Tags --}}
-        <title>Blog | Qrcode Solution</title>
-        <meta name="description" content="Free QR Code Generator and online QR code creator. No sign-up required. Create unlimited non-expiring free QR codes for a website URL, YouTube video, Google Maps location, FaceBook link, contact details or any one of 22 QR code types.">
-        <meta name="keywords" content="QR code, QR code generator, QR code creator, free QR code, QR code maker, QR code reader, QR code tracking, QR code analytics, QR code campaign, QR code marketing, QR code coupon, QR code vCard, QR code contact, QR code design">
 
         {{-- Google / Search Engine Tags --}}
         <meta itemprop="name" content="Blog | Qrcode Solution">
