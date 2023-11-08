@@ -11,6 +11,50 @@ name('home');
 
 <x-layouts.frontend>
 
+    <x-slot name="seo">
+        <title> Qr Code Solution | Free QR Code Generator, Coupon, Contact & Design QR Codes & Tracking | Qrcode Solution</title>
+        <meta name="description" content="Our QR Code solution is an all-in-one platform that includes a QR Code generator, a mobile landing page builder, and a tracking tool.">
+        <meta name="author" content="Qrcode Solution">
+        <meta name="robots" content="index,follow">
+        <meta name="googlebot" content="index,follow">
+        <meta name="google" content="notranslate">
+        <meta name="generator" content="Qrcode Solution">
+        <meta name="rating" content="general">
+        <meta name="distribution" content="global">
+        <meta name="subject" content="QR Code Solution">
+        <meta name="url" content="https://qrcodesolution.com">
+        <meta name="identifier-URL" content="https://qrcodesolution.com">
+        <meta name="coverage" content="Worldwide">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        {{-- HTML Meta Tags --}}
+        <title>Free QR Code Generator, Coupon, Contact & Design QR Codes & Tracking | Qrcode Solution</title>
+        <meta name="description" content="Free QR Code Generator and online QR code creator. No sign-up required. Create unlimited non-expiring free QR codes for a website URL, YouTube video, Google Maps location, FaceBook link, contact details or any one of 22 QR code types.">
+        <meta name="keywords" content="QR code, QR code generator, QR code creator, free QR code, QR code maker, QR code reader, QR code tracking, QR code analytics, QR code campaign, QR code marketing, QR code coupon, QR code vCard, QR code contact, QR code design">
+
+        {{-- Google / Search Engine Tags --}}
+        <meta itemprop="name" content="Free QR Code Generator, Coupon, Contact & Design QR Codes & Tracking | Qrcode Solution">
+        <meta itemprop="description" content="Free QR Code Generator and online QR code creator. No sign-up required. Create unlimited non-expiring free QR codes for a website URL, YouTube video, Google Maps location, FaceBook link, contact details or any one of 22 QR code types.">
+        <meta itemprop="image" content="https://qrcodesolution.com/images/logo.png">
+
+
+        {{-- Facebook Meta Tags --}}
+        <meta property="og:url" content="https://qrcodesolution.com">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Free QR Code Generator, Coupon, Contact & Design QR Codes & Tracking | Qrcode Solution">
+        <meta property="og:description" content="Free QR Code Generator and online QR code creator. No sign-up required. Create unlimited non-expiring free QR codes for a website URL, YouTube video, Google Maps location, FaceBook link, contact details or any one of 22 QR code types.">
+        <meta property="og:image" content="https://qrcodesolution.com/images/logo.png">
+
+        {{-- Twitter Meta Tags --}}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Free QR Code Generator, Coupon, Contact & Design QR Codes & Tracking | Qrcode Solution">
+        <meta name="twitter:description" content="Free QR Code Generator and online QR code creator. No sign-up required. Create unlimited non-expiring free QR codes for a website URL, YouTube video, Google Maps location, FaceBook link, contact details or any one of 22 QR code types.">
+        <meta name="twitter:image" content="https://qrcodesolution.com/images/logo.png">
+        <meta name="twitter:site" content="@qrcodesolution">
+        <meta name="twitter:creator" content="@qrcodesolution">
+
+    </x-slot>
+
     @volt('home')
     <div class="relative flex flex-col items-center justify-center w-full h-auto overflow-hidden">
         <x-ui.icons.qrcode

@@ -18,6 +18,7 @@
         "orangehill/iseed": "^3.0",
         "rappasoft/laravel-livewire-tables": "^3.0@beta",
         "ryangjchandler/laravel-comments": "^0.2.0",
+        "spatie/laravel-sitemap": "^7.0",
         "stevebauman/location": "^7.0",
         "wire-elements/modal": "^2.0",
         "wireui/wireui": "^1.18",
