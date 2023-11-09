@@ -1,3 +1,4 @@
+@if (env('ACTIVE_STRIPE'))
 @if (auth()->user()->isOnTrial() && auth()->user()->isNotOnSubscription())
     <x-qrcode.banner class="bg-green-500">
         <span class="mr-2 [&>svg]:h-5 [&>svg]:w-5">
@@ -39,4 +40,5 @@
             </x-ui.button>
         </x-slot>
     </x-qrcode.banner>
+@endif
 @endif

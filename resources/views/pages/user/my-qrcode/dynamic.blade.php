@@ -45,11 +45,17 @@ $makeStatic = function ($id) {
 };
 
 $status = function ($id, $status = false) {
-    if(auth()->user()->isNotOnSubscription() && !$status) {
+    if (env('ACTIVE_STRIPE')) {
+        if(auth()->user()->isNotOnSubscription() && !$status) {
         $this->dispatch('openModal', component:'my-qrcode.subscription-alert', arguments: ['qrcodeId' => $id]);
         return;
+        }
+        if (auth()->user()->plan()->qrcode_limit <= auth()->user()->qrCodes()->isDynamic()->isActive()->count() && !$status) {
+            $this->alert('error', 'You have reached your QR Code limit.');
+            return;
+        }
     }
-    // if (auth()->user()
+
     $qrcode = auth()
         ->user()
         ->qrCodes()
@@ -74,6 +80,9 @@ $status = function ($id, $status = false) {
                <x-qrcode.subscription-alert />
 
                 <div class="relative min-h-[500px] w-full h-full">
+                <div wire:loading>
+                    <x-loader />
+                </div>
 
                     @forelse ($qrcodes as $qrcode)
                         <x-tw.card class="h-full mt-4 ">

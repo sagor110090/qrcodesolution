@@ -8,15 +8,17 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Url;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 
 class Create extends Component
 {
 
+    
     //listen
     protected $listeners = ['fileUpload' => 'handleFileUpload'];
 
-    use WithFileUploads;
+    use WithFileUploads,LivewireAlert;
 
     //query string
     // protected $queryString = ['type'];
@@ -448,6 +450,11 @@ class Create extends Component
 
         if (Support::onlyDynamic($this->type)) {
             $this->dynamic = true;
+        }
+
+        if (auth()->user()->plan()->qrcode_limit <= auth()->user()->qrCodes()->isDynamic()->isActive()->count()) {
+            $this->alert('error', 'You have reached your QR Code limit.');
+            return;
         }
 
         if(auth()->check() == false){

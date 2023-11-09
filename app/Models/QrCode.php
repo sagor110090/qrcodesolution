@@ -142,6 +142,18 @@ class QrCode extends Model
         return $query->where('is_dynamic', false);
     }
 
+    //scope is active
+    public function scopeIsActive($query)
+    {
+        return $query->where('status', true);
+    }
+
+    //scope is inactive
+    public function scopeIsInactive($query)
+    {
+        return $query->where('status', false);
+    }
+
 
 
     public function user()

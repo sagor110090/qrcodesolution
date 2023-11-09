@@ -7,7 +7,7 @@ use Laravel\Cashier\Billable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;  
 
 class User extends Authenticatable
 {
@@ -44,6 +44,11 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    //plan
+    public static function plan(){  
+        return auth()->user()->subscriptions()->active()->first()->join('plans', 'plans.plan_id', '=', 'subscriptions.stripe_price')->first();
+    }
+
 
 
     //isOnTrial
@@ -59,7 +64,7 @@ class User extends Authenticatable
     public static function isNotOnSubscription($user = null){
         if(!$user){
             $user = auth()->user();
-        }
+        } 
         if(!$user->subscriptions()->active()
         ->first()){
             return true;

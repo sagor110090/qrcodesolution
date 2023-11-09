@@ -3,6 +3,7 @@
     use function Laravel\Folio\{middleware, name};
     use function Livewire\Volt\{state, rules};
 
+    middleware(['admin']);
     name('admin.dashboard');
 
 

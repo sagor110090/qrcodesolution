@@ -27,16 +27,18 @@ class SubscriptionCheck extends Command
      */
     public function handle()
     {
-        $users = User::where('created_at', '<=', now()->subDays(14)) //trial expired
-            ->get();
-        foreach ($users as $user) {
-            if($user->isNotOnSubscription($user)){
-                $user->qrCodes()->whereIsDynamic(true)->update(['status' => false]);
+        if (env('ACTIVE_STRIPE')) {
+            $users = User::where('created_at', '<=', now()->subDays(14)) //trial expired
+                ->get();
+            foreach ($users as $user) {
+                if ($user->isNotOnSubscription($user)) {
+                    $user->qrCodes()->whereIsDynamic(true)->update(['status' => false]);
+                }
             }
-        }
 
-        //but own log file
-        Log::build(['driver' => 'single', 'path' => storage_path('logs/subscription.log')])
-            ->info('Subscription check command run successfully!', ['time' => now()]);
+            //but own log file
+            Log::build(['driver' => 'single', 'path' => storage_path('logs/subscription.log')])
+                ->info('Subscription check command run successfully!', ['time' => now()]);
+        }
     }
 }
