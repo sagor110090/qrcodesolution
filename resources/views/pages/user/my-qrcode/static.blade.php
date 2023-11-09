@@ -9,24 +9,22 @@ usesPagination();
 
 
 with('qrcodes', function() {
-    return auth()->user()->qrcodes()->isStatic()->latest()->paginate(10);
+    return auth()->user()->qrCodes()->isStatic()->latest()->paginate(10);
 });
 
 state('showModal', false);
 
-$edit = function ($id) {
-    return redirect()->route('my-qrcode.edit',['qrCode' => $id]);
-};
+
 
 $delete = function ($id) {
-    $qrcode = auth()->user()->qrcodes()->findOrFail($id);
+    $qrcode = auth()->user()->qrCodes()->findOrFail($id);
     $qrcode->delete();
     $this->dispatch('toast', message: 'Successfully deleted qrcode.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
 };
 
 
 $makeDynamic = function ($id) {
-    $qrcode = auth()->user()->qrcodes()->findOrFail($id);
+    $qrcode = auth()->user()->qrCodes()->findOrFail($id);
     $qrcode->update(['is_dynamic' => true]);
     $this->dispatch('toast', message: 'Successfully updated qrcode.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
 };
@@ -88,9 +86,7 @@ $makeDynamic = function ($id) {
                         <div class="col-span-12 md:col-span-3 border-l border-gray-200 dark:border-gray-700">
 
                             <div class="grid grid-cols-2 gap-2 p-2 justify-end items-center">
-                                <x-ui.button type="primary"
-                                    wire:click="edit({{$qrcode->id}})" size="md"
-                                    submit="false">
+                                <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', ['qrCode' => $qrcode])}}" size="md" wire:navigate>
                                     Edit
                                 </x-ui.button>
                                 <x-ui.button type="danger" wire:click="delete({{ $qrcode->id }})" size="md"

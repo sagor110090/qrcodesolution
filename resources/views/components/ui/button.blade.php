@@ -46,6 +46,6 @@ switch ($tag ?? 'button') {
 }
 @endphp
 
-<{!! $tagAttr !!} {!! $attributes->except(['class']) !!} class="{{ $sizeClasses }} {{ $typeClasses }} cursor-pointer inline-flex items-center w-full justify-center disabled:opacity-50 font-semibold focus:outline-none">
+<{!! $tagAttr !!}  {!! $attributes->except(['class']) !!} class="{{ $sizeClasses }} {{ $typeClasses }} cursor-pointer inline-flex items-center w-full justify-center disabled:opacity-50 font-semibold focus:outline-none">
     {{ $slot }}
 </{{ $tagClose }}>

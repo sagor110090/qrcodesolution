@@ -163,4 +163,6 @@ class QrCode extends Model
         });
     }
 
+
+
 }

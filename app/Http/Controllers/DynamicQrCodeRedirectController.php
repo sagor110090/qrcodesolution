@@ -17,8 +17,14 @@ class DynamicQrCodeRedirectController extends Controller
 
 
         $qrCode = QrCode::where('code',$code)->first();
+        if(!$qrCode->status){
+            abort(404,'Qr Code is not active');
+        }
         if(!$qrCode){
             $qrCode = QrCode::where('subdomain',$code)->firstOrFail();
+            if(!$qrCode->status){
+                abort(404,'Qr Code is not active');
+            }
             if($qrCode->type == 'event'){
                 return view('dynamic.event-preview',['event'=>(object)$qrCode->qr_code_info]);
             }elseif($qrCode->type == 'pdf'){

@@ -55,8 +55,10 @@ class User extends Authenticatable
     }
 
     //isNotOnSubscription
-    public static function isNotOnSubscription(){
-        $user = auth()->user();
+    public static function isNotOnSubscription($user = null){
+        if(!$user){
+            $user = auth()->user();
+        }
         if(!$user->subscriptions()->active()
         ->first()){
             return true;

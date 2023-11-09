@@ -16,7 +16,7 @@ on([
 with('qrcodes', function () {
     return auth()
         ->user()
-        ->qrcodes()
+        ->qrCodes()
         ->isdynamic()
         ->with('qrCodeTracks')
         ->latest()
@@ -28,25 +28,29 @@ state([
     'locations' => null,
 ]);
 
-$edit = function ($id) {
-    return redirect()->route('my-qrcode.edit', ['qrCode' => $id]);
-};
 
-$delete = function ($id) {
-    $qrcode = auth()
-        ->user()
-        ->qrcodes()
-        ->findOrFail($id);
-    $qrcode->delete();
-    $this->dispatch('toast', message: 'Successfully deleted qrcode.', data: ['position' => 'top-right', 'type' => 'success']);
-};
+
+
 
 $makeStatic = function ($id) {
     $qrcode = auth()
         ->user()
-        ->qrcodes()
+        ->qrCodes()
         ->findOrFail($id);
     $qrcode->update(['is_dynamic' => false]);
+    $this->dispatch('toast', message: 'Successfully updated qrcode.', data: ['position' => 'top-right', 'type' => 'success']);
+};
+
+$status = function ($id, $status = false) {
+    if(auth()->user()->isNotOnSubscription() && !$status) {
+        $this->dispatch('openModal', component:'my-qrcode.subscription-alert', arguments: ['qrcodeId' => $id]);
+        return;
+    }
+    $qrcode = auth()
+        ->user()
+        ->qrCodes()
+        ->findOrFail($id);
+    $qrcode->update(['status' => !$qrcode->status]);
     $this->dispatch('toast', message: 'Successfully updated qrcode.', data: ['position' => 'top-right', 'type' => 'success']);
 };
 
@@ -126,13 +130,19 @@ $makeStatic = function ($id) {
                                 </div>
 
                                 <div class="col-span-12 md:col-span-3 border-l border-gray-200 dark:border-gray-700">
+                                    <div class="flex items-start justify-end   mb-2">
+                                        @if (!$qrcode->status)
+                                            <x-button.circle negative icon="x" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Inactive" />
+                                        @else
+                                            <x-button.circle positive icon="check" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Active" />
+                                        @endif
 
+                                    </div>
                                     <div class="grid grid-cols-2 gap-2 p-2 justify-end items-center">
-                                        <x-ui.button type="primary" wire:click="edit({{ $qrcode->id }})" size="md"
-                                            submit="false">
+                                        <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', ['qrCode' => $qrcode])}}" size="md" wire:navigate>
                                             Edit
                                         </x-ui.button>
-                                        <x-ui.button type="danger" wire:click="delete({{ $qrcode->id }})" size="md"
+                                        <x-ui.button type="danger" wire:click="$dispatch('openModal', { component: 'my-qrcode.delete-alert', arguments: { id: {{ $qrcode->id }} }})" size="md"
                                             submit="false">
                                             Delete
                                         </x-ui.button>
