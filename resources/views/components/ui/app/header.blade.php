@@ -8,7 +8,7 @@
             </a>
 
             <!-- Navigation -->
-            <div :class="{ 'absolute left-0' : open, 'relative' : !open }" class="flex flex-col justify-start w-full sm:relative sm:flex-row sm:justify-between dark:text-white/70 dark:bg-gray-900 dark:border-gray-800 dark:hover:text-gray-100 dark:hover:bg-gray-800/70" x-cloak>
+            <div :class="{ 'absolute left-0' : open, 'relative' : !open }" class="flex flex-col justify-start w-full sm:relative sm:flex-row sm:justify-between" x-cloak>
                 @php
                     $navLinks = ['Dashboard' => '/dashboard', 'Create QR Code' => '/my-qrcode/create','Static QR Codes' => '/my-qrcode/static', 'Dynamic QR Codes' => '/my-qrcode/dynamic'];
                 @endphp
