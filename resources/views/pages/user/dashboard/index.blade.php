@@ -25,7 +25,9 @@ middleware(['auth', 'verified']);
                     <div class="grid w-full grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                         <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
                             <span class="flex items-center justify-center w-16 h-16">
-                                <i class="bi bi bi-activity text-4xl text-dark-grey-900 text-blue-500"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6  text-4xl text-dark-grey-900 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                  </svg>
                             </span>
                             <p class="text-2xl font-bold text-center text-dark-grey-900 dark:text-white">
                                 {{ auth()->user()->qrcodes()->count() }}
@@ -36,7 +38,9 @@ middleware(['auth', 'verified']);
                         </div>
                         <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
                             <span class="flex items-center justify-center w-16 h-16">
-                                <i class="bi bi bi-activity text-4xl text-dark-grey-900 text-blue-500"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6  text-4xl text-dark-grey-900 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                  </svg>
                             </span>
                             <p class="text-2xl font-bold text-center text-dark-grey-900 dark:text-white">
                                 {{ auth()->user()->qrcodes()->isStatic()->count() }}
@@ -47,7 +51,9 @@ middleware(['auth', 'verified']);
                         </div>
                         <div class="flex flex-col items-center gap-3 px-8 py-10 bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
                             <span class="flex items-center justify-center w-16 h-16">
-                                <i class="bi bi bi-activity text-4xl text-dark-grey-900 text-blue-500"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6  text-4xl text-dark-grey-900 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                                  </svg>
                             </span>
                             <p class="text-2xl font-bold text-center text-dark-grey-900 dark:text-white">
                                 {{ auth()->user()->qrcodes()->isDynamic()->count() }}
