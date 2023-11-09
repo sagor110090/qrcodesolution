@@ -334,7 +334,7 @@
         </div>
     </div>
 
-    <div class="col-span-12 md:col-span-3" style="position: sticky; top: 0; z-index: 10;height: 450px;">
+    <div class="col-span-12 md:col-span-3 qrcode-sticky">
         <div
             class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
@@ -362,6 +362,7 @@
             position: sticky;
             top: 0;
             z-index: 10;
+            height: 450px;
         }
 
         svg.qrcodesvg {
