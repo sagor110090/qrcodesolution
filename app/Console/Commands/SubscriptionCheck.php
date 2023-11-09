@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class SubscriptionCheck extends Command
 {
@@ -33,5 +34,9 @@ class SubscriptionCheck extends Command
                 $user->qrCodes()->whereIsDynamic(true)->update(['status' => false]);
             }
         }
+
+        //but own log file
+        Log::build(['driver' => 'single', 'path' => storage_path('logs/subscription.log')])
+            ->info('Subscription check command run successfully!', ['time' => now()]);
     }
 }
