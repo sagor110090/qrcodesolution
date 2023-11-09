@@ -25,10 +25,10 @@ class SubscriptionAlert extends ModalComponent
                         </div>
                     </h3>
                     <div class='max-w-md mx-auto space-y-6'>
-                        <h1 class=' font-semibold text-center text-gray-800 dark:text-gray-200'>
+                        <h1 class='font-semibold text-center text-gray-800 dark:text-gray-200'>
                             Your subscription has been expired. Please renew your subscription to continue using our services.
                         </h1>
-                        <div class='flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 gap-2'>
+                        <div class='flex items-center justify-center gap-2'>
                             <x-button sm icon="credit-card" primary wire:click="$dispatch('closeModal')" href="{{ route('price') }}" wire:navigate>Subscription</x-button>
                             <x-button sm icon="x" wire:click="$dispatch('closeModal')" negative>Cancel</x-button>
                         </div>

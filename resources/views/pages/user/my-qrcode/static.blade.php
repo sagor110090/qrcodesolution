@@ -1,12 +1,19 @@
 <?php
 
 use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{state,usesPagination,with};
+use function Livewire\Volt\{state, usesPagination, with, on,uses};
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 name('my-qrcode.static');
 middleware(['auth', 'verified']);
 usesPagination();
+uses(LivewireAlert::class);
 
+on([
+    'updateQrCode' => function () {
+        // refresh
+    },
+]);
 
 with('qrcodes', function() {
     return auth()->user()->qrCodes()->isStatic()->latest()->paginate(10);
@@ -89,7 +96,7 @@ $makeDynamic = function ($id) {
                                 <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', ['qrCode' => $qrcode])}}" size="md" wire:navigate>
                                     Edit
                                 </x-ui.button>
-                                <x-ui.button type="danger" wire:click="delete({{ $qrcode->id }})" size="md"
+                                <x-ui.button type="danger" wire:click="$dispatch('openModal', { component: 'my-qrcode.delete-alert', arguments: { id: {{ $qrcode->id }} }})" size="md"
                                     submit="false">
                                     Delete
                                 </x-ui.button>

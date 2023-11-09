@@ -45,6 +45,7 @@ class User extends Authenticatable
     ];
 
 
+
     //isOnTrial
     public static function isOnTrial(){
         $user = auth()->user();

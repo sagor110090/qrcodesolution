@@ -4,10 +4,11 @@ namespace App\Livewire\MyQrcode;
 
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class DeleteAlert extends ModalComponent
 {
-
+    use LivewireAlert;
     public $id;
 
     public function mount($id)
@@ -16,6 +17,7 @@ class DeleteAlert extends ModalComponent
     }
 
     public function delete() {
+
         $qrCode = auth()
             ->user()
             ->qrCodes()
@@ -23,7 +25,8 @@ class DeleteAlert extends ModalComponent
         $qrCode->delete();
         $this->dispatch('updateQrCode');
         $this->closeModal();
-        $this->dispatch('toast', message: 'Successfully deleted qrcode.', data: ['position' => 'top-right', 'type' => 'success']);
+        $this->alert('success', 'Qr code deleted successfully!');
+
     }
 
     public function render()
@@ -48,7 +51,7 @@ class DeleteAlert extends ModalComponent
                         <h1 class=' font-semibold text-center text-gray-800 dark:text-gray-200'>
                             Are you sure you want to delete this qr code?
                         </h1>
-                        <div class='flex flex-col items-center justify-center space-y-4 md:flex-row md:space-y-0 gap-2'>
+                        <div class='flex items-center justify-center gap-2'>
                             <x-button sm icon="trash" primary wire:click="delete">Delete</x-button>
                             <x-button sm icon="x" wire:click="$dispatch('closeModal')" negative>Cancel</x-button>
 

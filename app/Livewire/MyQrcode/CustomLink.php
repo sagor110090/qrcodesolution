@@ -4,9 +4,12 @@ namespace App\Livewire\MyQrcode;
 
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class CustomLink extends ModalComponent
 {
+
+    use LivewireAlert;
 
     public $qrCode;
     public $link;
@@ -32,7 +35,8 @@ class CustomLink extends ModalComponent
         ]);
         $this->dispatch('updateQrCode');
         $this->closeModal();
-        $this->dispatch('toast', message: 'Custom link updated successfully.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
+        $this->alert('success', 'Custom link updated successfully!');
+
 
     }
 }

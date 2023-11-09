@@ -5,14 +5,16 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{with, state, rules, mount};
+use function Livewire\Volt\{with, state, rules, mount,uses};
 use Illuminate\Validation\Rule;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 name('profile.edit');
 middleware(['auth', 'verified']);
 rules(['new_password' => 'required|confirmed|min:6']);
 
 state(['user' => auth()->user()])->locked();
+uses(LivewireAlert::class);
 
 state([
     'name' => '',
@@ -31,20 +33,19 @@ mount(function(){
 $updateProfile = function()
 {
     // performing validation manually to use dynamic email rule.
-    $validated = $this->validate([ 
+    $validated = $this->validate([
         'name' => 'required|string|min:3',
         'email' => 'required|min:3|email|max:255|unique:users,email,' . $this->user->id . ',id'
     ]);
 
     // if the user hasn't changed their name or email and we also want to make, don't update and show error
     if($this->user->name == $this->name && $this->user->email == $this->email){
-        $this->dispatch('toast', message: 'Nothing to update.', data: [ 'position' => 'top-right', 'type' => 'info' ]);
+        $this->alert('info', 'Nothing to update.');
         return;
     }
 
     $this->user->fill(['email' => $this->email, 'name' => $this->name])->save();
-    
-    $this->dispatch('toast', message: 'Successfully updated profile.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
+    $this->alert('success', 'Successfully updated profile.');
 };
 
 $updatePassword = function(){
@@ -52,11 +53,11 @@ $updatePassword = function(){
     $validated = $this->validate();
 
     if (!Hash::check($this->current_password, $this->user->password)) {
-        $this->dispatch('toast', message: 'Current Password Incorrect', data: [ 'position' => 'top-right', 'type' => 'danger' ]);
+        $this->alert('error', 'Current Password Incorrect');
         return;
     }
 
-    $this->dispatch('toast', message: 'Successfully updated password.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
+    $this->alert('success', 'Successfully updated password.');
     $this->user->fill(['password' => Hash::make($this->new_password), 'remember_token' => Str::random(60) ])->save();
 
     $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
@@ -67,9 +68,9 @@ $updatePassword = function(){
     */
 $destroy = function(Request $request)
 {
-    
+
     if (!Hash::check($this->delete_confirm_password, $this->user->password)) {
-        $this->dispatch('toast', message: 'The Password you entered is incorrect', data: [ 'position' => 'top-right', 'type' => 'danger' ]);
+        $this->alert('error', 'The Password you entered is incorrect');
         $this->reset(['delete_confirm_password']);
         return;
     }
@@ -99,7 +100,7 @@ $destroy = function(Request $request)
     @volt('profile.edit')
         <div class="py-12">
             <div class="mx-auto space-y-6 max-w-7xl sm:px-6 lg:px-8">
-                
+
                 {{-- Update Profile Section --}}
                 <section class="p-4 bg-white shadow sm:p-8 dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
                     <div class="max-w-xl">

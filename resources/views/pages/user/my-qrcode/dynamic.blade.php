@@ -1,11 +1,13 @@
 <?php
 
 use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{state, usesPagination, with, on};
+use function Livewire\Volt\{state, usesPagination, with, on,uses};
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 name('my-qrcode.dynamic');
 middleware(['auth', 'verified']);
 usesPagination();
+uses(LivewireAlert::class);
 
 on([
     'updateQrCode' => function () {
@@ -38,7 +40,8 @@ $makeStatic = function ($id) {
         ->qrCodes()
         ->findOrFail($id);
     $qrcode->update(['is_dynamic' => false]);
-    $this->dispatch('toast', message: 'Successfully updated qrcode.', data: ['position' => 'top-right', 'type' => 'success']);
+    $this->alert('success', 'Successfully updated qrcode.');
+
 };
 
 $status = function ($id, $status = false) {
@@ -46,12 +49,14 @@ $status = function ($id, $status = false) {
         $this->dispatch('openModal', component:'my-qrcode.subscription-alert', arguments: ['qrcodeId' => $id]);
         return;
     }
+    // if (auth()->user()
     $qrcode = auth()
         ->user()
         ->qrCodes()
         ->findOrFail($id);
     $qrcode->update(['status' => !$qrcode->status]);
-    $this->dispatch('toast', message: 'Successfully updated qrcode.', data: ['position' => 'top-right', 'type' => 'success']);
+    $this->alert('success', 'Successfully updated qrcode.');
+
 };
 
 ?>
@@ -73,6 +78,13 @@ $status = function ($id, $status = false) {
                     @forelse ($qrcodes as $qrcode)
                         <x-tw.card class="h-full mt-4 ">
                             <div class="grid grid-cols-12 gap-4">
+                                <div class="flex items-end justify-end col-span-12 md:col-span-3 md:hidden">
+                                    @if (!$qrcode->status)
+                                        <x-button.circle negative icon="x" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Inactive" />
+                                    @else
+                                        <x-button.circle positive icon="check" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Active" />
+                                    @endif
+                                </div>
                                 <div class="col-span-12 md:col-span-3">
                                     <div class="p-0 grid  justify-center">
                                         <div class=" max-w-[18rem] rounded-lgdark:bg-neutral-700 grid justify-items-center">
@@ -130,13 +142,12 @@ $status = function ($id, $status = false) {
                                 </div>
 
                                 <div class="col-span-12 md:col-span-3 border-l border-gray-200 dark:border-gray-700">
-                                    <div class="flex items-start justify-end   mb-2">
+                                    <div class="flex items-center justify-end mb-2 invisible md:visible">
                                         @if (!$qrcode->status)
                                             <x-button.circle negative icon="x" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Inactive" />
                                         @else
                                             <x-button.circle positive icon="check" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Active" />
                                         @endif
-
                                     </div>
                                     <div class="grid grid-cols-2 gap-2 p-2 justify-end items-center">
                                         <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', ['qrCode' => $qrcode])}}" size="md" wire:navigate>
