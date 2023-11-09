@@ -38,6 +38,9 @@ $register = function(){
 ?>
 
 <x-layouts.main>
+    <x-slot name="seo">
+        <title>Register | {{ config('app.name') }}</title>
+    </x-slot>
 
     <div class="flex flex-col items-stretch justify-center w-screen min-h-screen py-10 sm:items-center">
 
@@ -63,10 +66,10 @@ $register = function(){
                             <x-ui.input label="Confirm Password" type="password" id="password_confirmation" name="password_confirmation" wire:model="passwordConfirmation" />
                             <x-ui.button type="primary" rounded="md" submit="true">Register</x-ui.button>
                         </form>
-                        <x-ui.button type="primary" rounded="md" submit="false" tag="a"
+                        {{-- <x-ui.button type="primary" rounded="md" submit="false" tag="a"
                                 href="{{ route('login.social', 'google') }}" style="margin-top: 10px;background-color: #dd4b39;border-color: #dd4b39;">
                                 Sign in with Google
-                            </x-ui.button>
+                            </x-ui.button> --}}
                     </div>
                 @endvolt
             </div>

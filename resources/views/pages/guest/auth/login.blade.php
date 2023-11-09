@@ -33,7 +33,9 @@ $authenticate = function () {
 ?>
 
 <x-layouts.main>
-
+    <x-slot name="seo">
+        <title>Login | {{ config('app.name') }}</title>
+    </x-slot>
     <div class="flex flex-col items-stretch justify-center w-screen min-h-screen py-10 sm:items-center">
 
         <div class="sm:mx-auto sm:w-full sm:max-w-md">
@@ -69,10 +71,10 @@ $authenticate = function () {
 
                             <x-ui.button type="primary" rounded="md" submit="true">Sign in</x-ui.button>
                         </form>
-                        <x-ui.button type="primary" rounded="md" submit="false" tag="a"
+                        {{-- <x-ui.button type="primary" rounded="md" submit="false" tag="a"
                             href="{{ route('login.social', 'google') }}" style="margin-top: 10px;background-color: #dd4b39;border-color: #dd4b39;">
                             Sign in with Google
-                        </x-ui.button>
+                        </x-ui.button> --}}
                     </div>
                 @endvolt
             </div>
