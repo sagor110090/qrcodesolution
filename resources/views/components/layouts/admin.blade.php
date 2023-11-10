@@ -13,7 +13,7 @@
 
         <wireui:scripts />
         @stack('styles')
-        @vite(['resources/css/app.css', 'resources/js/backend.js'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
 

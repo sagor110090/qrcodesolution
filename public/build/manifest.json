@@ -1,6 +1,6 @@
 {
   "resources/css/app.css": {
-    "file": "assets/app-3c665c6f.css",
+    "file": "assets/app-44e99e22.css",
     "isEntry": true,
     "src": "resources/css/app.css"
   },
@@ -9,8 +9,15 @@
     "isEntry": true,
     "src": "resources/js/app.js"
   },
+  "resources/js/backend.css": {
+    "file": "assets/backend-cd98b942.css",
+    "src": "resources/js/backend.css"
+  },
   "resources/js/backend.js": {
-    "file": "assets/backend-4ed993c7.js",
+    "css": [
+      "assets/backend-cd98b942.css"
+    ],
+    "file": "assets/backend-7f684c90.js",
     "isEntry": true,
     "src": "resources/js/backend.js"
   }
