@@ -27,7 +27,7 @@
 
 }" x-cloak  wire:ignore x-key="{{$name}}">
 
-    <div class="flex flex-col items-center justify-center h-24">
+    <div class="flex flex-col items-center justify-center h-24 mt-3">
         <label for="{{$name}}"
             class="relative block leading-tight bg-white hover:bg-gray-100 cursor-pointer inline-flex items-center transition duration-500 ease-in-out group overflow-hidden
             border-2 w-full pl-3 pr-4 py-2 rounded-lg border-dashed"
@@ -36,7 +36,7 @@
             <input type="file" id="{{$name}}"
                 class="absolute inset-0 cursor-pointer opacity-0 text-transparent sr-only" accept="{{ $accept }}"
                 x-ref="{{$name.'1'}}" x-on:input.change="preview()" />
-                <img x-ref="{{$name}}"  src="" x-show="imagePreview" class="w-full" alt="">
+                <img x-ref="{{$name}}"  src="" x-show="imagePreview" class="w-full mt-3" alt="">
             <div class="flex items-center justify-center flex-1 px-4 py-2   text-sm leading-normal font-medium group-hover:text-indigo-500" x-show="!imagePreview">
                 <svg class="h-8 w-8 text-gray-300 group-hover:text-indigo-500" xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor" viewBox="0 0 256 256">

@@ -14,11 +14,11 @@ use Jantinnerezo\LivewireAlert\LivewireAlert;
 class Create extends Component
 {
 
-    
+
     //listen
     protected $listeners = ['fileUpload' => 'handleFileUpload'];
 
-    use WithFileUploads,LivewireAlert;
+    use WithFileUploads, LivewireAlert;
 
     //query string
     // protected $queryString = ['type'];
@@ -452,12 +452,14 @@ class Create extends Component
             $this->dynamic = true;
         }
 
-        if (auth()->user()->plan()->qrcode_limit <= auth()->user()->qrCodes()->isDynamic()->isActive()->count()) {
-            $this->alert('error', 'You have reached your QR Code limit.');
-            return;
+        if (env('ACTIVE_STRIPE')) {
+            if (auth()->user()->plan()->qrcode_limit <= auth()->user()->qrCodes()->isDynamic()->isActive()->count()) {
+                $this->alert('error', 'You have reached your QR Code limit.');
+                return;
+            }
         }
 
-        if(auth()->check() == false){
+        if (auth()->check() == false) {
             Support::saveRequestData($data);
             return redirect()->route('login');
         }
@@ -472,19 +474,18 @@ class Create extends Component
     }
 
     // handleFileUpload
-    public function handleFileUpload($file=null, $fileName=null, $type=null)
+    public function handleFileUpload($file = null, $fileName = null, $type = null)
     {
         $this->resetErrorBag();
-        if ($type == 'pdf'){
+        if ($type == 'pdf') {
             $this->pdf = $file;
-        } elseif ($type == 'image'){
+        } elseif ($type == 'image') {
             $this->image = $file;
-        } elseif ($type == 'video'){
+        } elseif ($type == 'video') {
             $this->video = $file;
-        } elseif ($type == 'audio'){
+        } elseif ($type == 'audio') {
             $this->audio = $file;
         }
-
     }
 
 

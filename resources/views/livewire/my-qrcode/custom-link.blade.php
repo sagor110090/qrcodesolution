@@ -21,7 +21,7 @@
                         <x-input class="pr-28"  placeholder="Custom Link" suffix=".qrcodesolution.com"
                             wire:model="link" />
                     </div>
-                    <x-button primary label="Submit" wire:click="submit" />
+                    <x-button primary label="Submit"  type="submit" />
                 </form>
 
             </div>

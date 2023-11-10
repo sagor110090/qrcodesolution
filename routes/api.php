@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Support;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +27,9 @@ Route::get('/tags', function () {
                 ->when(request()->exists('selected'),fn($query) => $query->whereIn('id',request()->selected))
                 ->get(['id','name']);
 })->name('api.tag.index');
+
+Route::get('/social-icons', function () {
+    return Support::socialIcons();
+})->name('api.social-icon.index');
 
 

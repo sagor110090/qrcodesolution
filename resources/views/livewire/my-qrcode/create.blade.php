@@ -78,14 +78,12 @@
     checkTypeDynamic(value) {
         let type = value;
         let listDynamic = @js(Support::onlyDynamicList());
-        console.log(listDynamic);
         let check = listDynamic.includes(type);
         if (check) {
             this.dynamic = true;
         } else {
             this.dynamic = false;
         }
-        console.log(this.dynamic);
 
     }
 }" x-init="$watch('type', value => checkTypeDynamic(value)), checkTypeDynamic(type)" x-cloak>
@@ -345,8 +343,6 @@
                     </x-tw.label>
                 </h5>
             </div>
-
-
 
             <x-qrcode.preview />
 

@@ -43,7 +43,7 @@
     <x-livewire-alert::scripts />
 
     @livewire('wire-elements-modal')
-    
+
 
 </body>
 

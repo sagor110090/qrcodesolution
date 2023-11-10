@@ -1,7 +1,7 @@
 <?php
 
 use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{state, usesPagination, with, on,uses};
+use function Livewire\Volt\{state, usesPagination, with, on, uses};
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 name('my-qrcode.dynamic');
@@ -30,10 +30,6 @@ state([
     'locations' => null,
 ]);
 
-
-
-
-
 $makeStatic = function ($id) {
     $qrcode = auth()
         ->user()
@@ -41,16 +37,31 @@ $makeStatic = function ($id) {
         ->findOrFail($id);
     $qrcode->update(['is_dynamic' => false]);
     $this->alert('success', 'Successfully updated qrcode.');
-
 };
 
 $status = function ($id, $status = false) {
     if (env('ACTIVE_STRIPE')) {
-        if(auth()->user()->isNotOnSubscription() && !$status) {
-        $this->dispatch('openModal', component:'my-qrcode.subscription-alert', arguments: ['qrcodeId' => $id]);
-        return;
+        if (
+            auth()
+                ->user()
+                ->isNotOnSubscription() &&
+            !$status
+        ) {
+            $this->dispatch('openModal', component: 'my-qrcode.subscription-alert', arguments: ['qrcodeId' => $id]);
+            return;
         }
-        if (auth()->user()->plan()->qrcode_limit <= auth()->user()->qrCodes()->isDynamic()->isActive()->count() && !$status) {
+        if (
+            auth()
+                ->user()
+                ->plan()->qrcode_limit <=
+                auth()
+                    ->user()
+                    ->qrCodes()
+                    ->isDynamic()
+                    ->isActive()
+                    ->count() &&
+            !$status
+        ) {
             $this->alert('error', 'You have reached your QR Code limit.');
             return;
         }
@@ -62,7 +73,6 @@ $status = function ($id, $status = false) {
         ->findOrFail($id);
     $qrcode->update(['status' => !$qrcode->status]);
     $this->alert('success', 'Successfully updated qrcode.');
-
 };
 
 ?>
@@ -77,21 +87,24 @@ $status = function ($id, $status = false) {
     @volt('my-qrcodes.dynamic')
         <div class="h-full py-12">
             <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
-               <x-qrcode.subscription-alert />
+                <x-qrcode.subscription-alert />
 
                 <div class="relative min-h-[500px] w-full h-full">
-                <div wire:loading>
-                    <x-loader />
-                </div>
+                    <div wire:loading>
+                        <x-loader />
+                    </div>
 
                     @forelse ($qrcodes as $qrcode)
                         <x-tw.card class="h-full mt-4 ">
                             <div class="grid grid-cols-12 gap-4">
                                 <div class="flex items-end justify-end col-span-12 md:col-span-3 md:hidden">
                                     @if (!$qrcode->status)
-                                        <x-button.circle negative icon="x" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Inactive" />
+                                        <x-button.circle negative icon="x"
+                                            wire:click="status({{ $qrcode->id }},{{ $qrcode->status }})"
+                                            title="Inactive" />
                                     @else
-                                        <x-button.circle positive icon="check" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Active" />
+                                        <x-button.circle positive icon="check"
+                                            wire:click="status({{ $qrcode->id }},{{ $qrcode->status }})" title="Active" />
                                     @endif
                                 </div>
                                 <div class="col-span-12 md:col-span-3">
@@ -153,17 +166,24 @@ $status = function ($id, $status = false) {
                                 <div class="col-span-12 md:col-span-3 border-l border-gray-200 dark:border-gray-700">
                                     <div class="flex items-center justify-end mb-2 invisible md:visible">
                                         @if (!$qrcode->status)
-                                            <x-button.circle negative icon="x" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Inactive" />
+                                            <x-button.circle negative icon="x"
+                                                wire:click="status({{ $qrcode->id }},{{ $qrcode->status }})"
+                                                title="Inactive" />
                                         @else
-                                            <x-button.circle positive icon="check" wire:click="status({{ $qrcode->id }},{{$qrcode->status}})" title="Active" />
+                                            <x-button.circle positive icon="check"
+                                                wire:click="status({{ $qrcode->id }},{{ $qrcode->status }})"
+                                                title="Active" />
                                         @endif
                                     </div>
                                     <div class="grid grid-cols-2 gap-2 p-2 justify-end items-center">
-                                        <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', ['qrCode' => $qrcode])}}" size="md" wire:navigate>
+                                        <x-ui.button type="primary" tag="a"
+                                            href="{{ route('my-qrcode.edit', ['qrCode' => $qrcode]) }}" size="md"
+                                            wire:navigate>
                                             Edit
                                         </x-ui.button>
-                                        <x-ui.button type="danger" wire:click="$dispatch('openModal', { component: 'my-qrcode.delete-alert', arguments: { id: {{ $qrcode->id }} }})" size="md"
-                                            submit="false">
+                                        <x-ui.button type="danger"
+                                            wire:click="$dispatch('openModal', { component: 'my-qrcode.delete-alert', arguments: { id: {{ $qrcode->id }} }})"
+                                            size="md" submit="false">
                                             Delete
                                         </x-ui.button>
                                     </div>

@@ -22,6 +22,9 @@ Route::view('/event-create','dynamic.event-create')->name('event.create');
 Route::domain('{code}.' . config('app.domain'))->get('/', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 
 
+//event create
+Route::view('/social-create','dynamic.social-create')->name('social.create');
+
 
 Route::get('/login/{social}', [LoginController::class, 'socialLogin'])->where('social', 'twitter|facebook|linkedin|google|github|bitbucket')->name('login.social');
 Route::get('/login/{social}/callback', [LoginController::class, 'handleProviderCallback'])->where('social', 'twitter|facebook|linkedin|google|github|bitbucket');
