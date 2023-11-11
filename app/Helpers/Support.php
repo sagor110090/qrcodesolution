@@ -34,7 +34,7 @@ class Support extends Facade
     {
         return [
             'event',
-            'social_media',
+            'social',
             'image',
             'video',
             'audio',
@@ -62,7 +62,7 @@ class Support extends Facade
     {
         $types = [
             'event',
-            'social_media',
+            'social',
         ];
         if (in_array($type, $types)) {
             return true;
@@ -689,7 +689,7 @@ class Support extends Facade
     }
 
     //get social icon
-    public static function socialIcons()
+    public static function socialIcons($key = null)
     {
         $icons = [
             'facebook' => '<svg height="30px" width="30px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -765,7 +765,20 @@ class Support extends Facade
     </svg>',
 
         ];
+        if ($key) {
+            return $icons[$key];
+        }
 
         return $icons;
+    }
+
+
+    //check if there is http or https in url if not then add https
+    public static function checkUrl($url)
+    {
+        if (strpos($url, 'http') === false) {
+            $url = 'https://' . $url;
+        }
+        return $url;
     }
 }

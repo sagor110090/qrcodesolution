@@ -94,6 +94,13 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'social' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/social'),
+            'url' => env('APP_URL').'/storage/social',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

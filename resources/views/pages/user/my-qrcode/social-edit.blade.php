@@ -1,7 +1,24 @@
 <?php
 
+
+use function Laravel\Folio\{middleware, name};
 use Livewire\Volt\Component;
-use function Livewire\Volt\{state, rules, updated};
+use function Livewire\Volt\{state, rules, updated, mount};
+name('my-qrcode.social.edit');
+
+middleware(['auth', 'verified']);
+
+
+
+mount(function () {
+    $qrCode = auth()
+        ->user()
+        ->qrCodes()
+        ->findOrFail(request()->get('qrCode'));
+    $this->social = $qrCode->qr_code_info;
+    $this->custom_url = $qrCode->subdomain;
+    $this->QrcodeId = $qrCode->id;
+});
 
 state([
     'steps' => [
@@ -54,7 +71,7 @@ $setCurrentStep = function ($step) {
                 'social.name' => 'required|min:3|max:255',
                 'social.email' => 'required|email|min:3|max:255',
                 'social.phone' => 'required|min:3|max:255',
-                'custom_url' => 'required|min:3|max:255|unique:qr_codes,subdomain',
+                'custom_url' => 'required|min:3|max:255|unique:qr_codes,subdomain,' . $this->QrcodeId,
             ],
             [
                 'social.name.required' => 'Social name is required',
@@ -77,7 +94,7 @@ $setCurrentStep = function ($step) {
             [
                 'social.links' => 'required|array',
                 'social.links.*.link_name' => 'required|string',
-                'social.links.*.link_url' => 'required|string',
+                'social.links.*.link_url' => 'required|string|url',
                 'social.links.*.link_icon' => 'required|string',
 
             ],
@@ -90,6 +107,7 @@ $setCurrentStep = function ($step) {
                 'social.links.*.link_url.string' => 'Social link url must be a string',
                 'social.links.*.link_icon.required' => 'Social link icon is required',
                 'social.links.*.link_icon.string' => 'Social link icon must be a string',
+                'social.links.*.link_url.url' => 'Social link url must be a valid url and start with http or https',
             ],
         );
     } elseif ($step == 'submit') {
@@ -132,7 +150,8 @@ $setCurrentStep = function ($step) {
         auth()
             ->user()
             ->qrCodes()
-            ->create($data);
+            ->findOrFail($this->QrcodeId)
+            ->update($data);
 
         toastr()->success('QR Code Created Successfully');
         return redirect()->route('my-qrcode.dynamic');
@@ -146,7 +165,7 @@ $setCurrentStep = function ($step) {
 
 <x-layouts.frontend>
     <div class="h-full">
-        @volt('social.create')
+        @volt('my-qrcode.social.edit')
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8 mt-20 bg-white dark:bg-gray-800 rounded-lg shadow  p-6">
 
                 <div class="grid grid-cols-12 gap-4">
@@ -213,11 +232,7 @@ $setCurrentStep = function ($step) {
                                 'link_name': '',
                                 'link_url': '',
                                 'link_icon': '',
-                                'fields': [{
-                                    'link_name': '',
-                                    'link_url': '',
-                                    'link_icon': '',
-                                }, ],
+                                'fields': @entangle('social.links'),
                                 'addLink': function() {
                                     this.fields.push({
                                         'link_name': this.link_name,
@@ -244,8 +259,8 @@ $setCurrentStep = function ($step) {
                                         <x-error name="social.links.*.link_url" />
                                             <x-select-social-icon placeholder="Select the icon"
                                             :icons="Support::socialIcons()"  x-model="field.link_icon"
-                                              />
-                                        <x-error name="social.links.*.link_url" />
+                                            />
+                                        <x-error name="social.links.*.link_icon" />
                                         <hr class="my-3 border-gray-200 dark:border-gray-700"
                                             x-show='index < fields.length - 1'>
 

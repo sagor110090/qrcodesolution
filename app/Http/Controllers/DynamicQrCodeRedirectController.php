@@ -17,9 +17,7 @@ class DynamicQrCodeRedirectController extends Controller
 
 
         $qrCode = QrCode::where('code',$code)->first();
-        if(!$qrCode->status){
-            abort(404,'Qr Code is not active');
-        }
+
         if(!$qrCode){
             $qrCode = QrCode::where('subdomain',$code)->firstOrFail();
             if(!$qrCode->status){
@@ -27,7 +25,10 @@ class DynamicQrCodeRedirectController extends Controller
             }
             if($qrCode->type == 'event'){
                 return view('dynamic.event-preview',['event'=>(object)$qrCode->qr_code_info]);
-            }elseif($qrCode->type == 'pdf'){
+            }elseif($qrCode->type == 'social'){
+                return view('dynamic.social-preview',['social'=>(object)$qrCode->qr_code_info]);
+            }
+            elseif($qrCode->type == 'pdf'){
                 return view('dynamic.pdf-preview',['pdf'=>(object)$qrCode->qr_code_info]);
             }elseif($qrCode->type == 'video'){
                 return view('dynamic.video-preview',['video'=>(object)$qrCode->qr_code_info]);
@@ -36,6 +37,9 @@ class DynamicQrCodeRedirectController extends Controller
             }elseif($qrCode->type == 'image'){
                 return view('dynamic.image-preview',['image'=>(object)$qrCode->qr_code_info]);
             }
+        }
+        if(!$qrCode->status){
+            abort(404,'Qr Code is not active');
         }
 
         if(!$qrCode->is_dynamic){

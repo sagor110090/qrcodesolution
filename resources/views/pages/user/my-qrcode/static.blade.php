@@ -82,7 +82,7 @@ $makeDynamic = function ($id) {
                                     {{ $qrcode->name }}
                                 </div>
                                 <div class="text-sm text-gray-500 dark:text-gray-400 mt-2">
-                                    {{ $qrcode->type }} QR Code
+                                    {{ Str::ucfirst($qrcode->type) }} QR Code
                                 </div>
                                 <div class="text-sm text-gray-500 dark:text-gray-400">
                                     Created at {{ $qrcode->created_at->format('d M Y') }}

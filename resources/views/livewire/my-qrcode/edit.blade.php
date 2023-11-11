@@ -122,6 +122,7 @@
                 />
                 <x-qrcode.phone :phone="$call_phone" />
                 <x-qrcode.event :qrCode="$qrCode"/>
+                <x-qrcode.social-media :qrCode="$qrCode"/>
                 <x-qrcode.location
                     :latitude="$latitude"
                     :longitude="$longitude"

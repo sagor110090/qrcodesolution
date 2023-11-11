@@ -386,6 +386,8 @@ class Edit extends Component
             }
         } elseif ($this->type == 'event') {
             $qrCodeInfo = $this->qrCode->qr_code_info;
+        }elseif ($this->type == 'social') {
+            $qrCodeInfo = $this->qrCode->qr_code_info;
         }
 
 
