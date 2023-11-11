@@ -52,8 +52,8 @@ $setCurrentStep = function ($step) {
         $this->validate(
             [
                 'social.name' => 'required|min:3|max:255',
-                'social.email' => 'required|email|min:3|max:255',
-                'social.phone' => 'required|min:3|max:255',
+                'social.email' => 'nullable|email|min:3|max:255',
+                'social.phone' => 'nullable|min:3|max:255',
                 'custom_url' => 'required|min:3|max:255|unique:qr_codes,subdomain',
             ],
             [
@@ -77,7 +77,7 @@ $setCurrentStep = function ($step) {
             [
                 'social.links' => 'required|array',
                 'social.links.*.link_name' => 'required|string',
-                'social.links.*.link_url' => 'required|string',
+                'social.links.*.link_url' => 'required|string|url',
                 'social.links.*.link_icon' => 'required|string',
 
             ],

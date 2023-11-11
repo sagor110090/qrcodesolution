@@ -17,25 +17,45 @@
                             <img src="{{ asset($social->logo_image) }}" alt="logo" class="main-content-logo">
                         @endif
                     </div>
-                    <h2 class="mb-6 font-sans text-xl font-bold text-center text-gray-900"
+                    <h2 class="mb-3 font-sans text-xl font-bold text-center text-gray-900"
                         style="color:{{ Support::visibleColor($social->color) }}; font-family: {{ $social->font }};font-size:20px;">
                         {{ $social->name }}
                     </h2>
+
+                    <div class="mb-6 text-center text-gray-900 flex flex-col justify-center items-center">
+                        @if ($social->email)
+                            <a href="mailto:{{ $social->email }}"  class="flex items-center text-center gap-1"
+                                style="color:{{ Support::visibleColor($social->color) }}; font-family: {{ $social->font }};font-size:16px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                </svg> {{ $social->email }}
+                            </a>
+                        @endif
+                        @if ($social->phone)
+                            <a href="tel:{{ $social->phone }}" class="flex items-center text-center gap-1"
+                                style="color:{{ Support::visibleColor($social->color) }}; font-family: {{ $social->font }};font-size:16px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg> {{ $social->phone }}
+                            </a>
+                        @endif
+
+                    </div>
                 </div>
                 <div
-                    class="p-5 md:p-20 text-gray-800 leading-normal text-center sm:max-w-xl md:max-w-full lg:max-w-screen-xl  flex flex-wrap justify-center items-center">
+                    class="p-5 md:p-20 text-gray-800 leading-normal text-center sm:max-w-xl md:max-w-full lg:max-w-screen-xl  flex flex-col justify-center items-center">
                     @foreach ($social->links as $link)
                         @php
                             $link = (object) $link;
                         @endphp
-                        <div class="grid grid-cols-2 gap-1  text-center text-gray-800 bg-white rounded-lg shadow-lg zoom hover:shadow-xl transition-shadow duration-300 ease-in-out"
-                            style="width: 400px; height: 50px;cursor: pointer;"
+                        <div class="grid grid-cols-2 gap-0  text-center text-gray-800 bg-white rounded-lg shadow-lg zoom hover:shadow-xl transition-shadow duration-300 ease-in-out mt-2"
+                            style="width: 350px; height: 50px;cursor: pointer;"
                             onclick="window.open('{{ Support::checkUrl($link->link_url) }}', '_blank')">
-                            <div class="flex items-center justify-center">
+                            <div class="flex items-center justify-start ml-2">
                                 {!! Support::socialIcons($link->link_icon) !!}
                             </div>
-                            <div class="flex items-center justify-center">
-                                <h4 class="text-lg font-semibold text-gray-700 dark:text-white">
+                            <div class="flex items-center justify-start">
+                                <h4 class="text-lg font-semibold text-gray-700 dark:text-white -ml-8">
                                     {{ $link->link_name }}
                                 </h4>
                             </div>

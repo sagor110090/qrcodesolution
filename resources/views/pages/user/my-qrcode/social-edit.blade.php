@@ -69,8 +69,8 @@ $setCurrentStep = function ($step) {
         $this->validate(
             [
                 'social.name' => 'required|min:3|max:255',
-                'social.email' => 'required|email|min:3|max:255',
-                'social.phone' => 'required|min:3|max:255',
+                'social.email' => 'nullable|email|min:3|max:255',
+                'social.phone' => 'nullable|min:3|max:255',
                 'custom_url' => 'required|min:3|max:255|unique:qr_codes,subdomain,' . $this->QrcodeId,
             ],
             [
