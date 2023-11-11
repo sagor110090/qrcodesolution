@@ -20,6 +20,8 @@ class DynamicQrCodeRedirectController extends Controller
 
         if(!$qrCode){
             $qrCode = QrCode::where('subdomain',$code)->firstOrFail();
+            $qrCode->increment('scan_count');
+            $qrCode->qrCodeTracks()->create($request->all());
             if(!$qrCode->status){
                 abort(404,'Qr Code is not active');
             }
