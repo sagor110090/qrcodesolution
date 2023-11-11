@@ -447,31 +447,49 @@ class Support extends Facade
     {
         $fonts = [
             [
-                'name' => 'Abril Fatface',
+                'name' => 'Roboto',
             ],
             [
-                'name' => 'Arial',
+                'name' => 'Fredoka',
             ],
             [
-                'name' => 'Cormorant Garamond',
+                'name' => 'Cormorant',
             ],
             [
-                'name' => 'Fredoka One',
+                'name' => 'Rubik',
             ],
             [
-                'name' => 'Galindo',
+                'name' => 'Montserrat',
             ],
             [
-                'name' => 'Oleo Script',
+                'name' => 'Unbounded',
             ],
             [
-                'name' => 'Playfair Display',
+                'name' => 'Lora',
             ],
             [
-                'name' => 'Shrikhand',
+                'name' => 'Poppins',
             ],
             [
-                'name' => 'ZCOOL KuaiLe',
+                'name' => 'Oswald',
+            ],
+            [
+                'name' => 'Raleway',
+            ],
+            [
+                'name'=>'Merriweather',
+            ],
+            [
+                'name'=>'Nunito',
+            ],
+            [
+                'name'=>'Bitter',
+            ],
+            [
+                'name' => 'Teko',
+            ],
+            [
+                'name' => 'Domine',
             ],
         ];
 

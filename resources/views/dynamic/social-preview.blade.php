@@ -49,7 +49,7 @@
                             $link = (object) $link;
                         @endphp
                         <div class="grid grid-cols-2 gap-0  text-center text-gray-800 bg-white rounded-lg shadow-lg zoom hover:shadow-xl transition-shadow duration-300 ease-in-out mt-2"
-                            style="width: 350px; height: 50px;cursor: pointer;"
+                            style="width: 350px; height: 50px;cursor: pointer;color:{{ Support::visibleColor($social->color) }}; font-family: {{ $social->font }};font-size:16px;"
                             onclick="window.open('{{ Support::checkUrl($link->link_url) }}', '_blank')">
                             <div class="flex items-center justify-start ml-2">
                                 {!! Support::socialIcons($link->link_icon) !!}
