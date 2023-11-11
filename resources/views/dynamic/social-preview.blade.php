@@ -48,14 +48,15 @@
                         @php
                             $link = (object) $link;
                         @endphp
-                        <div class="grid grid-cols-2 gap-0  text-center text-gray-800 bg-white rounded-lg shadow-lg zoom hover:shadow-xl transition-shadow duration-300 ease-in-out mt-2"
+                        <div class="text-center text-gray-800 bg-white rounded-lg shadow-lg zoom hover:shadow-xl transition-shadow duration-300 ease-in-out mt-2 flex items-center justify-center gap-2"
                             style="width: 350px; height: 50px;cursor: pointer;color:{{ Support::visibleColor($social->color) }}; font-family: {{ $social->font }};font-size:16px;"
                             onclick="window.open('{{ Support::checkUrl($link->link_url) }}', '_blank')">
-                            <div class="flex items-center justify-start ml-2">
-                                {!! Support::socialIcons($link->link_icon) !!}
-                            </div>
-                            <div class="flex items-center justify-start">
-                                <h4 class="text-lg font-semibold text-gray-700 dark:text-white -ml-8">
+                            <div class="flex items-center justify-center gap-2">
+                                <div class="">
+                                    {!! Support::socialIcons($link->link_icon) !!}
+                                </div>
+                                <h4 class="text-lg font-semibold text-gray-700 dark:text-white flex items-center justify-start">
+
                                     {{ $link->link_name }}
                                 </h4>
                             </div>
