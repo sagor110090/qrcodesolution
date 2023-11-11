@@ -49,9 +49,8 @@
                             $link = (object) $link;
                         @endphp
                         <div class="text-center text-gray-800 bg-white rounded-lg shadow-lg zoom hover:shadow-xl transition-shadow duration-300 ease-in-out mt-2 flex items-center justify-center gap-2"
-                            style="width: 350px; height: 50px;cursor: pointer;color:{{ Support::visibleColor($social->color) }}; font-family: {{ $social->font }};font-size:16px;"
-                            onclick="window.open('{{ Support::checkUrl($link->link_url) }}', '_blank')">
-                            <div class="flex items-center justify-center gap-2">
+                            style="width: 350px; height: 50px;cursor: pointer;color:{{ Support::visibleColor($social->color) }}; font-family: {{ $social->font }};font-size:16px;" >
+                            <div class="flex items-center justify-center gap-2" onclick="window.open('{{ Support::checkUrl($link->link_url) }}', '_blank')">
                                 <div class="">
                                     {!! Support::socialIcons($link->link_icon) !!}
                                 </div>
