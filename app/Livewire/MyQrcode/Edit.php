@@ -300,11 +300,11 @@ class Edit extends Component
                 'vcard_website' => 'required|max:255',
                 'vcard_company' => 'required|max:255',
                 'vcard_job_title' => 'required|max:255',
-                'vcard_address' => 'required|max:255',
-                'vcard_fax' => 'required|max:17',
-                'vcard_city' => 'required|max:255',
-                'vcard_post_code' => 'required|max:255',
-                'vcard_country' => 'required|max:255',
+                'vcard_address' => 'nullable|max:255',
+                'vcard_fax' => 'nullable|max:17',
+                'vcard_city' => 'nullable|max:255',
+                'vcard_post_code' => 'nullable|max:255',
+                'vcard_country' => 'nullable|max:255',
             ];
             $message = [
                 'vcard_first_name.required' => 'The first name field is required.',
@@ -487,11 +487,11 @@ class Edit extends Component
                 'vcard_website' => 'required|max:255',
                 'vcard_company' => 'required|max:255',
                 'vcard_job_title' => 'required|max:255',
-                'vcard_address' => 'required|max:255',
-                'vcard_fax' => 'required|max:17',
-                'vcard_city' => 'required|max:255',
-                'vcard_post_code' => 'required|max:255',
-                'vcard_country' => 'required|max:255',
+                'vcard_address' => 'nullable|max:255',
+                'vcard_fax' => 'nullable|max:17',
+                'vcard_city' => 'nullable|max:255',
+                'vcard_post_code' => 'nullable|max:255',
+                'vcard_country' => 'nullable|max:255',
             ];
             $message = [
                 'vcard_first_name.required' => 'The first name field is required.',
