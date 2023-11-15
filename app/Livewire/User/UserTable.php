@@ -29,6 +29,14 @@ class UserTable extends DataTableComponent
                 ->format(function ($value, $row, Column $column) {
                     return \Carbon\Carbon::parse($value)->format('d M y || h:i:a');
                 }),
+            //login as user
+            Column::make('Login as user')
+                ->label(
+                    function ($row, Column $column) {
+                        $login = '<a href="' . route('login.as.user', $row->id) . '" class="rounded-lg bg-green-500 px-4 py-2 text-white-500 mr-2">Login</a>';
+                        return  $login;
+                    }
+                )->html(),
             Column::make('Actions')
                 ->label(
                     function ($row, Column $column) {

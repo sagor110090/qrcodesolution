@@ -56,14 +56,14 @@ name('home');
     </x-slot>
 
     @volt('home')
+    <style>
+        .myheader {
+           height: 480px;
+           margin-top: -150px;
+           padding: 5% 20px;
+        }
+     </style>
     <div class="relative flex flex-col items-center justify-center w-full h-auto">
-        {{-- <div class="relative flex flex-col items-center justify-center w-full h-auto overflow-hidden">
-            <x-ui.icons.qrcode
-                class="absolute top-0 left-0 w-7/12 -ml-40 -translate-x-1/2 fill-current opacity-10 dark:opacity-5 text-slate-400" />
-            <x-ui.icons.qrcode
-                class="absolute top-0 right-0 w-7/12 -mr-40 translate-x-1/2 fill-current opacity-10 dark:opacity-5 text-slate-400" />
-
-        </div> --}}
 
 
         <div class="flex items-center w-full max-w-6xl mx-auto">

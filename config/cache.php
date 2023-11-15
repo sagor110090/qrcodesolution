@@ -93,6 +93,12 @@ return [
             'driver' => 'octane',
         ],
 
+        'model' => [
+            'driver' => 'redis',
+            'connection' => 'model-cache',
+            'lock_connection' => 'default',
+        ],
+
     ],
 
     /*

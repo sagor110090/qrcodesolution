@@ -56,6 +56,8 @@ Route::domain('admin.' . config('app.domain'))->middleware('admin')->group(funct
     //plans
     Route::get('plans', App\Livewire\Plan\Index::class)->name('plans.index');
     Route::get('users', App\Livewire\User\Index::class)->name('users.index');
+    // login.as.user
+    Route::get('login-as-user/{id}', App\Http\Controllers\LoginAsUserController::class)->name('login.as.user');
 });
 
 Route::get('/user/invoice/{invoiceId}', function ($invoiceId) {

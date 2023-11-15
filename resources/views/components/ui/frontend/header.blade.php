@@ -1,4 +1,4 @@
-<header class="w-full">
+<header class="w-full scroll-smooth focus:scroll-auto" id="headerHomePage">
     <div class="relative z-20 flex items-center justify-between w-full h-20 max-w-6xl px-6 mx-auto">
         <div x-data="{ mobileMenuOpen: false }" class="relative flex items-center md:space-x-2 text-neutral-800">
 
@@ -51,3 +51,30 @@
         </div>
     </div>
 </header>
+
+{{-- @push('css')
+    <style>
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+    </style>
+@endpush
+
+@push('js')
+    <script>
+        var headerHomePage = document.getElementById("headerHomePage");
+        var sticky = headerHomePage.offsetTop;
+        window.onscroll = function() {
+            if (window.pageYOffset > sticky) {
+                headerHomePage.classList.add("sticky");
+            } else {
+                headerHomePage.classList.remove("sticky");
+            }
+        };
+    </script>
+@endpush --}}

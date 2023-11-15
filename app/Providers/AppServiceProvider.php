@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
+use App\Models\QrCode;
 use App\Rules\IgnoreIfRule;
-use Illuminate\Support\Facades\URL;
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Validator;
 use App\Models\Subscription;
 use Laravel\Cashier\Cashier;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Validator;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -17,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
+
     }
 
     /**
