@@ -1,4 +1,4 @@
-<div class="grid grid-cols-12 gap-4 mt-6 z-10" x-data="{
+<div class="z-10 grid grid-cols-12 gap-4 mt-6" x-data="{
     type: @entangle('type'),
     imageType: 'png',
     qr_style: @entangle('qr_style'),
@@ -86,25 +86,25 @@
         }
 
     }
-}" x-init="$watch('type', value => checkTypeDynamic(value)), checkTypeDynamic(type)" x-cloak>
+}" x-init="$watch('type', value => checkTypeDynamic(value)), checkTypeDynamic(type)"  >
 
     <div class="col-span-12 md:col-span-3">
         <div
-            class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+            class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
-            <div class="border-neutral-100 px-6 py-4  dark:border-neutral-500">
+            <div class="px-6 py-4 border-neutral-100 dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
-                    <x-tw.label class="mr-2 font-bold text-md text-center">
+                    <x-tw.label class="mr-2 font-bold text-center text-md">
                         Destinations
                     </x-tw.label>
                 </h5>
             </div>
 
-            <div class="pl-6 pr-6  pb-6" x-data>
-                <div class="grid grid-cols-2 gap-4  text-center text-neutral-500 dark:text-neutral-300">
+            <div class="pb-6 pl-6 pr-6" x-data>
+                <div class="grid grid-cols-2 gap-4 text-center text-neutral-500 dark:text-neutral-300">
                     <x-qrcode.type name="URL" @click="type = 'url'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -113,7 +113,7 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Email" @click="type = 'email'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -122,7 +122,7 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="VCard" @click="type = 'vcard'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -131,7 +131,7 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="SMS" @click="type = 'sms'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
@@ -140,7 +140,7 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Phone" @click="type = 'phone'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -149,7 +149,7 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Event" @click="type = 'event'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -158,14 +158,16 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Social" @click="type = 'social'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
-                              </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M8 7v8a2 2 0 002 2h6M8 7V5a2 2 0 012-2h4.586a1 1 0 01.707.293l4.414 4.414a1 1 0 01.293.707V15a2 2 0 01-2 2h-2M8 7H6a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2v-2" />
+                            </svg>
                         </x-slot>
                     </x-qrcode.type>
                     <x-qrcode.type name="Location" @click="type = 'location'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -176,7 +178,7 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Text" @click="type = 'text'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -185,8 +187,8 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Wifi" @click="type = 'wifi'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0" />
                             </svg>
@@ -194,7 +196,7 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="BitCoin" @click="type = 'bitcoin'">
                         <x-slot name="icon">
-                            <svg class="h-6 w-6 text-gray dark:text-white" fill="currentColor"
+                            <svg class="w-6 h-6 text-gray dark:text-white" fill="currentColor"
                                 viewBox="0 0 37.866 37.866">
                                 <g>
                                     <path
@@ -232,8 +234,8 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="PDF" @click="type = 'pdf'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
                             </svg>
@@ -241,8 +243,8 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Image" @click="type = 'image'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                             </svg>
@@ -250,8 +252,8 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Audio" @click="type = 'audio'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                             </svg>
@@ -259,10 +261,19 @@
                     </x-qrcode.type>
                     <x-qrcode.type name="Video" @click="type = 'video'">
                         <x-slot name="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                        </x-slot>
+                    </x-qrcode.type>
+                    <x-qrcode.type name="File" @click="type = 'file'">
+                        <x-slot name="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="w-6 h-6" viewBox="0 0 16 16">
+                                <path
+                                    d="M14 4.5V9h-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v7H2V2a2 2 0 0 1 2-2h5.5zM13 12h1v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-2h1v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1zM.5 10a.5.5 0 0 0 0 1h15a.5.5 0 0 0 0-1z" />
                             </svg>
                         </x-slot>
                     </x-qrcode.type>
@@ -273,7 +284,7 @@
 
     <div class="col-span-12 md:col-span-6">
         <div
-            class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+            class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
             <x-qrcode.url />
             <x-qrcode.email />
@@ -290,17 +301,16 @@
             <x-qrcode.image />
             <x-qrcode.audio />
             <x-qrcode.video />
+            {{-- <x-qrcode.video /> --}}
 
 
             <div class="p-6">
                 <div class="mb-2 text-base text-neutral-500 dark:text-neutral-300" x-data>
                     <div class="flex justify-center">
-                        <x-tw.radio label="Static" name="dynamic" id="static" :value="false"
-                            x-model="dynamic" />
-                        <x-tw.radio label="Dynamic" name="dynamic" id="dynamic" :value="true"
-                            x-model="dynamic" />
+                        <x-tw.radio label="Static" name="dynamic" id="static" :value="false" x-model="dynamic" />
+                        <x-tw.radio label="Dynamic" name="dynamic" id="dynamic" :value="true" x-model="dynamic" />
                     </div>
-                    <x-tw.label class="font-bold text-md mb-5 mt-10">
+                    <x-tw.label class="mt-10 mb-5 font-bold text-md">
                         Design Your QR Code
                     </x-tw.label>
                     <x-tw.accordion>
@@ -342,11 +352,11 @@
 
     <div class="col-span-12 md:col-span-3 qrcode-sticky">
         <div
-            class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+            class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
-            <div class="border-neutral-100 px-6 py-4 dark:border-neutral-500">
+            <div class="px-6 py-4 border-neutral-100 dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
-                    <x-tw.label class="mr-2 font-bold text-md text-center">
+                    <x-tw.label class="mr-2 font-bold text-center text-md">
                         Preview your QR Code
                     </x-tw.label>
                 </h5>
@@ -361,17 +371,17 @@
 
 
 @push('css')
-    <style>
-        .qrcode-sticky {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-            height: 450px;
-        }
+<style>
+    .qrcode-sticky {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        height: 450px;
+    }
 
-        svg.qrcodesvg {
-            height: 187px;
-            width: 188px;
-        }
-    </style>
+    svg.qrcodesvg {
+        height: 187px;
+        width: 188px;
+    }
+</style>
 @endpush

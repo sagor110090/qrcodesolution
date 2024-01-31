@@ -32,13 +32,11 @@
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" sizes="16x16">
 </head>
 
-<body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900">
+<body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900" x-data="loader">
 
     {{ $slot }}
 
     @stack('js')
-    {{-- <livewire:toast /> --}}
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <x-livewire-alert::scripts />
 

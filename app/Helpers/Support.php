@@ -2,22 +2,20 @@
 
 namespace App\Helpers;
 
-use App\Models\QrCode;
 use App\Http\Qrcdr\QRcdr;
-use Illuminate\Support\Str;
-use JeroenDesloovere\VCard\VCard;
+use App\Models\QrCode;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use JeroenDesloovere\VCard\VCard;
 
-
-require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/functions.php';
-require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/phpqrcode.php';
-require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/class-qrcdr.php';
+require dirname(dirname(__FILE__)).'/Http/qrcdr/lib/functions.php';
+require dirname(dirname(__FILE__)).'/Http/qrcdr/lib/phpqrcode.php';
+require dirname(dirname(__FILE__)).'/Http/qrcdr/lib/class-qrcdr.php';
 
 class Support extends Facade
 {
-
     //type of qr code
     public static function onlyDynamic($type)
     {
@@ -26,6 +24,7 @@ class Support extends Facade
         if (in_array($type, $types)) {
             return true;
         }
+
         return false;
     }
 
@@ -54,6 +53,7 @@ class Support extends Facade
         if (in_array($type, $types)) {
             return true;
         }
+
         return false;
     }
 
@@ -67,18 +67,18 @@ class Support extends Facade
         if (in_array($type, $types)) {
             return true;
         }
+
         return false;
     }
-
 
     public static function bytesToHuman($size, $precision = 2)
     {
         if ($size > 0) {
             $size = (int) $size;
             $base = log($size) / log(1024);
-            $suffixes = array(' bytes', ' KB', ' MB', ' GB', ' TB');
+            $suffixes = [' bytes', ' KB', ' MB', ' GB', ' TB'];
 
-            return round(pow(1024, $base - floor($base)), $precision) . $suffixes[floor($base)];
+            return round(pow(1024, $base - floor($base)), $precision).$suffixes[floor($base)];
         } else {
             return $size;
         }
@@ -108,54 +108,43 @@ class Support extends Facade
         $frame_label_font = $options['frame_label_font'] ?? '';
         $frame_label_text_color = $options['frame_label_text_color'] ?? '';
 
-        require dirname(dirname(__FILE__)) . '/Http/qrcdr/lib/frames.php';
-
-
-
-
-
+        require dirname(dirname(__FILE__)).'/Http/qrcdr/lib/frames.php';
 
         $outdir = qrcdr()->getConfig('qrcodes_dir');
-        $PNG_TEMP_DIR = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR . $outdir . DIRECTORY_SEPARATOR;
-
-
-
+        $PNG_TEMP_DIR = dirname(dirname(__FILE__)).DIRECTORY_SEPARATOR.$outdir.DIRECTORY_SEPARATOR;
 
         $words = explode(' ', $frame_label);
 
         $frame_label = self::buildFrameLabel($words);
 
-
-
         $optionstyle = [
-            'optionlogo'                 => $qr_custom_logo ? $qr_custom_logo : $qr_logo,
-            'pattern'                    => $qr_style,
-            'marker_out'                 => $qr_eye_border,
-            'marker_in'                  => $qr_eye_center,
-            'marker_out_color'           => $qr_eye_color_out,
-            'marker_in_color'            => $qr_eye_color_in,
-            'marker_top_right_outline'   => $qr_eye_style_out,
-            'marker_top_right_center'    => $qr_eye_style_in,
+            'optionlogo' => $qr_custom_logo ? $qr_custom_logo : $qr_logo,
+            'pattern' => $qr_style,
+            'marker_out' => $qr_eye_border,
+            'marker_in' => $qr_eye_center,
+            'marker_out_color' => $qr_eye_color_out,
+            'marker_in_color' => $qr_eye_color_in,
+            'marker_top_right_outline' => $qr_eye_style_out,
+            'marker_top_right_center' => $qr_eye_style_in,
             'marker_bottom_left_outline' => $qr_eye_style_out,
-            'marker_bottom_left_center'  => $qr_eye_style_in,
-            'gradient'                   => $qr_gradient ? true : false,
-            'gradient_color'             => $qr_gradient,
-            'markers_color'              => $qr_color,
-            'radial'                     => '',
-            'no_logo_bg'                 => $qr_logo_background ? false : true,
-            'frame'                      => $frame ?? 'none',
-            'custom_frame_color'         => false,
-            'framecolor'                 => $qr_bg_color,
-            'frame_label'                 => $frame_label,
-            'label_font'                 => $frame_label_font,
-            'labeltext_color'            => $frame_label_text_color,
-            'logo_size'                  => '100',
-            'label_text_size'            => '100',
-            'transparent_code'           => false,
-            'bg_image'                   => $qr_custom_background ? $qr_custom_background : $qr_bg_image,
-            'negative'                   => false,
+            'marker_bottom_left_center' => $qr_eye_style_in,
+            'gradient' => $qr_gradient ? true : false,
+            'gradient_color' => $qr_gradient,
+            'markers_color' => $qr_color,
+            'radial' => '',
+            'no_logo_bg' => $qr_logo_background ? false : true,
+            'frame' => $frame ?? 'none',
+            'custom_frame_color' => false,
+            'framecolor' => $qr_bg_color,
+            'frame_label' => $frame_label,
+            'label_font' => $frame_label_font,
+            'labeltext_color' => $frame_label_text_color,
+            'logo_size' => '100',
+            'label_text_size' => '100',
+            'transparent_code' => false,
+            'bg_image' => $qr_custom_background ? $qr_custom_background : $qr_bg_image,
+            'negative' => false,
         ];
-
 
         $stringBackColor = $qr_bg_color;
         $stringFrontColor = $qr_color;
@@ -175,8 +164,8 @@ class Support extends Facade
         $matrixPointSize = min(max((int) $size, 4), 32);
 
         $backColor = qrcdr()->hexdecColor($stringBackColor, '#FFFFFF');
-        $filename = $PNG_TEMP_DIR . 'qrcode_' . uniqid() . '.png';
-        $filenamesvg = $filename . '.svg';
+        $filename = $PNG_TEMP_DIR.'qrcode_'.uniqid().'.png';
+        $filenamesvg = $filename.'.svg';
 
         $codemargin = $frame !== 'none' ? $frames[$frame]['frame_border'] * 2 + 1 : 2;
         $content = QRcdr::svg($data, $filenamesvg, $errorCorrectionLevel, $matrixPointSize, $codemargin, false, $backColor, $frontColor, $optionstyle);
@@ -190,14 +179,12 @@ class Support extends Facade
         return random_int(1000000000, 9999999999);
     }
 
-
     public static function createQrCode($data)
     {
         auth()->user()->qrCodes()->create($data);
+
         return true;
     }
-
-
 
     public static function buildFrameLabel($words)
     {
@@ -214,24 +201,24 @@ class Support extends Facade
             if (self::isRtl($word)) {
                 // reverse word
                 $new_word = qrcdr()->reverseString($word);
-                if (!$start_rtl) {
+                if (! $start_rtl) {
                     $rtl_counter++;
                     $thecounter++;
-                    $rearrange[$thecounter . '_rtl'] = [];
+                    $rearrange[$thecounter.'_rtl'] = [];
                 }
                 $start_ltr = false;
                 $start_rtl = true;
-                $rearrange[$thecounter . '_rtl'][] = $new_word;
+                $rearrange[$thecounter.'_rtl'][] = $new_word;
             } else {
                 $new_word = $word;
-                if (!$start_ltr) {
+                if (! $start_ltr) {
                     $ltr_counter++;
                     $thecounter++;
-                    $rearrange[$thecounter . '_ltr'] = [];
+                    $rearrange[$thecounter.'_ltr'] = [];
                 }
                 $start_ltr = true;
                 $start_rtl = false;
-                $rearrange[$thecounter . '_ltr'][] = $new_word;
+                $rearrange[$thecounter.'_ltr'][] = $new_word;
             }
         }
 
@@ -243,16 +230,15 @@ class Support extends Facade
         foreach ($rearrangeverse as $key => $value) {
             $direction = substr($key, -3);
             if ($direction == 'rtl') {
-                $frame_label .= implode(' ', array_reverse($value)) . ' ';
+                $frame_label .= implode(' ', array_reverse($value)).' ';
             } else {
-                $frame_label .= implode(' ', $value) . ' ';
+                $frame_label .= implode(' ', $value).' ';
             }
         }
         $frame_label = trim($frame_label);
 
         return $frame_label;
     }
-
 
     public static function isRtl($value)
     {
@@ -261,15 +247,10 @@ class Support extends Facade
         return preg_match($rtlChar, $value) != 0;
     }
 
-
-
-
-
-
     //read folder and return array of files
     public static function readFolder($path)
     {
-        $files = array();
+        $files = [];
         $dir = opendir($path);
         while ($file = readdir($dir)) {
             if ($file != '.' && $file != '..') {
@@ -277,6 +258,7 @@ class Support extends Facade
             }
         }
         closedir($dir);
+
         return $files;
     }
 
@@ -327,24 +309,24 @@ class Support extends Facade
     //color hex to rgb
     public static function hex2rgb($hex)
     {
-        $hex = str_replace("#", "", $hex)[0];
+        $hex = str_replace('#', '', $hex)[0];
         if (strlen($hex) == 3) {
-            $r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
-            $g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
-            $b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+            $r = hexdec(substr($hex, 0, 1).substr($hex, 0, 1));
+            $g = hexdec(substr($hex, 1, 1).substr($hex, 1, 1));
+            $b = hexdec(substr($hex, 2, 1).substr($hex, 2, 1));
         } else {
             $r = hexdec(substr($hex, 0, 2));
             $g = hexdec(substr($hex, 2, 2));
             $b = hexdec(substr($hex, 4, 2));
         }
-        $rgb = $r . ',' . $g . ',' . $b;
+        $rgb = $r.','.$g.','.$b;
+
         return $rgb;
     }
 
     //static qr code data generate
     public static function staticQrCodeDataGenerate($type, $data)
     {
-
 
         $url = $data['url'] ?? '';
         $email = $data['email'] ?? '';
@@ -363,25 +345,23 @@ class Support extends Facade
         $latitude = $data['latitude'] ?? '';
         $longitude = $data['longitude'] ?? '';
 
-
-
         if ($type == 'url') {
             $data = $url;
         } elseif ($type == 'email') {
-            $data =  'mailto:' . $email . '?subject=' . $subject . '&body=' . rawurlencode($message);
+            $data = 'mailto:'.$email.'?subject='.$subject.'&body='.rawurlencode($message);
         } elseif ($type == 'sms') {
             $number = str_replace(' ', '', $sms_phone);
 
             if ($number) {
                 $number = str_replace('+', '00', $number);
-                $data = 'SMSTO:' . $number . ':' . rawurlencode($sms);
+                $data = 'SMSTO:'.$number.':'.rawurlencode($sms);
             }
         } elseif ($type == 'phone') {
             $number = str_replace(' ', '', $call_phone);
 
             if ($number) {
                 $number = str_replace('+', '00', $number);
-                $data = 'tel:' . $number;
+                $data = 'tel:'.$number;
             }
         } elseif ($type == 'wifi') {
             $ssid = $network_name;
@@ -389,12 +369,12 @@ class Support extends Facade
             $networktype = $network_type ? $network_type : 'WPA';
             $wifihidden = $wifi_hidden == 'yes';
             if ($ssid) {
-                $output_data = 'WIFI:S:' . $ssid . ';';
+                $output_data = 'WIFI:S:'.$ssid.';';
                 if ($networktype) {
-                    $output_data .= 'T:' . $networktype . ';';
+                    $output_data .= 'T:'.$networktype.';';
                 }
                 if ($wifipass) {
-                    $output_data .= 'P:' . $wifipass . ';';
+                    $output_data .= 'P:'.$wifipass.';';
                 }
                 if ($wifihidden) {
                     $output_data .= 'H:true;';
@@ -405,19 +385,20 @@ class Support extends Facade
         } elseif ($type == 'text') {
             $data = $text_data;
         } elseif ($type == 'bitcoin') {
-            $data = 'bitcoin:' . $bitcoin_address . '?amount=' . $bitcoin_amount;
+            $data = 'bitcoin:'.$bitcoin_address.'?amount='.$bitcoin_amount;
         } elseif ($type == 'location') {
-            $data = 'geo:' . $latitude . ',' . $longitude;
+            $data = 'geo:'.$latitude.','.$longitude;
         } elseif ($type == 'vcard') {
-            $data = 'BEGIN:VCARD' . "\n" . 'VERSION:3.0' . "\n" . 'N:' . $data['vcard_last_name'] . ';' . $data['vcard_first_name'] . "\n" . 'FN:' . $data['vcard_first_name'] . ' ' . $data['vcard_last_name'] . "\n" . 'ORG:' . $data['vcard_company'] . "\n" . 'TITLE:' . $data['vcard_job_title'] . "\n" . 'TEL;TYPE=work,voice;VALUE=uri:tel:' . $data['vcard_phone_number'] . "\n" . 'TEL;TYPE=home,voice;VALUE=uri:tel:' . $data['vcard_mobile'] . "\n" . 'TEL;TYPE=work,fax;VALUE=uri:tel:' . $data['vcard_fax'] . "\n" . 'ADR;TYPE=home;LABEL="' . $data['vcard_address'] . '":;;' . $data['vcard_address'] . ';' . $data['vcard_city'] . ';' . $data['vcard_post_code'] . ';' . $data['vcard_country'] . "\n" . 'EMAIL:' . $data['vcard_email'] . "\n" . 'URL:' . $data['vcard_website'] . "\n" . 'END:VCARD';
+            $data = 'BEGIN:VCARD'."\n".'VERSION:3.0'."\n".'N:'.$data['vcard_last_name'].';'.$data['vcard_first_name']."\n".'FN:'.$data['vcard_first_name'].' '.$data['vcard_last_name']."\n".'ORG:'.$data['vcard_company']."\n".'TITLE:'.$data['vcard_job_title']."\n".'TEL;TYPE=work,voice;VALUE=uri:tel:'.$data['vcard_phone_number']."\n".'TEL;TYPE=home,voice;VALUE=uri:tel:'.$data['vcard_mobile']."\n".'TEL;TYPE=work,fax;VALUE=uri:tel:'.$data['vcard_fax']."\n".'ADR;TYPE=home;LABEL="'.$data['vcard_address'].'":;;'.$data['vcard_address'].';'.$data['vcard_city'].';'.$data['vcard_post_code'].';'.$data['vcard_country']."\n".'EMAIL:'.$data['vcard_email']."\n".'URL:'.$data['vcard_website']."\n".'END:VCARD';
         }
+
         return $data;
     }
 
     //dynamicQrCodeDataGenerate
     public static function dynamicQrCodeDataGenerate($type, $code)
     {
-        return  env('APP_URL') . '/q/' . $code;
+        return env('APP_URL').'/q/'.$code;
     }
 
     //vCardQrCodeDataGenerate
@@ -443,11 +424,9 @@ class Support extends Facade
         $vcard->setSavePath(storage_path('app/public/vcard/'));
         $vcard->save();
 
-        return asset('storage/vcard/' . $vcard->getFilename().'.vcf');
+        return asset('storage/vcard/'.$vcard->getFilename().'.vcf');
 
     }
-
-
 
     //event font list
     public static function eventFonts()
@@ -484,13 +463,13 @@ class Support extends Facade
                 'name' => 'Raleway',
             ],
             [
-                'name'=>'Merriweather',
+                'name' => 'Merriweather',
             ],
             [
-                'name'=>'Nunito',
+                'name' => 'Nunito',
             ],
             [
-                'name'=>'Bitter',
+                'name' => 'Bitter',
             ],
             [
                 'name' => 'Teko',
@@ -506,7 +485,7 @@ class Support extends Facade
     //basic qrcode data generate
     public static function basicDataForQrCode()
     {
-        $qr_style = "default";
+        $qr_style = 'default';
         $qr_logo = '';
         $qr_logo_background = false;
         $qr_color = null;
@@ -548,16 +527,18 @@ class Support extends Facade
             'frame_label_text_color' => $frame_label_text_color,
             'code' => self::hashCode(),
         ];
+
         return $data;
     }
 
     //bit 64 to image
     public static function base64_to_jpeg($base64_string, $output_file)
     {
-        $ifp = fopen($output_file, "wb");
+        $ifp = fopen($output_file, 'wb');
         $data = explode(',', $base64_string);
         fwrite($ifp, base64_decode($data[1]));
         fclose($ifp);
+
         return $output_file;
     }
 
@@ -565,15 +546,17 @@ class Support extends Facade
     public static function uploadImage($image, $disk, $path)
     {
         $base64_to_jpeg = self::base64_to_jpeg($image, $path);
-        $imageName = '/' . Str::random(10) . '.png';
-        Storage::disk($disk)->put($path . $imageName, file_get_contents($base64_to_jpeg));
-        return $disk . '/' . $path . $imageName;
+        $imageName = '/'.Str::random(10).'.png';
+        Storage::disk($disk)->put($path.$imageName, file_get_contents($base64_to_jpeg));
+
+        return $disk.'/'.$path.$imageName;
     }
 
     //session store
     public static function saveRequestData($data)
     {
         session()->put('data', $data);
+
         return true;
     }
 
@@ -583,6 +566,7 @@ class Support extends Facade
         if ($data = session()->get('data')) {
             return $data;
         }
+
         return false;
     }
 
@@ -590,16 +574,17 @@ class Support extends Facade
     public static function forgetFromSession()
     {
         session()->forget('data');
+
         return true;
     }
-
 
     //image to base64
     public static function imageToBase64($path)
     {
         $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data =  Storage::url($path);
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+        $data = Storage::url($path);
+        $base64 = 'data:image/'.$type.';base64,'.base64_encode($data);
+
         return $base64;
     }
 
@@ -613,27 +598,32 @@ class Support extends Facade
         }
         $len = strlen($color);
         if ($len == 3 || $len == 6) {
-            if ($len == 3) $color = preg_replace('/(.)(.)(.)/', "\\1\\1\\2\\2\\3\\3", $color);
+            if ($len == 3) {
+                $color = preg_replace('/(.)(.)(.)/', '\\1\\1\\2\\2\\3\\3', $color);
+            }
         } else {
             throw new \Exception("Invalid hex length ($len). Length must be 3 or 6 characters");
         }
-        if (!preg_match('/^[a-f0-9]{6}$/i', $color)) {
+        if (! preg_match('/^[a-f0-9]{6}$/i', $color)) {
             throw new \Exception(sprintf('Invalid hex string #%s', htmlspecialchars($color, ENT_QUOTES)));
         }
 
         $r = dechex(255 - hexdec(substr($color, 0, 2)));
-        $r = (strlen($r) > 1) ? $r : '0' . $r;
+        $r = (strlen($r) > 1) ? $r : '0'.$r;
         $g = dechex(255 - hexdec(substr($color, 2, 2)));
-        $g = (strlen($g) > 1) ? $g : '0' . $g;
+        $g = (strlen($g) > 1) ? $g : '0'.$g;
         $b = dechex(255 - hexdec(substr($color, 4, 2)));
-        $b = (strlen($b) > 1) ? $b : '0' . $b;
+        $b = (strlen($b) > 1) ? $b : '0'.$b;
 
-        return ($prependHash ? '#' : '') . $r . $g . $b;
+        return ($prependHash ? '#' : '').$r.$g.$b;
     }
 
     // visibleColor
     public static function visibleColor($color)
     {
+        if (is_null($color) || $color == '') {
+            $color = '#ffffff';
+        }
         $color = trim($color);
         $prependHash = false;
         if (strpos($color, '#') !== false) {
@@ -642,11 +632,13 @@ class Support extends Facade
         }
         $len = strlen($color);
         if ($len == 3 || $len == 6) {
-            if ($len == 3) $color = preg_replace('/(.)(.)(.)/', "\\1\\1\\2\\2\\3\\3", $color);
+            if ($len == 3) {
+                $color = preg_replace('/(.)(.)(.)/', '\\1\\1\\2\\2\\3\\3', $color);
+            }
         } else {
             throw new \Exception("Invalid hex length ($len). Length must be 3 or 6 characters");
         }
-        if (!preg_match('/^[a-f0-9]{6}$/i', $color)) {
+        if (! preg_match('/^[a-f0-9]{6}$/i', $color)) {
             throw new \Exception(sprintf('Invalid hex string #%s', htmlspecialchars($color, ENT_QUOTES)));
         }
 
@@ -659,7 +651,6 @@ class Support extends Facade
         return ($yiq >= 128) ? '#000000' : '#ffffff';
     }
 
-
     //uploadFile
     public static function uploadFile($file, $disk)
     {
@@ -667,11 +658,12 @@ class Support extends Facade
         // $file_type = str_split($file, strrpos($file, '.') + 1);
         $file_type = explode('-.', $file);
         $file_type = $file_type[1];
-        $file_name = Str::random(20) . '.' . $file_type;
+        $file_name = Str::random(20).'.'.$file_type;
         // dd($file_name);
         $file_path = $file_name;
         Storage::disk($disk)->put($file_path, file_get_contents($file));
-        return $disk . '/' . $file_path;
+
+        return $disk.'/'.$file_path;
     }
 
     // currency to symbol
@@ -682,24 +674,25 @@ class Support extends Facade
             'eur' => '€',
             'gbp' => '£',
         ];
+
         return $currencies[$name];
     }
-
 
     public static function createSubdomain($title, $id = 0)
     {
         $slug = Str::slug($title);
         $allSlugs = self::getRelatedSubdomains($slug, $id);
-        if (!$allSlugs->contains('subdomain', $slug)) {
+        if (! $allSlugs->contains('subdomain', $slug)) {
             return $slug;
         }
 
         $i = 1;
         $is_contain = true;
         do {
-            $newSlug = $slug . '-' . $i;
-            if (!$allSlugs->contains('subdomain', $newSlug)) {
+            $newSlug = $slug.'-'.$i;
+            if (! $allSlugs->contains('subdomain', $newSlug)) {
                 $is_contain = false;
+
                 return $newSlug;
             }
             $i++;
@@ -708,7 +701,7 @@ class Support extends Facade
 
     protected static function getRelatedSubdomains($slug, $id = 0)
     {
-        return DB::table('qr_codes')->select('subdomain')->where('subdomain', 'like', $slug . '%')
+        return DB::table('qr_codes')->select('subdomain')->where('subdomain', 'like', $slug.'%')
             ->where('id', '<>', $id)
             ->get();
     }
@@ -727,7 +720,7 @@ class Support extends Facade
                             C154.791,104.556,158.341,100.277,163.394,100.277z"/>
                     </g>
                     </svg>',
-                            'twitter' => '<svg width="30px" height="30px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            'twitter' => '<svg width="30px" height="30px" viewBox="0 -4 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 
                         <title>Twitter-color</title>
                         <desc>Created with Sketch.</desc>
@@ -803,7 +796,7 @@ class Support extends Facade
                 </g>
             </g>
         </svg>',
-        'link' => '
+            'link' => '
         <?xml version="1.0" encoding="utf-8"?>
         <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
         <svg width="30px" height="30px" viewBox="0 0 1024 1024" class="icon"  version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M918.921721 338.938807c0-53.646472-20.831971-104.012415-58.682964-141.866479-37.8213-37.834611-88.203625-58.666581-141.850097-58.666581-53.646472 0-104.028797 20.831971-141.850096 58.682963L149.409442 624.075512l-1.742653 2.645719-2.132753 2.328315c-25.902251 28.211112-40.146544 64.560065-40.146543 102.332219 0 40.434255 15.762715 78.513574 44.376213 107.210009 28.650359 28.647288 66.693842 44.426384 107.13117 44.426384 38.919929 0 75.864783-14.69685 104.061561-41.373158 0 0 70.440239 34.202889 74.736461 38.512422 3.422849 3.409538 7.748764 5.202361 12.561026 5.202362 4.812261 0 9.141248-1.792823 12.531332-5.185979l399.453501-399.387973c37.850993-37.834611 58.682964-88.203625 58.682964-141.847025z" fill="#F4CE73" /><path d="M134.037852 742.876926l494.208968-494.063577c37.8213-37.850993 88.203625-58.682964 141.850097-58.682964 41.211384 0 80.451789 12.402323 113.586766 35.251348-6.909178-10.010527-14.661014-19.522421-23.444926-28.309405-37.8213-37.834611-88.203625-58.666581-141.850097-58.666581-53.646472 0-104.028797 20.831971-141.850096 58.682963L149.409442 624.075512l-15.37159 118.801414z" fill="#79CCBF" /><path d="M640.066553 342.232646c4.005439 2.566881 7.848081 5.522837 11.337482 9.025549 25.806006 25.727167 25.998496 67.503736 0.873374 93.664006-0.228326 0.145392-0.453581 0.225255-0.581567 0.370646 0 0-333.597197 333.547027-432.489161 432.410322 12.240549 3.132065 24.738093 5.314989 37.689219 5.314989 8.816677 0 17.471579-0.986002 25.998496-2.457325C421.966692 741.862255 701.208889 463.347017 701.208889 463.347017c0.12901-0.161774 0.354264-0.258019 0.612283-0.403411 27.033644-28.098485 26.838082-72.961044-0.968595-100.573183-16.53882-16.55213-39.176924-23.093734-60.786024-20.137777z" fill="#FFFFFF" /><path d="M864.922009 192.405459c-80.809125-80.821412-212.257571-80.821412-293.066697 0L144.50196 619.696354c-0.839586 0.839586-1.226615 1.938215-1.938215 2.844353-28.098485 29.583119-43.794647 67.887693-43.794647 108.841058 0 42.243461 16.470219 81.969187 46.311357 111.876878 29.90769 29.906666 69.57096 46.376886 111.814421 46.376886s82.03574-16.470219 111.876878-46.376886c0.12901-0.066553 0.12901-0.195562 0.258019-0.324572 0.066553-0.063481 0.12901-0.063481 0.195562-0.129009L707.958341 504.201065c0.320476-0.258019 0.710576-0.320476 0.903067-0.645047 42.308989-42.308989 42.308989-111.10282 0-153.412834-42.308989-42.308989-111.10282-42.308989-153.412834 0-0.12901 0.132081-0.12901 0.261091-0.258019 0.3901L221.431584 684.16427c-9.495513 9.495513-9.495513 24.867103 0 34.428144 9.495513 9.495513 24.870175 9.495513 34.365687 0L589.556242 384.896924c0.12901-0.12901 0.195562-0.191467 0.258019-0.320477 23.382469-23.385541 61.365543-23.385541 84.684531 0 23.057898 22.995441 23.25346 60.330395 0.774057 83.712865-0.194538 0.12901-0.387029 0.195562-0.516038 0.324571L334.858624 808.44347c-0.12901 0.062457-0.12901 0.191467-0.191467 0.320476-0.066553 0.066553-0.195562 0.066553-0.258019 0.12901-20.670197 20.670197-48.252644 32.1029-77.515286 32.1029s-56.711984-11.432704-77.319724-32.1029c-42.762571-42.759499-42.762571-112.263906-0.062457-155.026477 0.387029-0.320476 0.516038-0.839586 0.774057-1.226615l425.935271-425.868718c61.881581-61.819124 162.453741-61.819124 224.335323 0 61.815029 61.881581 61.815029 162.517222 0 224.336346l-399.515959 399.386949c-9.494489 9.494489-9.494489 24.867103 0 34.361591 9.495513 9.495513 24.933655 9.495513 34.428145 0L864.922009 485.46806c80.80503-80.80503 80.80503-212.253476 0-293.062601z" fill="#27323A" /></svg>',
@@ -816,13 +809,99 @@ class Support extends Facade
         return $icons;
     }
 
-
     //check if there is http or https in url if not then add https
     public static function checkUrl($url)
     {
         if (strpos($url, 'http') === false) {
-            $url = 'https://' . $url;
+            $url = 'https://'.$url;
         }
+
         return $url;
     }
+
+
+    //get static qrCode data
+    public static function getQrCodeSvg($qrcode)
+    {
+        $qcode = (object) $qrcode;
+
+        $data = [
+
+                'qr_style' => $qcode->qr_style,
+                'qr_logo' => $qcode->qr_logo,
+                'qr_color' => $qcode->qr_color,
+                'qr_bg_color' => $qcode->qr_bg_color,
+                'qr_eye_border' => $qcode->qr_eye_border,
+                'qr_eye_center' => $qcode->qr_eye_center,
+                'qr_gradient' => $qcode->qr_gradient,
+                'qr_eye_color_in' => $qcode->qr_eye_color_in,
+                'qr_eye_color_out' => $qcode->qr_eye_color_out,
+                'qr_eye_style_in' => $qcode->qr_eye_style_in,
+                'qr_eye_style_out' => $qcode->qr_eye_style_out,
+                'qr_logo_background' => $qcode->qr_logo_background,
+                'qr_bg_image' => $qcode->qr_bg_image,
+                'qr_custom_logo' => $qcode->qr_custom_logo,
+                'qr_custom_background' => $qcode->qr_custom_background,
+                'frame' => $qcode->frame,
+                'frame_label' => $qcode->frame_label,
+                'frame_label_font' => $qcode->frame_label_font,
+                'frame_label_text_color' => $qcode->frame_label_text_color
+
+            ];
+
+
+        if ($qcode->is_dynamic != true) {
+            $data['data'] = Support::staticQrCodeDataGenerate(
+                    $qcode->type,
+                    $qcode->qr_code_info,
+                    );
+        }else{
+            $data['data'] = Support::dynamicQrCodeDataGenerate(
+                    $qcode->type,
+                    $qcode->code,
+                    );
+        }
+
+
+        $qrCode = Support::qrCodeGenerate($data);
+        return $qrCode;
+    }
+
+    //dynamic_qr_code_svg
+    // public function getDynamicQrCodeSvg($data)
+    // {
+    //     $qcode = (object) $data;
+    //     if ($qcode->is_dynamic == false) {
+    //         return;
+    //     }
+    //     $data = [
+    //         'data' => Support::dynamicQrCodeDataGenerate(
+    //             $qcode->type,
+    //             $qcode->code,
+    //             ),
+
+    //             'qr_style' => $qcode->qr_style,
+    //             'qr_logo' => $qcode->qr_logo,
+    //             'qr_color' => $qcode->qr_color,
+    //             'qr_bg_color' => $qcode->qr_bg_color,
+    //             'qr_eye_border' => $qcode->qr_eye_border,
+    //             'qr_eye_center' => $qcode->qr_eye_center,
+    //             'qr_gradient' => $qcode->qr_gradient,
+    //             'qr_eye_color_in' => $qcode->qr_eye_color_in,
+    //             'qr_eye_color_out' => $qcode->qr_eye_color_out,
+    //             'qr_eye_style_in' => $qcode->qr_eye_style_in,
+    //             'qr_eye_style_out' => $qcode->qr_eye_style_out,
+    //             'qr_logo_background' => $qcode->qr_logo_background,
+    //             'qr_bg_image' => $qcode->qr_bg_image,
+    //             'qr_custom_logo' => $qcode->qr_custom_logo,
+    //             'qr_custom_background' => $qcode->qr_custom_background,
+    //             'frame' => $qcode->frame,
+    //             'frame_label' => $qcode->frame_label,
+    //             'frame_label_font' => $qcode->frame_label_font,
+    //             'frame_label_text_color' => $qcode->frame_label_text_color
+
+    //         ];
+    //     $qrCode = Support::qrCodeGenerate($data);
+    //     return $qrCode;
+    // }
 }

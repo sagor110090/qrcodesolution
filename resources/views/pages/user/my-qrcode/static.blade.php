@@ -60,13 +60,13 @@ $makeDynamic = function ($id) {
                     <div class="grid grid-cols-12 gap-4">
 
                         <div class="col-span-12 md:col-span-3">
-                            <div class="p-0 grid  justify-center">
+                            <div class="grid justify-center p-0">
                                 <div class=" max-w-[18rem] rounded-lgdark:bg-neutral-700 grid justify-items-center">
-                                    <div class="relative overflow-hidden bg-cover bg-no-repeat">
+                                    <div class="relative overflow-hidden bg-no-repeat bg-cover">
 
-                                        <div class="border-2 shadow-sm rounded-lg">
+                                        <div class="border-2 rounded-lg shadow-sm">
                                             <div id="qrcodePreview">
-                                                {!! $qrcode->static_qr_code_svg !!}
+                                                {!! Support::getQrCodeSvg($qrcode) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -76,12 +76,12 @@ $makeDynamic = function ($id) {
                             </div>
                         </div>
 
-                        <div class="col-span-12 md:col-span-6 border-l  border-gray-200 dark:border-gray-700">
-                            <div class="p-2 grid  justify-start items-center mt-2 ml-2">
+                        <div class="col-span-12 border-l border-gray-200 md:col-span-6 dark:border-gray-700">
+                            <div class="grid items-center justify-start p-2 mt-2 ml-2">
                                 <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">
                                     {{ $qrcode->name }}
                                 </div>
-                                <div class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                                <div class="mt-2 text-sm text-gray-500 dark:text-gray-400">
                                     {{ Str::ucfirst($qrcode->type) }} QR Code
                                 </div>
                                 <div class="text-sm text-gray-500 dark:text-gray-400">
@@ -90,9 +90,9 @@ $makeDynamic = function ($id) {
                             </div>
                         </div>
 
-                        <div class="col-span-12 md:col-span-3 border-l border-gray-200 dark:border-gray-700">
+                        <div class="col-span-12 border-l border-gray-200 md:col-span-3 dark:border-gray-700">
 
-                            <div class="grid grid-cols-2 gap-2 p-2 justify-end items-center">
+                            <div class="grid items-center justify-end grid-cols-2 gap-2 p-2">
                                 <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', ['qrCode' => $qrcode])}}" size="md" wire:navigate>
                                     Edit
                                 </x-ui.button>
@@ -130,15 +130,16 @@ $makeDynamic = function ($id) {
             </div>
         </div>
     </div>
+    @assets
+    <style>
+               svg.qrcodesvg {
+                   height: 157px;
+                   width: 157px;
+               }
+           </style>
+     @endassets
     @endvolt
 
-    @push('css')
-    <style>
-        svg.qrcodesvg {
-            height: 157px;
-            width: 157px;
-        }
-    </style>
-    @endpush
+
 
 </x-layouts.app>

@@ -13,10 +13,12 @@
         "jeroendesloovere/vcard": "^1.7",
         "laravel/cashier": "^14.12",
         "laravel/framework": "^10.10",
+        "laravel/pulse": "^1.0@beta",
         "laravel/sanctum": "^3.2",
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.8",
         "orangehill/iseed": "^3.0",
+        "qoraiche/laravel-mail-editor": "^4.1@beta",
         "rappasoft/laravel-livewire-tables": "^3.1",
         "ryangjchandler/laravel-comments": "^0.2.0",
         "spatie/laravel-sitemap": "^7.0",
@@ -78,6 +80,6 @@
             "php-http/discovery": true
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

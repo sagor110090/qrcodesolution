@@ -29,8 +29,8 @@ return new class extends Migration
             $table->string('qr_eye_style_out')->nullable();
             $table->string('qr_logo_background')->nullable();
             $table->string('qr_bg_image')->nullable();
-            $table->string('qr_custom_logo')->nullable();
-            $table->string('qr_custom_background')->nullable();
+            $table->longText('qr_custom_logo')->nullable();
+            $table->longText('qr_custom_background')->nullable();
             $table->string('frame')->nullable();
             $table->string('frame_label')->nullable();
             $table->string('frame_label_font')->nullable();

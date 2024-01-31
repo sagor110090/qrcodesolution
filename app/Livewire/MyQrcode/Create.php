@@ -48,7 +48,7 @@ class Create extends Component
     //---> QR Code design-related options  ---//
 
 
-    #[Url]
+    #[Url(keep: true)]
     public $type = 'url';
 
     //url

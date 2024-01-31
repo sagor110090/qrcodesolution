@@ -1,11 +1,11 @@
-<div class="col-span-12 md:col-span-8 mt-5">
+<div class="col-span-12 mt-5 md:col-span-8">
     <div class="grid grid-cols-5 gap-4">
 
         <x-tw.button-select @click="qr_style = 'default'" value="default"
             type="qr_style">
             <div>
                 <label
-                    class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label active_label"
+                    class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label active_label"
                     for="pattern_default"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -16,7 +16,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'circle'" value="circle" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_circle"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="0.5" cy="0.5" r="0.5"></circle>
@@ -41,7 +41,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'dot'" value="dot" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_dot"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="0.5" cy="0.5" r="0.3"></circle>
@@ -66,7 +66,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'star'" value="star" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_star"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon
@@ -123,7 +123,7 @@
         <x-tw.button-select @click="qr_style = 'diamond'" value="diamond"
             type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_diamond"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.1" y="0.1"
@@ -196,7 +196,7 @@
         <x-tw.button-select @click="qr_style = 'sparkle'" value="sparkle"
             type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_sparkle"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -219,7 +219,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'danger'" value="danger" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_danger"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon
@@ -254,7 +254,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'cross'" value="cross" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_cross"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon
@@ -289,7 +289,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'plus'" value="plus" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_plus"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -346,7 +346,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'x'" value="x" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_x"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -399,7 +399,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'heart'" value="heart" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_heart"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -452,7 +452,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'shake'" value="shake" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_shake"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.1" y="0.1"
@@ -520,7 +520,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'blob'" value="blob" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_blob"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="5.5" cy="4.5" r="0.5"></circle>
@@ -543,7 +543,7 @@
         <x-tw.button-select @click="qr_style = 'special-circle-orizz'"
             value="special-circle-orizz" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_special-circle-orizz"><svg width="38" height="38"
                         viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -585,7 +585,7 @@
         <x-tw.button-select @click="qr_style = 'special-circle-vert'"
             value="special-circle-vert" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_special-circle-vert"><svg width="38" height="38"
                         viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -627,7 +627,7 @@
         <x-tw.button-select @click="qr_style = 'special-circle'" value="special-circle"
             type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_special-circle"><svg width="38" height="38"
                         viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -648,7 +648,7 @@
         <x-tw.button-select @click="qr_style = 'special-diamond'"
             value="special-diamond" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_special-diamond"><svg width="38" height="38"
                         viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
                         <rect x="4.1" y="3.1"
@@ -674,7 +674,7 @@
         </x-tw.button-select>
         <x-tw.button-select @click="qr_style = 'ribbon'" value="ribbon" type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_ribbon"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="4" y="3" width="1" height="1">
@@ -690,7 +690,7 @@
         <x-tw.button-select @click="qr_style = 'oriental'" value="oriental"
             type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_oriental"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -714,7 +714,7 @@
         <x-tw.button-select @click="qr_style = 'ellipse'" value="ellipse"
             type="qr_style">
             <div>
-                <label class="btn btn-light p-1 me-1 mb-1 rounded-0 pattern_label"
+                <label class="p-1 mb-1 btn btn-light me-1 rounded-0 pattern_label"
                     for="pattern_ellipse"><svg width="38" height="38" viewBox="0 0 6 6"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
