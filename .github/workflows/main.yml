@@ -19,6 +19,8 @@ jobs:
 
     - name: install composer
       uses: ramsey/composer-install@v2
+      with:
+        composer-options: '--no-dev --no-interaction --no-progress --no-suggest --optimize-autoloader --classmap-authoritative'
 
     - name: composer install
       run: composer install
