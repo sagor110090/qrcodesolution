@@ -12,8 +12,16 @@ jobs:
     - name: 🚚 Get latest code
       uses: actions/checkout@v3
 
-    # - name: composer install
-    #   run: composer install
+    - name: configure node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16.x'
+
+    - name: install composer
+      uses: ramsey/composer-install@v2
+
+    - name: composer install
+      run: composer install
 
     - name: npm install
       run: npm install
