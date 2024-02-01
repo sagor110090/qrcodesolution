@@ -17,13 +17,15 @@ jobs:
       with:
         node-version: '16.x'
 
-    - name: install composer
-      uses: ramsey/composer-install@v2
+    - uses: "shivammathur/setup-php@v2"
       with:
-        composer-options: '--no-dev --no-interaction --no-progress --no-suggest --optimize-autoloader --classmap-authoritative'
+          php-version: '8.1'
+    - uses: "ramsey/composer-install@v2"
+      with:
+          composer-options: "--no-dev --prefer-dist --optimize-autoloader --no-interaction --no-progress --no-suggest"
 
-    - name: composer install
-      run: composer install
+    - name: composer update
+      run: composer update
 
     - name: npm install
       run: npm install
