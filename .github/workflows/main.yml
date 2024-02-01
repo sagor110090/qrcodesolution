@@ -20,9 +20,9 @@ jobs:
     - uses: "shivammathur/setup-php@v2"
       with:
           php-version: '8.1'
-    - uses: "ramsey/composer-install@v2"
+    - uses: "ramsey/composer-install@v1"
       with:
-          composer-options: "--no-dev --prefer-dist --optimize-autoloader --no-interaction --no-progress --no-suggest"
+          composer-options: '--no-dev --prefer-dist --no-scripts --no-progress --no-suggest --ansi'
 
     - name: composer update
       run: composer update
