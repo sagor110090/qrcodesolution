@@ -97,8 +97,8 @@ class Support extends Facade
         $qr_gradient = $options['qr_gradient'] ?? '';
         $qr_eye_color_in = $options['qr_eye_color_in'] ?? '';
         $qr_eye_color_out = $options['qr_eye_color_out'] ?? '';
-        $qr_eye_style_in = $options['qr_eye_style_in'] ?? '';
-        $qr_eye_style_out = $options['qr_eye_style_out'] ?? '';
+        $qr_eye_style_in = $options['qr_eye_color_in'] ?? '';
+        $qr_eye_style_out = $options['qr_eye_color_out'] ?? '';
         $qr_logo_background = $options['qr_logo_background'] ?? '';
         $qr_bg_image = $options['qr_bg_image'] ?? '';
         $qr_custom_logo = $options['qr_custom_logo'] ?? '';

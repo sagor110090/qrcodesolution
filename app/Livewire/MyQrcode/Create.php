@@ -29,7 +29,7 @@ class Create extends Component
     public $qr_style = "default";
     public $qr_logo = '';
     public $qr_logo_background = false;
-    public $qr_color = null;
+    public $qr_color = '#000000';
     public $qr_bg_color = '255,255,255';
     public $qr_eye_border = 'default';
     public $qr_eye_center = 'default';
@@ -146,6 +146,7 @@ class Create extends Component
             'frame_label_font' => $this->frame_label_font,
             'frame_label_text_color' => $this->frame_label_text_color,
         ];
+        // dump($data);
         $this->qrcodePreview = Support::qrCodeGenerate($data);
     }
 
