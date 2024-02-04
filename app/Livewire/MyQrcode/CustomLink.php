@@ -4,12 +4,10 @@ namespace App\Livewire\MyQrcode;
 
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class CustomLink extends ModalComponent
 {
 
-    use LivewireAlert;
 
     public $qrCode;
     public $link;
@@ -38,9 +36,9 @@ class CustomLink extends ModalComponent
         auth()->user()->qrcodes()->where('id',$this->qrCode->id)->update([
             'subdomain' => $this->link
         ]);
+        $this->js('alert("Link updated successfully")');
         $this->dispatch('updateQrCode');
         $this->closeModal();
-        $this->alert('success', 'Custom link updated successfully!');
 
 
     }

@@ -1,6 +1,6 @@
 <div>
 
-    <div class="grid grid-cols-12 gap-4 mt-6 z-10" x-data="{
+    <div class="z-10 grid grid-cols-12 gap-4 mt-6" x-data="{
         type: @entangle('type'),
         imageType: 'png',
         qr_style: @entangle('qr_style'),
@@ -94,9 +94,9 @@
 
 
 
-        <div class="col-span-12 md:col-span-9">
-            <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
-                <div class=" n p-4 border-b dark:border-neutral-600">
+        <div class="col-span-12 md:col-span-8">
+            <div class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+                <div class="p-4 border-b n dark:border-neutral-600">
                     <x-tw.input label="QR Code Name" placeholder="QR Code Name" id="name"  required class="col-span-2" name="name" value="{{ $name }}"/>
                 </div>
                 <x-qrcode.url  :url="$url" />
@@ -156,7 +156,7 @@
                 <div class="p-6">
                     <div class="mb-2 text-base text-neutral-500 dark:text-neutral-300">
 
-                        <x-tw.label class="font-bold text-md mb-5 mt-10">
+                        <x-tw.label class="mt-10 mb-5 font-bold text-md">
                             Design Your QR Code
                         </x-tw.label>
                         <x-tw.accordion>
@@ -197,12 +197,12 @@
             </div>
         </div>
 
-        <div class="col-span-12 md:col-span-3" style="position: sticky; top: 0; z-index: 10;height: 450px;">
-            <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+        <div class="col-span-12 md:col-span-4" style="position: sticky; top: 0; z-index: 10;height: 450px;">
+            <div class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
-                <div class="border-neutral-100 px-6 py-4 dark:border-neutral-500">
+                <div class="px-6 py-4 border-neutral-100 dark:border-neutral-500">
                     <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
-                        <x-tw.label class="mr-2 font-bold text-md text-center">
+                        <x-tw.label class="mr-2 font-bold text-center text-md">
                             Preview your QR Code
                         </x-tw.label>
                     </h5>

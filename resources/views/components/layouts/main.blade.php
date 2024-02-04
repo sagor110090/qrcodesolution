@@ -38,20 +38,9 @@
 
     @stack('js')
 
-    <x-livewire-alert::scripts />
-
     @livewire('wire-elements-modal')
 
-    {{-- <script>
-        document.addEventListener('livewire:init', function () {
-            // Livewire.hook('morph.updating', ({ el, toEl, component }) => {
-            //     alert('element updating')
-            // })
-        Livewire.hook('morph.updated',  ({ el, toEl, component }) => {
-            this.$store.loader.loadingStop();
-        })
-        })
-    </script> --}}
+
 
 </body>
 

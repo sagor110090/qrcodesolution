@@ -2,16 +2,15 @@
 
 use function Laravel\Folio\{middleware, name};
 use function Livewire\Volt\{state, usesPagination, with, on, uses};
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 name('my-qrcode.dynamic');
 middleware(['auth', 'verified']);
 usesPagination();
-uses(LivewireAlert::class);
 
+// updateQrCode
 on([
     'updateQrCode' => function () {
-        // refresh
+        $this->qrcodes = auth()->user()->qrCodes()->isDynamic()->latest()->paginate(10);
     },
 ]);
 
@@ -31,11 +30,11 @@ state([
 
 $makeStatic = function ($id) {
     $qrcode = auth()
-        ->user()
-        ->qrCodes()
-        ->findOrFail($id);
+            ->user()
+            ->qrCodes()
+            ->findOrFail($id);
     $qrcode->update(['is_dynamic' => false]);
-    $this->alert('success', 'Successfully updated qrcode.');
+    $this->js('alert("Successfully updated qrcode.")');
     $this->js('loadingStop()');
 };
 
@@ -62,7 +61,7 @@ $status = function ($id, $status = false) {
                     ->count() &&
             !$status
         ) {
-            $this->alert('error', 'You have reached your QR Code limit.');
+            $this->js('alert("You have reached your limit for active dynamic QR Codes.", "error")');
             $this->js('loadingStop()');
 
             return;
@@ -74,7 +73,7 @@ $status = function ($id, $status = false) {
         ->qrCodes()
         ->findOrFail($id);
     $qrcode->update(['status' => !$qrcode->status]);
-    $this->alert('success', 'Successfully updated qrcode.');
+    $this->js('alert("Successfully updated qrcode.")');
     $this->js('loadingStop()');
 
 };
@@ -227,10 +226,7 @@ $status = function ($id, $status = false) {
         </div>
         @assets
         <style>
-                   svg.qrcodesvg {
-                       height: 157px;
-                       width: 157px;
-                   }
+
                </style>
          @endassets
     @endvolt

@@ -270,9 +270,6 @@
         z-index: 10;
     }
 
-    svg.qrcodesvg {
-        height: 187px;
-        width: 188px;
-    }
+
 </style>
 @endpush

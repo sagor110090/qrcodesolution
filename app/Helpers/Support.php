@@ -117,6 +117,8 @@ class Support extends Facade
 
         $frame_label = self::buildFrameLabel($words);
 
+        // dd($qr_eye_style_out);
+
         $optionstyle = [
             'optionlogo' => $qr_custom_logo ? $qr_custom_logo : $qr_logo,
             'pattern' => $qr_style,
@@ -864,44 +866,11 @@ class Support extends Facade
 
 
         $qrCode = Support::qrCodeGenerate($data);
-        return $qrCode;
+        $markup = '<div class="qr-code" style="width: 157px; height: 157px; display:none;">'.$qrCode.'</div>';
+        $markup .= '<img src="data:image/svg+xml;base64,'.base64_encode($qrCode).'" alt="qr code"  style="height: 157px;
+        width: 157px;"/>';
+        return $markup;
     }
 
-    //dynamic_qr_code_svg
-    // public function getDynamicQrCodeSvg($data)
-    // {
-    //     $qcode = (object) $data;
-    //     if ($qcode->is_dynamic == false) {
-    //         return;
-    //     }
-    //     $data = [
-    //         'data' => Support::dynamicQrCodeDataGenerate(
-    //             $qcode->type,
-    //             $qcode->code,
-    //             ),
 
-    //             'qr_style' => $qcode->qr_style,
-    //             'qr_logo' => $qcode->qr_logo,
-    //             'qr_color' => $qcode->qr_color,
-    //             'qr_bg_color' => $qcode->qr_bg_color,
-    //             'qr_eye_border' => $qcode->qr_eye_border,
-    //             'qr_eye_center' => $qcode->qr_eye_center,
-    //             'qr_gradient' => $qcode->qr_gradient,
-    //             'qr_eye_color_in' => $qcode->qr_eye_color_in,
-    //             'qr_eye_color_out' => $qcode->qr_eye_color_out,
-    //             'qr_eye_style_in' => $qcode->qr_eye_style_in,
-    //             'qr_eye_style_out' => $qcode->qr_eye_style_out,
-    //             'qr_logo_background' => $qcode->qr_logo_background,
-    //             'qr_bg_image' => $qcode->qr_bg_image,
-    //             'qr_custom_logo' => $qcode->qr_custom_logo,
-    //             'qr_custom_background' => $qcode->qr_custom_background,
-    //             'frame' => $qcode->frame,
-    //             'frame_label' => $qcode->frame_label,
-    //             'frame_label_font' => $qcode->frame_label_font,
-    //             'frame_label_text_color' => $qcode->frame_label_text_color
-
-    //         ];
-    //     $qrCode = Support::qrCodeGenerate($data);
-    //     return $qrCode;
-    // }
 }

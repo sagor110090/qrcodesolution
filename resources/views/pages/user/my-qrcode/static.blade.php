@@ -2,12 +2,10 @@
 
 use function Laravel\Folio\{middleware, name};
 use function Livewire\Volt\{state, usesPagination, with, on,uses};
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 name('my-qrcode.static');
 middleware(['auth', 'verified']);
 usesPagination();
-uses(LivewireAlert::class);
 
 on([
     'updateQrCode' => function () {
@@ -132,10 +130,7 @@ $makeDynamic = function ($id) {
     </div>
     @assets
     <style>
-               svg.qrcodesvg {
-                   height: 157px;
-                   width: 157px;
-               }
+
            </style>
      @endassets
     @endvolt

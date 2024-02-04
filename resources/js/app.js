@@ -37,3 +37,5 @@ window.alert = function (message, icon = 'success') {
 }
 
 
+
+

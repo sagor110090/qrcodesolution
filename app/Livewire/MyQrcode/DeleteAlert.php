@@ -4,11 +4,9 @@ namespace App\Livewire\MyQrcode;
 
 use Livewire\Component;
 use LivewireUI\Modal\ModalComponent;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 class DeleteAlert extends ModalComponent
 {
-    use LivewireAlert;
     public $id;
 
     public function mount($id)
@@ -25,7 +23,7 @@ class DeleteAlert extends ModalComponent
         $qrCode->delete();
         $this->dispatch('updateQrCode');
         $this->closeModal();
-        $this->alert('success', 'Qr code deleted successfully!');
+        $this->js('alert("Qr Code deleted successfully")');
 
     }
 

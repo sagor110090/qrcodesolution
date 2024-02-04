@@ -8,7 +8,6 @@ use Livewire\Component;
 use Illuminate\Support\Str;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Url;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
 
 
 class Create extends Component
@@ -18,7 +17,7 @@ class Create extends Component
     //listen
     protected $listeners = ['fileUpload' => 'handleFileUpload'];
 
-    use WithFileUploads, LivewireAlert;
+    use WithFileUploads;
 
     //query string
     // protected $queryString = ['type'];
@@ -455,23 +454,23 @@ class Create extends Component
 
         if (env('ACTIVE_STRIPE')) {
             if (auth()->user()->plan()->qrcode_limit <= auth()->user()->qrCodes()->isDynamic()->isActive()->count()) {
-                $this->alert('error', 'You have reached your QR Code limit.');
+                $this->js('alert("You have reached your dynamic QR Code limit. Please upgrade your plan to create more dynamic QR Codes.", "error")');
                 return;
             }
         }
 
         if (auth()->check() == false) {
             Support::saveRequestData($data);
-            return redirect()->route('login');
+            $this->redirect(route('register'),true);
         }
 
         auth()->user()->qrCodes()->create($data);
         toastr()->success('QR Code Created Successfully');
 
         if ($this->dynamic) {
-            return redirect()->route('my-qrcode.dynamic');
+            $this->redirect(route('my-qrcode.dynamic'),true);
         }
-        return redirect()->route('my-qrcode.static');
+        $this->redirect(route('my-qrcode.static'),true);
     }
 
     // handleFileUpload
