@@ -13,7 +13,7 @@
             <div class="col-span-2 text-center text-neutral-500 dark:text-neutral-300 text-weight-300">
 
                 <livewire:file-uploader :name="'image'" :accept="'image/*'" :text="'Upload Image'"
-                    :rules="[ 'image', 'max:10024','mimes:jepg,png,jpg' ]" :loadFileName="$image" />
+                    :rules="[ 'image', 'max:10024','mimes:jepg,png,jpg' ]" :loadFileName="$image" :multiple/>
                 @error('image') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
 
             </div>

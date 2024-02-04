@@ -468,9 +468,11 @@ class Create extends Component
         toastr()->success('QR Code Created Successfully');
 
         if ($this->dynamic) {
-            $this->redirect(route('my-qrcode.dynamic'),true);
+           return $this->redirect(route('my-qrcode.dynamic'),true);
         }
-        $this->redirect(route('my-qrcode.static'),true);
+        // dd($this->dynamic);
+
+        return $this->redirect(route('my-qrcode.static'),true);
     }
 
     // handleFileUpload
