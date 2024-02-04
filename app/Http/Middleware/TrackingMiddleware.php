@@ -23,8 +23,13 @@ class TrackingMiddleware
             $ip = $request->ip();
         }
 
-        $location = Location::get($ip);
 
+        if(session()->get('location')){
+            $location = session()->get('location');
+        }else{
+            $location = Location::get($ip);
+            session()->put('location',$location);
+        }
 
         $request->merge([
             'ip_address' => $ip,
@@ -33,6 +38,7 @@ class TrackingMiddleware
             'region' => $location->regionName,
             'zip_code' => $location->zipCode,
             'latitude' => $location->latitude,
+            'longitude' => $location->longitude,
 
         ]);
 
