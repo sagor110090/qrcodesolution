@@ -461,7 +461,7 @@ class Create extends Component
 
         if (auth()->check() == false) {
             Support::saveRequestData($data);
-            $this->redirect(route('register'),true);
+            return   $this->redirect(route('register'),true);
         }
 
         auth()->user()->qrCodes()->create($data);
