@@ -15,6 +15,11 @@ class Track extends ModalComponent
         $this->locations = $locations;
     }
 
+    public function boot()
+    {
+        $this->js('loadingStop()');
+    }
+
     public function render()
     {
         return view('livewire.my-qrcode.track');

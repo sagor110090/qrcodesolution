@@ -25,6 +25,11 @@ class CustomLink extends ModalComponent
         return view('livewire.my-qrcode.custom-link');
     }
 
+    public function boot()
+    {
+        $this->js('loadingStop()');
+    }
+
     public function submit()
     {
         $this->validate([

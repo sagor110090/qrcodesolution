@@ -1,6 +1,9 @@
 document.addEventListener("alpine:init", () => {
     Alpine.data("loader", () => ({
         isLoading: false,
+        loading() {
+            this.isLoading = !this.isLoading;
+        },
         loadingStart() {
             this.isLoading = true;
         },
