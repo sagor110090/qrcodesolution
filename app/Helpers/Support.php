@@ -418,15 +418,17 @@ class Support extends Facade
         $vcard->addAddress(null, null, $data['vcard_address'], $data['vcard_city'], null, $data['vcard_post_code'], $data['vcard_country']);
         $vcard->addURL($data['vcard_website']);
 
-        dd($vcard->getOutput());
+        return $vcard->download();
+
+        // dd($vcard->download());
         // dd($vcard);
         // $vcard->addPhoto(__DIR__ . '/landscape.jpeg');
         // return $vcard->download();
 
-        $vcard->setSavePath(storage_path('app/public/vcard/'));
-        $vcard->save();
+        // $vcard->setSavePath(storage_path('app/public/vcard/'));
+        // $vcard->save();
 
-        return asset('storage/vcard/'.$vcard->getFilename().'.vcf');
+        // return asset('storage/vcard/'.$vcard->getFilename().'.vcf');
 
     }
 
