@@ -8,7 +8,7 @@
     <div class="mx-auto h-[calc(100vh)]">
         <div class="flex flex-col items-center justify-center mb-16 sm:text-center sm:mb-0">
             <img src="{{ asset($event->banner_image) }}" alt="logo"
-                class="w-full opacity-10 h-[calc(30vh)] object-cover">
+                class="w-full h-[calc(30vh)] object-cover">
 
             <div class="w-screen p-20 leading-normal text-center text-gray-800 bg-white rounded shadow-lg sm:max-w-xl md:max-w-full lg:max-w-screen-xl"
                 style="background:{{ $event->color }};">
