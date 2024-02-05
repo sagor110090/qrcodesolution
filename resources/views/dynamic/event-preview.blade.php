@@ -6,11 +6,11 @@
         <link rel="icon" href="{{ asset($event->logo_image) }}" type="image/png" sizes="16x16">
     </x-slot>
     <div class="mx-auto h-[calc(100vh)]">
-        <div class="flex flex-col mb-16 sm:text-center sm:mb-0 justify-center items-center">
+        <div class="flex flex-col items-center justify-center mb-16 sm:text-center sm:mb-0">
             <img src="{{ asset($event->banner_image) }}" alt="logo"
-                class="w-full opacity-50 h-[calc(30vh)] object-cover">
+                class="w-full opacity-10 h-[calc(30vh)] object-cover">
 
-            <div class="bg-white rounded shadow-lg p-20 text-gray-800 leading-normal text-center sm:max-w-xl md:max-w-full lg:max-w-screen-xl  w-screen"
+            <div class="w-screen p-20 leading-normal text-center text-gray-800 bg-white rounded shadow-lg sm:max-w-xl md:max-w-full lg:max-w-screen-xl"
                 style="background:{{ $event->color }};">
                 <div class="mb-3 sm:mx-auto">
                     <div class="flex items-center justify-center">
@@ -24,7 +24,7 @@
                     </h2>
                 </div>
                 <div
-                    class="p-5 md:p-20 text-gray-800 leading-normal text-center sm:max-w-xl md:max-w-full lg:max-w-screen-xl  flex flex-wrap justify-center items-center">
+                    class="flex flex-wrap items-center justify-center p-5 leading-normal text-center text-gray-800 md:p-20 sm:max-w-xl md:max-w-full lg:max-w-screen-xl">
                     <div class="flex flex-col items-center justify-center mb-5">
                         @if ($event->one_day_event)
                         <p class="text-base text-gray-700 md:text-lg"
@@ -44,7 +44,7 @@
                         <p class="text-base text-gray-700 md:text-lg"
                             style="color:{{ Support::visibleColor($event->color) }}; font-family: {{$event->font}};font-size:20px;">
                             <div class="flex items-center justify-center"  style="color:{{ Support::visibleColor($event->color) }}; font-family: {{$event->font}};font-size:20px;">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                   </svg> {{$event->location}}
@@ -58,7 +58,7 @@
                         {{$event->description}}
                     </p>
             </div>
-            <div class="bg-white rounded shadow-lg  mt-10   text-gray-800   sm:max-w-xl md:max-w-full lg:max-w-screen-xl  w-screen flex flex-col justify-start items-start"
+            <div class="flex flex-col items-start justify-start w-screen mt-10 text-gray-800 bg-white rounded shadow-lg sm:max-w-xl md:max-w-full lg:max-w-screen-xl"
                 style="background:{{ $event->color }};">
                 <div class="p-10"
                     style="padding: 20px;text-align: left;color:{{ Support::visibleColor($event->color) }}; font-family: {{ $event->font }};font-size:20px;">
