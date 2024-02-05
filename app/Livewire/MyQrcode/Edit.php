@@ -120,8 +120,9 @@ class Edit extends Component
 
     public $qrcodePreview = '';
 
-    public function mount(QrCode $qrCode)
+    public function mount($subdomain)
     {
+        $qrCode = QrCode::where('subdomain', $subdomain)->firstOrFail();
         $this->qrCode = $qrCode;
         $this->name = $qrCode->name;
         $this->type = $qrCode->type;

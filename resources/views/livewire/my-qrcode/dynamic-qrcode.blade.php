@@ -1,96 +1,24 @@
-<?php
-
-use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{state, usesPagination, with, on, uses};
-
-name('my-qrcode.dynamic');
-middleware(['auth', 'verified']);
-usesPagination();
-
-// updateQrCode
-on([
-    'updateQrCode' => function () {
-        $this->qrcodes = auth()->user()->qrCodes()->isDynamic()->latest()->paginate(10);
-    },
-]);
-
-with('qrcodes', function () {
-
-    return App\Models\QrCode::where('user_id', auth()->user()->id)
-        ->isDynamic()
-        ->with('qrCodeTracks')
-        ->latest()
-        ->paginate(10);
-});
-
-state([
-    'showModal' => false,
-    'locations' => null,
-]);
-
-$makeStatic = function ($id) {
-    $qrcode = auth()
-            ->user()
-            ->qrCodes()
-            ->findOrFail($id);
-    $qrcode->update(['is_dynamic' => false]);
-    $this->js('alert("Successfully updated qrcode.")');
-    $this->js('loadingStop()');
-};
-
-$status = function ($id, $status = false) {
-    if (env('ACTIVE_STRIPE')) {
-        if (
-            auth()
-                ->user()
-                ->isNotOnSubscription() &&
-            !$status
-        ) {
-            $this->dispatch('openModal', component: 'my-qrcode.subscription-alert', arguments: ['qrcodeId' => $id]);
-            return;
-        }
-        if (
-            auth()
-                ->user()
-                ->plan()->qrcode_limit <=
-                auth()
-                    ->user()
-                    ->qrCodes()
-                    ->isDynamic()
-                    ->isActive()
-                    ->count() &&
-            !$status
-        ) {
-            $this->js('alert("You have reached your limit for active dynamic QR Codes.", "error")');
-            $this->js('loadingStop()');
-
-            return;
-        }
-    }
-
-    $qrcode = auth()
-        ->user()
-        ->qrCodes()
-        ->findOrFail($id);
-    $qrcode->update(['status' => !$qrcode->status]);
-    $this->js('alert("Successfully updated qrcode.")');
-    $this->js('loadingStop()');
-
-};
-
-?>
-
-<x-layouts.app>
+<div>
     <x-slot name="header">
         <h2 class="text-lg font-semibold leading-tight text-gray-800 dark:text-gray-200">
             {{ __('Dynamic QR Code') }}
         </h2>
     </x-slot>
 
-    @volt('my-qrcodes.dynamic')
+
         <div class="h-full py-12">
             <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <x-qrcode.subscription-alert />
+
+                <div class="grid grid-cols-6 gap-4">
+                    <div class="col-span-6 col-end-7 md:col-span-2 md:col-end-7">
+                        <x-input
+                        wire:model.live.debounce.500ms="search"
+                        type="text"
+                        placeholder="Search..."/>
+                    </div>
+                </div>
+
 
                 <div class="relative min-h-[500px] w-full h-full">
 
@@ -179,7 +107,7 @@ $status = function ($id, $status = false) {
                                     </div>
                                     <div class="grid items-center justify-end grid-cols-2 gap-2 p-2">
                                         <x-ui.button type="primary" tag="a"
-                                            href="{{ route('my-qrcode.edit', ['qrCode' => $qrcode]) }}" size="md"
+                                            href="{{ route('my-qrcode.edit',$qrcode->subdomain) }}" size="md"
                                             wire:navigate>
                                             Edit
                                         </x-ui.button>
@@ -224,13 +152,7 @@ $status = function ($id, $status = false) {
             </div>
             <x-loader />
         </div>
-        @assets
-        <style>
-
-               </style>
-         @endassets
-    @endvolt
+</div>
 
 
 
-</x-layouts.app>

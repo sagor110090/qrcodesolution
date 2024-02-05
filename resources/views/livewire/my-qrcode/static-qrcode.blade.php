@@ -1,55 +1,22 @@
-<?php
-
-use function Laravel\Folio\{middleware, name};
-use function Livewire\Volt\{state, usesPagination, with, on,uses};
-
-name('my-qrcode.static');
-middleware(['auth', 'verified']);
-usesPagination();
-
-on([
-    'updateQrCode' => function () {
-        // refresh
-    },
-]);
-
-with('qrcodes', function() {
-    return auth()->user()->qrCodes()->isStatic()->latest()->paginate(10);
-});
-
-state('showModal', false);
-
-
-
-$delete = function ($id) {
-    $qrcode = auth()->user()->qrCodes()->findOrFail($id);
-    $qrcode->delete();
-    $this->dispatch('toast', message: 'Successfully deleted qrcode.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
-};
-
-
-$makeDynamic = function ($id) {
-    $qrcode = auth()->user()->qrCodes()->findOrFail($id);
-    $qrcode->update(['is_dynamic' => true]);
-    $this->dispatch('toast', message: 'Successfully updated qrcode.', data: [ 'position' => 'top-right', 'type' => 'success' ]);
-};
-
-
-
-
-?>
-
-<x-layouts.app>
+<div>
     <x-slot name="header">
         <h2 class="text-lg font-semibold leading-tight text-gray-800 dark:text-gray-200">
             {{ __('Static QR Codes') }}
         </h2>
     </x-slot>
 
-    @volt('my-qrcodes.static')
+
     <div class="h-full py-12">
         <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <x-qrcode.subscription-alert />
+            {{-- <x-qrcode.subscription-alert /> --}}
+            <div class="grid grid-cols-6 gap-4">
+                <div class="col-span-6 col-end-7 md:col-span-2 md:col-end-7">
+                    <x-input
+                    wire:model.live.debounce.500ms="search"
+                    type="text"
+                    placeholder="Search..."/>
+                </div>
+            </div>
             <div class="relative min-h-[500px] w-full h-full">
 
                 @forelse ($qrcodes as $qrcode)
@@ -91,7 +58,8 @@ $makeDynamic = function ($id) {
                         <div class="col-span-12 border-l border-gray-200 md:col-span-3 dark:border-gray-700">
 
                             <div class="grid items-center justify-end grid-cols-2 gap-2 p-2">
-                                <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', ['qrCode' => $qrcode])}}" size="md" wire:navigate>
+                                <x-ui.button type="primary" tag="a" href="{{route('my-qrcode.edit', $qrcode->subdomain)}}"
+                                    size="md" wire:navigate>
                                     Edit
                                 </x-ui.button>
                                 <x-ui.button type="danger" wire:click="$dispatch('openModal', { component: 'my-qrcode.delete-alert', arguments: { id: {{ $qrcode->id }} }})" size="md"
@@ -128,13 +96,5 @@ $makeDynamic = function ($id) {
             </div>
         </div>
     </div>
-    @assets
-    <style>
 
-           </style>
-     @endassets
-    @endvolt
-
-
-
-</x-layouts.app>
+</div>

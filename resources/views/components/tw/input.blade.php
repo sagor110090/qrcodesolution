@@ -14,21 +14,21 @@
     @if ($type == 'color')
             <x-color-picker
                 placeholder="{{ $label }}"
-                wire:model.live.debounce.250ms="{{ $name }}"
+                wire:model.blur="{{ $name }}"
             />
     @else
 
         @if ($size == 'lg')
-            <x-input label="{{ $label }}" placeholder="{{ $label }}" id="{{ $id }}" type="{{ $type }}" size="{{ $size }}" helper="{{ $helper }}" wire:model.live.debounce.250ms="{{ $name }}" class="{{ $class }}" {{ $attributes }}  hi/>
+            <x-input label="{{ $label }}" placeholder="{{ $label }}" id="{{ $id }}" type="{{ $type }}" size="{{ $size }}" helper="{{ $helper }}" wire:model.blur="{{ $name }}" class="{{ $class }}" {{ $attributes }}  hi/>
 
         @endif
 
         @if ($size == 'md')
-            <x-input  placeholder="{{ $label }}" id="{{ $id }}" type="{{ $type }}" size="{{ $size }}" helper="{{ $helper }}" wire:model.live.debounce.250ms="{{ $name }}" class="{{ $class }}" {{ $attributes }}  />
+            <x-input  placeholder="{{ $label }}" id="{{ $id }}" type="{{ $type }}" size="{{ $size }}" helper="{{ $helper }}" wire:model.blur="{{ $name }}" class="{{ $class }}" {{ $attributes }}  />
         @endif
 
         @if ($size == 'sm')
-            <x-input  placeholder="{{ $label }}" id="{{ $id }}" type="{{ $type }}" size="{{ $size }}" helper="{{ $helper }}" wire:model.live.debounce.250ms="{{ $name }}" class="{{ $class }}" {{ $attributes }}  />
+            <x-input  placeholder="{{ $label }}" id="{{ $id }}" type="{{ $type }}" size="{{ $size }}" helper="{{ $helper }}" wire:model.blur="{{ $name }}" class="{{ $class }}" {{ $attributes }}  />
         @endif
 
     @endif

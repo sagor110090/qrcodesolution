@@ -78,6 +78,15 @@ class QrCode extends Model
         return $query->where('status', false);
     }
 
+    //scope search
+    public function scopeSearch($query, $search)
+    {
+        return $query->when($search, function ($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('type', 'like', '%' . $search . '%');
+        });
+    }
+
 
 
     public function user()

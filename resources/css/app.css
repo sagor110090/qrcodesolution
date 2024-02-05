@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 [x-cloak] {
-    display: none;
+    display: none !important;
 }
 /* sudo ln -s /etc/letsencrypt/live/app.bookinglab.com/bookinglab.pem /opt/bitnami/apache2/conf/bookinglab.key
 sudo certbot -d bookinglab.com -d *.bookinglab.com --manual --preferred-challenges dns certonly */

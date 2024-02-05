@@ -6,6 +6,7 @@ use App\Helpers\Support;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Attributes\Computed;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Url;
 
@@ -121,6 +122,13 @@ class Create extends Component
 
     public $qrcodePreview = '';
 
+    // #[Computed]
+    public $isCreateRoute = false;
+    public function mount()
+    {
+        $this->isCreateRoute = request()->routeIs('my-qrcode.create');
+    }
+
     public function qrCodeCreate()
     {
         $data = [
@@ -170,11 +178,11 @@ class Create extends Component
             $this->validate($rules);
         } elseif ($this->type == 'sms') {
 
-            $rules = ['sms' => 'required|max:300', 'sms_phone' => 'required|max:255'];
+            $rules = ['sms' => 'required|max:300', 'sms_phone' => 'required|phone'];
             $this->validate($rules);
         } elseif ($this->type == 'phone') {
 
-            $rules = ['call_phone' => 'required|max:255'];
+            $rules = ['call_phone' => 'required|phone'];
             $this->validate($rules);
         } elseif ($this->type == 'wifi') {
 
@@ -193,7 +201,7 @@ class Create extends Component
             $rules = [
                 'vcard_first_name' => 'required|max:255',
                 'vcard_last_name' => 'required|max:255',
-                'vcard_phone_number' => 'required|max:17',
+                'vcard_phone_number' => 'required|phone',
                 'vcard_mobile' => 'required|max:17',
                 'vcard_email' => 'required|email|max:255',
                 'vcard_website' => 'required|max:255',

@@ -18,6 +18,8 @@
         "laravel/socialite": "^5.9",
         "laravel/tinker": "^2.8",
         "orangehill/iseed": "^3.0",
+        "predis/predis": "^2.2",
+        "propaganistas/laravel-phone": "^5.1",
         "qoraiche/laravel-mail-editor": "^4.1@beta",
         "rappasoft/laravel-livewire-tables": "^3.1",
         "ryangjchandler/laravel-comments": "^0.2.0",
@@ -30,6 +32,7 @@
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
         "fakerphp/faker": "^1.9.1",
+        "laravel-lang/common": "^6.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
