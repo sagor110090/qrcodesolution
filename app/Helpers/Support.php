@@ -420,16 +420,6 @@ class Support extends Facade
 
         return $vcard->getOutput();
 
-        // dd($vcard->getOutput());
-        // dd($vcard);
-        // $vcard->addPhoto(__DIR__ . '/landscape.jpeg');
-        // return $vcard->download();
-
-        $vcard->setSavePath(storage_path('app/public/vcard/'));
-        $vcard->save();
-
-        return asset('storage/vcard/'.$vcard->getFilename().'.vcf');
-
     }
 
     //event font list
