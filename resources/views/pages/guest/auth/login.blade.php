@@ -21,10 +21,14 @@ $authenticate = function () {
 
     event(new Login(auth()->guard('web'), User::where('email', $this->email)->first(), $this->remember));
 
-    if ($data = Support::getFromSession()) {
+    try {
+        $data = Support::getFromSession();
         auth()->user()->qrCodes()->create($data);
         Support::forgetFromSession();
         return $data['is_dynamic'] ? redirect()->route('my-qrcode.dynamic') : redirect()->route('my-qrcode.static');
+
+    } catch (\Throwable $th) {
+        Support::forgetFromSession();
     }
 
     return redirect()->intended(route('dashboard'));

@@ -122,12 +122,7 @@ class Create extends Component
 
     public $qrcodePreview = '';
 
-    // #[Computed]
-    public $isCreateRoute = false;
-    public function mount()
-    {
-        $this->isCreateRoute = request()->routeIs('my-qrcode.create');
-    }
+
 
     public function qrCodeCreate()
     {
@@ -505,5 +500,21 @@ class Create extends Component
             $this->dynamic = true;
         }
         return view('livewire.my-qrcode.create');
+    }
+
+
+
+    public function placeholder()
+    {
+        return <<<'HTML'
+        <div>
+            <div class="lds-ring">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        HTML;
     }
 }

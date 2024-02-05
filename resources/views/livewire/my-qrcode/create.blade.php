@@ -7,9 +7,8 @@
         </h2>
     </x-slot>
 
-    <div @class(['h-full py-12' => $isCreateRoute])>
-        <div @class(['h-full mx-auto max-w-7xl sm:px-6 lg:px-8' => $isCreateRoute])>
-            <div class="z-10 grid grid-cols-12 gap-4 mt-6" x-data="{
+
+            <div class="grid w-full max-w-6xl grid-cols-12 gap-4 mx-auto mt-6" x-data="{
                 type: @entangle('type'),
                 imageType: 'png',
                 qr_style: @entangle('qr_style'),
@@ -371,14 +370,12 @@
                 </div>
 
             </div>
-        </div>
-    </div>
 
 </div>
 
 
 
-@push('css')
+@assets
     <style>
         .qrcode-sticky {
             position: sticky;
@@ -392,4 +389,4 @@
             width: 188px;
         }
     </style>
-@endpush
+@endassets

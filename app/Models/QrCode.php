@@ -99,9 +99,13 @@ class QrCode extends Model
         return $this->hasMany(QrCodeTrack::class)->latest();
     }
 
-    protected static function boot()
+    protected static function booted()
     {
-        parent::boot();
+
+        static::creating(function ($qrCode) {
+            $qrCode->name = $qrCode->name ?? 'Untitled';
+        });
+
         static::created(function ($qrCode) {
             $qrCode->subdomain = Support::createSubdomain($qrCode->subdomain ?? $qrCode->type, $qrCode->id);
             $qrCode->save();

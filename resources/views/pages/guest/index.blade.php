@@ -96,9 +96,9 @@ name('home');
         </div>
 
 
-        <div class="w-full max-w-6xl mx-auto">
-            <livewire:my-qrcode.create />
-        </div>
+
+            <livewire:my-qrcode.create lazy/>
+
 
 
 

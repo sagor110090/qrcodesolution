@@ -31,7 +31,7 @@ Route::get('/login/{social}/callback', [LoginController::class, 'handleProviderC
 
 
 Route::domain('app.' . config('app.domain'))->middleware('auth')->group(function () {
-    Route::get('my-qrcode/create', App\Livewire\MyQrcode\Create::class)->name('my-qrcode.create');
+    Route::get('my-qrcode/create', App\Livewire\MyQrcode\Create::class)->name('my-qrcode.create')->lazy();
     Route::get('my-qrcode/dynamic', App\Livewire\MyQrcode\DynamicQrcode::class)->name('my-qrcode.dynamic');
     Route::get('my-qrcode/static', App\Livewire\MyQrcode\StaticQrcode::class)->name('my-qrcode.static');
     Route::get('my-qrcode/{subdomain}/edit', App\Livewire\MyQrcode\Edit::class)->name('my-qrcode.edit');
