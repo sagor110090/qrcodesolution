@@ -1,6 +1,6 @@
 
 <div class="col-span-12 mt-5 md:col-span-8">
-    <div class="grid justify-center grid-cols-8 gap-1">
+    <div class="grid justify-center grid-cols-6 gap-4">
         <x-tw.button-select @click="qr_eye_center = 'default'" value="default"
              type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eee-b2ca3f7c"
