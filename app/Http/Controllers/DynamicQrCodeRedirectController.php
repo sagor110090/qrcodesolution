@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\Support;
 use App\Models\QrCode;
+use App\Helpers\Support;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class DynamicQrCodeRedirectController extends Controller
 {
@@ -59,7 +60,12 @@ class DynamicQrCodeRedirectController extends Controller
 
         if($qrCode->type == 'vcard'){
             $url = Support::vCardQrCodeDataGenerate($qrCode->qr_code_info);
-            return redirect()->away($url);
+            return Response::make(
+                $url,
+                200,
+                ['Content-Type' => 'text/vcard']
+            );
+            // return redirect()->away($url);
         }
         $url  = Support::staticQrCodeDataGenerate($qrCode->type,$qrCode->qr_code_info);
         return redirect()->away($url);
