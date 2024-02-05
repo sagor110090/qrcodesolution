@@ -21,7 +21,7 @@
 
                 <div class="flex items-center">
                     <div class="hidden w-[38px] h-[38px] overflow-hidden rounded-full sm:block" x-cloak>
-                        {{-- <x-ui.light-dark-switch></x-ui.light-dark-switch> --}}
+                        <x-ui.light-dark-switch></x-ui.light-dark-switch>
                     </div>
 
                     <!-- User Dropdown -->

@@ -6,7 +6,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b124-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_default"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M0,0v14h14V0H0z M12,12H2V2h10V12z">
@@ -19,7 +19,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b125-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_flurry"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label active_label"><svg
+                    class="btn btn-light rounded-0 marker_label active_label"><svg
                         width="32" height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -33,7 +33,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b126-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_sdoz"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -47,7 +47,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b127-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_drop_in"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -61,7 +61,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b128-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_drop"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -75,7 +75,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b12d-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_dropeye"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -89,7 +89,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b12e-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_dropeyeleft"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -103,7 +103,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b12f-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_dropeyeleaf"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -117,7 +117,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b130-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_dropeyeright"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -131,7 +131,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b131-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_squarecircle"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -145,7 +145,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b129-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_circle"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -159,7 +159,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b12a-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_rounded"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -173,7 +173,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b12b-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_flower"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -187,7 +187,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b12c-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_flower_in"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -201,7 +201,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b132-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_leaf"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -215,7 +215,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b133-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_3-corners"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -229,7 +229,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b134-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_vortex"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -245,7 +245,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b135-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_dots"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -259,7 +259,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b136-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_bruised"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -273,7 +273,7 @@
             <div id="w-node-bccc0b1a-c34c-3d82-a479-db2a8f66b137-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_out_canvas"
-                    class="btn btn-light p-1 me-1 mb-1 marker_label"><svg width="32"
+                    class="btn btn-light rounded-0 marker_label"><svg width="32"
                         height="32" viewBox="0 0 14 14" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path class="st0"

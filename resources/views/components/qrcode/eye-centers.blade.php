@@ -6,7 +6,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eee-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_default"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label active_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label active_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect width="6" height="6">
@@ -19,7 +19,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eef-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_flurry"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon
@@ -33,7 +33,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef0-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_sdoz"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon points="6,6 0.5,6 0,0 6,0.5">
@@ -46,7 +46,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef1-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_drop_in"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -60,7 +60,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef2-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_drop"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -74,7 +74,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef3-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_dropeye"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path d="M6,6H3C1.3,6,0,4.7,0,3l0-3l3,0c1.7,0,3,1.3,3,3V6z">
@@ -87,7 +87,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef4-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_circle"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3"></circle>
@@ -99,7 +99,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef5-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_rounded"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -113,7 +113,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef6-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_sun"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon
@@ -127,7 +127,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef7-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_star"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -141,7 +141,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef8-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_diamond"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.9" y="0.9"
@@ -156,7 +156,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef9-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_danger"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon
@@ -170,7 +170,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efa-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_cross"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon
@@ -184,7 +184,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efb-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_plus"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -197,7 +197,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efc-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_x"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -211,7 +211,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efd-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_heart"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -225,7 +225,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efe-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_vortex"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -239,7 +239,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eff-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_sparkle_dot"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -253,7 +253,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9f00-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_9-dots"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <circle cx="1" cy="1" r="1"></circle>
@@ -273,7 +273,7 @@
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9f01-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_9-dots-fat"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -286,7 +286,7 @@
             type="qr_eye_center">
             <div class="w-embed">
                 <label for="marker_in_flower"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -299,7 +299,7 @@
             type="qr_eye_center">
             <div class="w-embed">
                 <label for="marker_in_elastic"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -312,7 +312,7 @@
             type="qr_eye_center">
             <div class="w-embed">
                 <label for="marker_in_diagonal"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <polygon points="6,6 3,6 0,3 0,0 3,0 6,3 ">
@@ -324,7 +324,7 @@
             type="qr_eye_center">
             <div class="w-embed">
                 <label for="marker_in_ropes"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -343,7 +343,7 @@
             type="qr_eye_center">
             <div class="w-embed">
                 <label for="marker_in_ropes-vert"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path
@@ -362,7 +362,7 @@
             type="qr_eye_center">
             <div class="w-embed">
                 <label for="marker_in_bruised"
-                    class="btn btn-light p-1 me-1 mb-1 marker_center_label"><svg
+                    class="btn btn-light rounded-0 marker_center_label"><svg
                         width="14" height="14" viewBox="0 0 6 6" fill="currentColor"
                         xmlns="http://www.w3.org/2000/svg">
                         <path

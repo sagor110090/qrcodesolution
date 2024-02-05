@@ -507,14 +507,12 @@ class Create extends Component
     public function placeholder()
     {
         return <<<'HTML'
-        <div>
-            <div class="lds-ring">
+            <div class="lds-ring" style="background: #030712;">
                 <div></div>
                 <div></div>
                 <div></div>
                 <div></div>
             </div>
-        </div>
         HTML;
     }
 }

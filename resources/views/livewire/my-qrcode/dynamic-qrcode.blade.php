@@ -10,8 +10,8 @@
             <div class="h-full mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <x-qrcode.subscription-alert />
 
-                <div class="grid grid-cols-6 gap-4">
-                    <div class="col-span-6 col-end-7 md:col-span-2 md:col-end-7">
+                <div class="grid grid-cols-8 gap-4">
+                    <div class="col-span-12 col-end-9 md:col-span-2 md:col-end-9">
                         <x-input
                         wire:model.live.debounce.500ms="search"
                         type="text"
