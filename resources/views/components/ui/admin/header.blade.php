@@ -21,7 +21,7 @@
 
                 <div class="flex items-center">
                     <div class="hidden w-[38px] h-[38px] overflow-hidden rounded-full sm:block" x-cloak>
-                        <x-ui.light-dark-switch></x-ui.light-dark-switch>
+                        {{-- <x-ui.light-dark-switch></x-ui.light-dark-switch> --}}
                     </div>
 
                     <!-- User Dropdown -->
@@ -59,7 +59,7 @@
                     <!-- Mobile Switch and Hamburger -->
                     <div :class="{ 'right-4' : open, 'right-0' : !open }" class="absolute top-0 flex items-center mt-3 space-x-2 sm:right-0 sm:hidden">
                         <div class="block w-10 h-10 overflow-hidden rounded-md" x-cloak>
-                            <x-ui.light-dark-switch></x-ui.light-dark-switch>
+                            {{-- <x-ui.light-dark-switch></x-ui.light-dark-switch> --}}
                         </div>
                         <button @click="open = ! open" class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md dark:text-gray-500 hover:text-gray-500 dark:hover:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-900 focus:text-gray-500 dark:focus:text-gray-400">
                             <svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
