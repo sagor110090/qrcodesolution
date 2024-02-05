@@ -1,8 +1,8 @@
 
-<div class="col-span-12 md:col-span-8 mt-5">
-    <div class="grid grid-cols-6 gap-4">
+<div class="col-span-12 mt-5 md:col-span-8">
+    <div class="grid justify-center grid-cols-8 gap-1">
         <x-tw.button-select @click="qr_eye_center = 'default'" value="default"
-            type="qr_eye_center">
+             type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eee-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_default"
@@ -15,7 +15,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'flurry'" value="flurry"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eef-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_flurry"
@@ -29,7 +29,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'sdoz'" value="sdoz"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef0-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_sdoz"
@@ -42,7 +42,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'drop_in'" value="drop_in"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef1-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_drop_in"
@@ -56,7 +56,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'drop'" value="drop"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef2-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_drop"
@@ -70,7 +70,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'dropeye'" value="dropeye"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef3-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_dropeye"
@@ -83,7 +83,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'circle'" value="circle"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef4-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_circle"
@@ -95,7 +95,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'rounded'" value="rounded"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef5-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_rounded"
@@ -109,7 +109,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'sun'" value="sun"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef6-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_sun"
@@ -123,7 +123,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'star'" value="star"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef7-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_star"
@@ -137,7 +137,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'diamond'" value="diamond"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef8-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_diamond"
@@ -152,7 +152,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'danger'" value="danger"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9ef9-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_danger"
@@ -166,7 +166,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'cross'" value="cross"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efa-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_cross"
@@ -180,7 +180,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'plus'" value="plus"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efb-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_plus"
@@ -193,7 +193,7 @@
                     </svg></label>
             </div>
         </x-tw.button-select>
-        <x-tw.button-select @click="qr_eye_center = 'x'" value="x" type="qr_eye_center">
+        <x-tw.button-select @click="qr_eye_center = 'x'" value="x" type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efc-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_x"
@@ -207,7 +207,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'heart'" value="heart"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efd-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_heart"
@@ -221,7 +221,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'vortex'" value="vortex"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9efe-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_vortex"
@@ -235,7 +235,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'sparkle_dot'" value="sparkle_dot"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9eff-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_sparkle_dot"
@@ -249,7 +249,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = '9-dots'" value="9-dots"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9f00-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_9-dots"
@@ -269,7 +269,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = '9-dots-fat'" value="9-dots-fat"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div id="w-node-d2c0b408-7f74-d66f-ac42-404ce29d9f01-b2ca3f7c"
                 class="w-embed">
                 <label for="marker_in_9-dots-fat"
@@ -283,7 +283,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'flower'" value="flower"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div class="w-embed">
                 <label for="marker_in_flower"
                     class="btn btn-light rounded-0 marker_center_label"><svg
@@ -296,7 +296,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'elastic'" value="elastic"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div class="w-embed">
                 <label for="marker_in_elastic"
                     class="btn btn-light rounded-0 marker_center_label"><svg
@@ -309,7 +309,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'diagonal'" value="diagonal"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div class="w-embed">
                 <label for="marker_in_diagonal"
                     class="btn btn-light rounded-0 marker_center_label"><svg
@@ -321,7 +321,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'ropes'" value="ropes"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div class="w-embed">
                 <label for="marker_in_ropes"
                     class="btn btn-light rounded-0 marker_center_label"><svg
@@ -340,7 +340,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'ropes-vert'" value="ropes-vert"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div class="w-embed">
                 <label for="marker_in_ropes-vert"
                     class="btn btn-light rounded-0 marker_center_label"><svg
@@ -359,7 +359,7 @@
             </div>
         </x-tw.button-select>
         <x-tw.button-select @click="qr_eye_center = 'bruised'" value="bruised"
-            type="qr_eye_center">
+            type="qr_eye_center" style="height: 37px; width: 37px;">
             <div class="w-embed">
                 <label for="marker_in_bruised"
                     class="btn btn-light rounded-0 marker_center_label"><svg
