@@ -5,7 +5,7 @@ use Livewire\Volt\Component;
 
 
 name('home');
-
+middleware('guest');
 
 ?>
 

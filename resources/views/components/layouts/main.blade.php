@@ -43,7 +43,9 @@
 
 <body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900" x-data="loader">
 
-    {{ $slot }}
+
+        {{ $slot }}
+
 
     @stack('js')
 
