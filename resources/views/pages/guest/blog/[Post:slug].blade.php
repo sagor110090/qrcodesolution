@@ -49,7 +49,7 @@
         ]
     ]" />
 
-    <article class="relative w-full h-auto p-3 prose-sm prose md:prose-2xl dark:prose-invert">
+    <article class="relative w-full h-auto p-3 mx-auto prose-sm prose md:prose-2xl dark:prose-invert">
         <div class="py-6 mx-auto heading md:py-12 lg:w-full md:text-center">
 
             <div class="flex flex-col items-center justify-center mt-4 mb-0">
