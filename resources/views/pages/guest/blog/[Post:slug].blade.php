@@ -49,7 +49,7 @@
         ]
     ]" />
 
-    <article class="relative w-full h-auto mx-auto prose-sm prose md:prose-2xl dark:prose-invert">
+    <article class="relative w-full h-auto mx-3 prose-sm prose md:prose-2xl dark:prose-invert">
         <div class="py-6 mx-auto heading md:py-12 lg:w-full md:text-center">
 
             <div class="flex flex-col items-center justify-center mt-4 mb-0">
@@ -69,7 +69,7 @@
             @endif
 
             <div class="flex items-center justify-center mt-4 text-left">
-                <div class="max-w-full -mt-5 p-1">
+                <div class="max-w-full p-1 -mt-5">
                     {!! $post->content !!}
                 </div>
             </div>
