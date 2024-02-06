@@ -1,8 +1,8 @@
-<div class="col-span-12 md:col-span-8 mt-5">
+<div class="col-span-12 mt-5 md:col-span-8">
     <div class="grid grid-cols-5 gap-4">
         <x-tw.button-select @click="frame = 'none'" value="none" type="frame">
             <label for="outer_frame_none"
-                class="btn btn-light p-1 frame_label active_label"><svg width="48"
+                class="p-1 btn btn-light frame_label active_label"><svg width="48"
                     height="56" viewBox="0 0 24 24" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <polygon
@@ -12,7 +12,7 @@
             </label>
         </x-tw.button-select>
         <x-tw.button-select @click="frame = 'bottom'" value="bottom" type="frame">
-            <label for="outer_frame_bottom" class="btn btn-light p-1 frame_label"><svg
+            <label for="outer_frame_bottom" class="p-1 btn btn-light frame_label"><svg
                     width="48" height="56" viewBox="0 0 24 29" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -22,7 +22,7 @@
             </label>
         </x-tw.button-select>
         <x-tw.button-select @click="frame = 'top'" value="top" type="frame">
-            <label for="outer_frame_top" class="btn btn-light p-1 frame_label"><svg
+            <label for="outer_frame_top" class="p-1 btn btn-light frame_label"><svg
                     width="48" height="56" viewBox="0 0 24 29" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -34,7 +34,7 @@
         <x-tw.button-select @click="frame = 'balloon-bottom'" value="balloon-bottom"
             type="frame">
             <label for="outer_frame_balloon-bottom"
-                class="btn btn-light p-1 frame_label"><svg width="48" height="56"
+                class="p-1 btn btn-light frame_label"><svg width="48" height="56"
                     viewBox="0 0 24 31" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -49,7 +49,7 @@
         <x-tw.button-select @click="frame = 'balloon-top'" value="balloon-top"
             type="frame">
             <label for="outer_frame_balloon-top"
-                class="btn btn-light p-1 frame_label"><svg width="48" height="56"
+                class="p-1 btn btn-light frame_label"><svg width="48" height="56"
                     viewBox="0 0 24 31" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -64,7 +64,7 @@
         <x-tw.button-select @click="frame = 'ribbon-bottom'" value="ribbon-bottom"
             type="frame">
             <label for="outer_frame_ribbon-bottom"
-                class="btn btn-light p-1 frame_label"><svg width="48" height="56"
+                class="p-1 btn btn-light frame_label"><svg width="48" height="56"
                     viewBox="0 0 24 28" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -76,7 +76,7 @@
         <x-tw.button-select @click="frame = 'ribbon-top'" value="ribbon-top"
             type="frame">
             <label for="outer_frame_ribbon-top"
-                class="btn btn-light p-1 frame_label"><svg width="48" height="56"
+                class="p-1 btn btn-light frame_label"><svg width="48" height="56"
                     viewBox="0 0 24 28" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -86,7 +86,7 @@
             </label>
         </x-tw.button-select>
         <x-tw.button-select @click="frame = 'phone'" value="phone" type="frame">
-            <label for="outer_frame_phone" class="btn btn-light p-1 frame_label"><svg
+            <label for="outer_frame_phone" class="p-1 btn btn-light frame_label"><svg
                     width="48" height="56" viewBox="0 0 24 25.5" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -96,7 +96,7 @@
             </label>
         </x-tw.button-select>
         <x-tw.button-select @click="frame = 'cine'" value="cine" type="frame">
-            <label for="outer_frame_cine" class="btn btn-light p-1 frame_label"><svg
+            <label for="outer_frame_cine" class="p-1 btn btn-light frame_label"><svg
                     width="48" height="56" viewBox="0 0 24 23.9" fill="currentColor"
                     xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -113,9 +113,11 @@
     <x-tw.input label="Frame Phase" placeholder="Frame Phase" id="framePhase"
         name="frame_label" type="text" class="col-span-2 mt-4 mb-4" size='lg'
         x-model="frame_label" />
-    <x-tw.select label="Frame Font" placeholder="Frame Font" id="frameFont"
-        name="frame_label_font" class="col-span-2 mt-4"
-        :optinons="json_encode(Support::frame_label_fonts())" />
+        <x-select placeholder="Select frame label font" id="frameLabelFont">
+            @foreach (Support::frame_label_fonts() as $key => $value)
+                <x-select.option  value="{{ $value }}" label="{{ preg_replace('/(?<!\ )[A-Z]/', ' $0', str_replace('.svg', ' ', $value)) }}" />
+            @endforeach
+        </x-select>
     <x-tw.input label="Frame Color" placeholder="Frame Color" id="frameColor"
         name="frame_label_text_color" type="color" class="col-span-2 mt-4" size='lg'
         value="#000000" />
