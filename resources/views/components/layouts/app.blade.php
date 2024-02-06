@@ -17,7 +17,7 @@
             </div>
         </header>
     @endif
-    <div class="mx-4 md:mx-0">
+    <div class="px-4 md:px-0">
         {{ $slot }}
     </div>
 </x-layouts.main>
