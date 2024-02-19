@@ -16,14 +16,17 @@ Route::domain(config('app.domain'))->group(function () {
 Route::get('/q/{code}', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 
 //event create
-Route::view('/event-create','dynamic.event-create')->name('event.create');
 
 //event show
 Route::domain('{code}.' . config('app.domain'))->get('/', App\Http\Controllers\DynamicQrCodeRedirectController::class)->name('qrcode.show')->middleware('tracking');
 
 
 //event create
+Route::view('/event-create','dynamic.event-create')->name('event.create');
+//social create
 Route::view('/social-create','dynamic.social-create')->name('social.create');
+//invoice create
+Route::view('/invoice-create','dynamic.invoice-create')->name('invoice.create');
 
 
 Route::get('/login/{social}', [LoginController::class, 'socialLogin'])->where('social', 'twitter|facebook|linkedin|google|github|bitbucket')->name('login.social');

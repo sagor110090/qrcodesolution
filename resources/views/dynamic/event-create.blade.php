@@ -1,9 +1,9 @@
 <?php
- 
+
 use Livewire\Volt\Component;
 use function Livewire\Volt\{state, rules,updated};
-  
- 
+
+
 
 state([
     'steps' => [
@@ -140,7 +140,7 @@ $setCurrentStep = function ($step) {
 
 
 ?>
- 
+
 
 <x-layouts.frontend>
     <div class="h-full">
