@@ -39,6 +39,8 @@
 
     @stack('css')
     <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png" sizes="16x16">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4513982418525408"
+    crossorigin="anonymous"></script>
 </head>
 
 <body class="min-h-screen antialiased bg-slate-100 dark:bg-gradient-to-b dark:from-gray-950 dark:to-gray-900" x-data="loader">
@@ -52,7 +54,7 @@
     @livewire('wire-elements-modal')
 
 
-    <script type="text/javascript" src="https://chat.mehedihasansagor.com/cdn?key=9b5a6036-cda9-4a2d-99be-6f38d84686e5"></script>
+    <script type="text/javascript" src="https://chat.test/cdn?key=9b5a6036-cda9-4a2d-99be-6f38d84686e5"></script>
 </body>
 
 </html>
