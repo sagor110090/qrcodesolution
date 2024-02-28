@@ -28,7 +28,7 @@
                         @if ($event->one_day_event)
                             <p class="text-base text-gray-700 md:text-lg"
                                 style="color:{{ Support::visibleColor($event->color) }}; font-family: {{ $event->font }};font-size:20px;">
-                                {{ Carbon\Carbon::parse($event->start_date_time)->format('d M Y h:i A') }}
+                                {{ Carbon\Carbon::parse($event->date_time)->format('d M Y h:i A') }}
                             </p>
                         @else
                             <p class="text-base text-gray-700 md:text-lg"
