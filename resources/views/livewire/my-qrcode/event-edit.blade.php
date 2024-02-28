@@ -38,7 +38,7 @@
                             <x-input placeholder="Event name" id="name" wire:model="event.name"
                                 class="col-span-6 mt-3" />
                             <x-input placeholder="Event URL" id="event_url" wire:model="event_url"
-                                class="col-span-6 mt-3" />
+                                suffix=".qrcodesolution.com" class="col-span-6 mt-3" />
                             <x-textarea placeholder="Description" id="description" wire:model="event.description"
                                 rows="3" class="col-span-6 mt-3 resize-none" />
                         </div>

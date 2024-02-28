@@ -51,7 +51,7 @@ $setCurrentStep = function ($step) {
         $this->validate(
             [
                 'event.name' => 'required|min:3|max:255',
-                'event_url' => 'required|min:3|max:255|unique:qr_codes,subdomain',
+                'event_url' => 'required|min:3|max:255|alpha|unique:qr_codes,subdomain',
                 'event.description' => 'required|min:20|max:500',
             ],
             [
@@ -66,6 +66,7 @@ $setCurrentStep = function ($step) {
                 'event.description.max' => 'Event description must be at most 500 characters',
                 'event_url.url' => 'Event URL must be a valid URL',
                 'event_url.unique' => 'Event URL must be unique',
+                'event_url.alpha' => 'Event URL must be alphabets only',
             ],
         );
     } elseif ($step == 'step3') {
