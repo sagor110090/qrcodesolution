@@ -82,10 +82,10 @@
                                 <div class="col-span-6">
                                     <x-datetime-picker placeholder="Date and time" wire:model.defer="event.date_time" />
                                 </div>
-                                <div class="col-span-6">
+                                {{-- <div class="col-span-6">
                                     <x-input placeholder="Duration" id="duration" wire:model="event.duration"
                                         class="col-span-6" />
-                                </div>
+                                </div> --}}
                             </div>
 
 
