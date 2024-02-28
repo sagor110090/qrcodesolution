@@ -99,7 +99,7 @@ class EventEdit extends Component
                 'event.start_date_time' => 'required_if:event.one_day_event,false',
                 'event.end_date_time' => 'required_if:event.one_day_event,false',
                 'event.date_time' => 'required_if:event.one_day_event,true',
-                'event.duration' => 'required_if:event.one_day_event,true|min:3|max:255',
+                // 'event.duration' => 'required_if:event.one_day_event,true|min:3|max:255',
             ],
             [
                 'event.location.required' => 'Event location is required',
