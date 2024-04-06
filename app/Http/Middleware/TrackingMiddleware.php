@@ -16,20 +16,21 @@ class TrackingMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(env('APP_ENV') == 'local'){
+        if (env('APP_ENV') == 'local') {
             $ip = '49.35.41.195';
-        }
-        else{
+        } else {
             $ip = $request->ip();
         }
 
 
-        if(session()->get('location')){
+        if (session()->get('location')) {
             $location = session()->get('location');
-        }else{
+        } else {
             $location = Location::get($ip);
-            session()->put('location',$location);
+            session()->put('location', $location);
         }
+
+        // dd($location);
 
         $request->merge([
             'ip_address' => $ip,
