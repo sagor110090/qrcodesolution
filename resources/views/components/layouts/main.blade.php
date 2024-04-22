@@ -54,7 +54,7 @@
     @livewire('wire-elements-modal')
 
 
-    <script type="text/javascript" src="https://chat.test/cdn?key=9b5a6036-cda9-4a2d-99be-6f38d84686e5"></script>
+    {{-- <script type="text/javascript" src="https://chat.test/cdn?key=9b5a6036-cda9-4a2d-99be-6f38d84686e5"></script> --}}
 </body>
 
 </html>
