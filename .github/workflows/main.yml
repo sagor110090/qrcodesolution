@@ -1,42 +1,27 @@
+name: Deploy
 
+# Trigger the workflow on push and
+# pull request events on the production branch
 on:
   push:
     branches:
       - main
-name: 🚀 Deploy website on push
+  pull_request:
+    branches:
+      - main
+
+# Authenticate to the the server via ssh
+# and run our deployment script
 jobs:
-  web-deploy:
-    name: 🎉 Deploy
+  deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: 🚚 Get latest code
-      uses: actions/checkout@v3
-
-    # - name: configure node
-    #   uses: actions/setup-node@v2
-    #   with:
-    #     node-version: '16.x'
-
-    # - uses: "shivammathur/setup-php@v2"
-    #   with:
-    #       php-version: '8.1'
-    # - uses: "ramsey/composer-install@v2"
-    #   with:
-    #     composer-options: "--ignore-platform-reqs --optimize-autoloader"
-
-    # - name: composer update
-    #   run: composer update
-
-    # - name: npm install
-    #   run: npm install
-
-    # - name: npm run prod
-    #   run: npm run build
-
-    - name: 📂 Sync files
-      uses: appleboy/ssh-action@master
-      with:
-        server: qrcodesolution.com
-        username: ${{ secrets.ftp_username }}
-        password: ${{ secrets.ftp_password }}
-         script: "cd /var/www/qrcodesolution"
+      - uses: actions/checkout@v2
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.SSHKEY }}
+          script: "cd /var/www/html && ./.scripts/deploy.sh"
