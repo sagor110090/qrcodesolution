@@ -1,6 +1,6 @@
 @props(['qrCode'=>null])
 
-<div class="px-6 py-4 border-neutral-100 dark:border-neutral-500" x-show="type === 'event'">
+<div class="px-6 py-4 border-neutral-100 dark:border-neutral-500" x-show="type === 'event'" x-data x-cloak>
     <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
         <span class="mr-2 font-bold text-md">
             Event QR Code

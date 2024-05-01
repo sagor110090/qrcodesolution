@@ -2,7 +2,7 @@
     'audio' => null,
 ])
 
-<div class="border-neutral-100 px-6 py-4 dark:border-neutral-500" x-show="type === 'audio'">
+<div class="border-neutral-100 px-6 py-4 dark:border-neutral-500" x-show="type === 'audio'" x-data x-cloak>
     <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
         <span class="mr-2 font-bold text-md">
             Audio QR Code

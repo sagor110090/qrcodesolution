@@ -1,4 +1,4 @@
-<div class="border-neutral-100 px-6 py-4 dark:border-neutral-500" x-show="type === 'text'">
+<div class="border-neutral-100 px-6 py-4 dark:border-neutral-500" x-show="type === 'text'" x-data x-cloak>
     <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
         <x-tw.label class="mr-2 font-bold text-md">
             Text QR Code

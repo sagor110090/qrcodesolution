@@ -1,4 +1,4 @@
-<div class="col-span-12 mt-5 md:col-span-8">
+<div class="col-span-12 mt-5 md:col-span-8"  x-data x-cloak>
     <div class="grid grid-cols-5 gap-4">
 
         <x-tw.button-select @click="qr_style = 'default'" value="default"

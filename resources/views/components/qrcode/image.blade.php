@@ -1,7 +1,7 @@
 @props([
     'image' => null,
 ])
-<div class="px-6 py-4 border-neutral-100 dark:border-neutral-500" x-show="type === 'image'">
+<div class="px-6 py-4 border-neutral-100 dark:border-neutral-500" x-show="type === 'image'" x-data x-cloak>
     <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
         <x-tw.label class="mr-2 font-bold text-md">
             Image QR Code

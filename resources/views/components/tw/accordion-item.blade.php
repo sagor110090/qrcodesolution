@@ -16,7 +16,7 @@
                 </div>
         </button>
     </h2>
-    <div id="{{$id}}" class="border-t border-neutral-200" x-show="open" x-on:click="open = false"  >
+    <div id="{{$id}}" class="border-t border-neutral-200" x-show="open" x-on:click="open = false"  x-data x-cloak>
         <div class="px-5 py-4">
            {{ $slot }}
         </div>
