@@ -54,7 +54,9 @@
     @livewire('wire-elements-modal')
 
 
+    @persist('chat')
     <script type="text/javascript" src="https://talklayerai.com/cdn?key=9bf009d6-3706-41d9-823e-310b9a6f6f1b"></script>
+    @endpersist
 </body>
 
 </html>
