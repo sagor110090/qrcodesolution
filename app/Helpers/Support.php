@@ -38,6 +38,7 @@ class Support extends Facade
             'video',
             'audio',
             'pdf',
+            'file'
         ];
     }
 

@@ -111,6 +111,9 @@ class Create extends Component
     //audio
     public $audio = '';
 
+    //file
+    public $file = '';
+
 
 
 
@@ -419,6 +422,10 @@ class Create extends Component
             $rules = ['audio' => 'required'];
             $this->validate($rules);
             $qrCodeInfo['audio'] = Support::uploadFile($this->audio, 'audio');
+        } elseif ($this->type == 'file') {
+            $rules = ['file' => 'required'];
+            $this->validate($rules);
+            $qrCodeInfo['file'] = Support::uploadFile($this->file, 'file');
         }
 
 
@@ -490,6 +497,8 @@ class Create extends Component
             $this->video = $file;
         } elseif ($type == 'audio') {
             $this->audio = $file;
+        } elseif ($type == 'file') {
+            $this->file = $file;
         }
     }
 

@@ -4,7 +4,7 @@
 
 ])
 
-<div class="grid grid-cols-12 gap-4 mt-6 z-10" x-data="{
+<div class="z-10 grid grid-cols-12 gap-4 mt-6" x-data="{
     type: @entangle('type'),
     imageType: 'png',
     qr_style: @entangle('qr_style'),
@@ -84,9 +84,9 @@
 }">
 
     <div class="col-span-12 md:col-span-3">
-        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+        <div class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
-            <div class="border-neutral-100 px-6 py-4  dark:border-neutral-500">
+            <div class="px-6 py-4 border-neutral-100 dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
                     <x-tw.label class="mr-2 font-bold text-md">
                         Destinations
@@ -94,8 +94,8 @@
                 </h5>
             </div>
 
-            <div class="pl-6 pr-6  pb-6" x-data>
-                <div class="grid grid-cols-2 gap-4  text-center text-neutral-500 dark:text-neutral-300">
+            <div class="pb-6 pl-6 pr-6" x-data>
+                <div class="grid grid-cols-2 gap-4 text-center text-neutral-500 dark:text-neutral-300">
                     <x-qrcode.type icon="bi bi-link-45deg" name="URL" @click="type = 'url'" />
                     <x-qrcode.type icon="bi bi-envelope" name="Email" @click="type = 'email'" />
                     <x-qrcode.type icon="bi bi-person" name="VCard" @click="type = 'vcard'" />
@@ -116,7 +116,7 @@
     </div>
 
     <div class="col-span-12 md:col-span-6">
-        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
+        <div class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10">
 
             <x-qrcode.url />
             <x-qrcode.email />
@@ -140,7 +140,7 @@
                         <x-tw.radio label="Static" name="static" id="static" checked />
                         <x-tw.radio label="Dynamic" name="dynamic" id="dynamic" />
                     </div>
-                    <x-tw.label class="font-bold text-md mb-5 mt-10">
+                    <x-tw.label class="mt-10 mb-5 font-bold text-md">
                         Design Your QR Code
                     </x-tw.label>
                     <x-tw.accordion>
@@ -181,10 +181,10 @@
     </div>
 
     <div class="col-span-12 md:col-span-3"  wire:ignore>
-        <div class="bg-white shadow  dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10" data-te-sticky-init
+        <div class="bg-white shadow dark:bg-gray-800 sm:rounded-lg dark:bg-gray-900/50 dark:border dark:border-gray-200/10" data-te-sticky-init
             data-te-sticky-boundary="#sticky-top" data-te-sticky-direction="both">
 
-            <div class="border-neutral-100 px-6 py-4 dark:border-neutral-500">
+            <div class="px-6 py-4 border-neutral-100 dark:border-neutral-500">
                 <h5 class="flex items-center justify-center text-neutral-500 dark:text-neutral-300">
                     <x-tw.label class="mr-2 font-bold text-md">
                         Preview your QR Code
@@ -193,11 +193,11 @@
             </div>
 
 
-            <div class="p-0 grid  justify-center" >
+            <div class="grid justify-center p-0" >
                 <div class=" max-w-[18rem] rounded-lgdark:bg-neutral-700 grid justify-items-center">
-                    <div class="relative overflow-hidden bg-cover bg-no-repeat">
+                    <div class="relative overflow-hidden bg-no-repeat bg-cover">
 
-                        <div class="border-2 shadow-sm rounded-lg">
+                        <div class="border-2 rounded-lg shadow-sm">
                             <div x-html="qrcodePreview" id="qrcodePreview">
                             </div>
                             <img src="{{ asset('images/placeholder.svg') }}" x-show='!qrcodePreview' alt="placeholder"
@@ -222,10 +222,10 @@
 
                     </div>
                 </div>
-                <div class="mt-4 p-2 grid grid-cols-2 gap-4">
+                <div class="grid grid-cols-2 gap-4 p-2 mt-4">
                     <a href="javascript:void(0)" @click="download()"
-                        class="flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
-                        <i class="bi bi-download text-xl"></i>
+                        class="flex items-center justify-center p-2 rounded-lg bg-gradient-to-br from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
+                        <i class="text-xl bi bi-download"></i>
                         <span class="ml-2 font-bold text-md">
                             Download
                         </span>
@@ -235,8 +235,8 @@
                     data-te-target="#loginModal"
                     data-te-ripple-init
                     data-te-ripple-color="light"
-                        class="flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
-                        <i class="bi bi-save text-xl"></i>
+                        class="flex items-center justify-center p-2 rounded-lg bg-gradient-to-br from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
+                        <i class="text-xl bi bi-save"></i>
                         <span class="ml-2 font-bold text-md">
                             Save
                         </span>
@@ -244,8 +244,8 @@
                     @else
                     <a href="javascript:void(0)"
                         wire:click="save()"
-                        class="flex items-center justify-center bg-gradient-to-br rounded-lg p-2   from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
-                        <i class="bi bi-save text-xl"></i>
+                        class="flex items-center justify-center p-2 rounded-lg bg-gradient-to-br from-gray-200 to-gray-200 hover:from-gray-300 hover:to-gray-300 dark:from-gray-700 dark:to-gray-700 dark:hover:from-gray-600 dark:hover:to-gray-600 text-neutral-900 dark:text-neutral-100">
+                        <i class="text-xl bi bi-save"></i>
                         <span class="ml-2 font-bold text-md">
                             Save
                         </span>

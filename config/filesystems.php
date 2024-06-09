@@ -101,6 +101,14 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        'file' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/file'),
+            'url' => env('APP_URL') . '/storage/file',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
 
         's3' => [
             'driver' => 's3',

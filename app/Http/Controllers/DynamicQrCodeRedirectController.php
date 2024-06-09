@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\QrCode;
 use App\Helpers\Support;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
 class DynamicQrCodeRedirectController extends Controller
@@ -18,11 +19,14 @@ class DynamicQrCodeRedirectController extends Controller
 
 
         $qrCode = QrCode::where('code', $code)->first();
+        // dd($code);
 
         if (!$qrCode) {
             $qrCode = QrCode::where('subdomain', $code)->firstOrFail();
+            // dd($qrCode);
             $qrCode->increment('scan_count');
             $qrCode->qrCodeTracks()->create($request->all());
+
             if (!$qrCode->status) {
                 abort(404, 'Qr Code is not active');
             }
@@ -38,8 +42,18 @@ class DynamicQrCodeRedirectController extends Controller
                 return view('dynamic.audio-preview', ['audio' => (object)$qrCode->qr_code_info]);
             } elseif ($qrCode->type == 'image') {
                 return view('dynamic.image-preview', ['image' => (object)$qrCode->qr_code_info]);
+            } elseif ($qrCode->type == 'file') {
+                if (Storage::disk('public')->exists($qrCode->qr_code_info['file'])) {
+                    // download and redirect
+                    $downloadLink = Storage::disk('public')->download($qrCode->qr_code_info['file'], $qrCode->name);
+                    return $downloadLink;
+                }
+                abort(404, 'File not found');
+
+
             }
         }
+
         if (!$qrCode->status) {
             abort(404, 'Qr Code is not active');
         }
@@ -66,6 +80,7 @@ class DynamicQrCodeRedirectController extends Controller
                 ['Content-Type' => 'text/vcard']
             );
         }
+
         $url  = Support::staticQrCodeDataGenerate($qrCode->type, $qrCode->qr_code_info);
         return redirect()->away($url);
     }

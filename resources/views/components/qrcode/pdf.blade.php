@@ -13,8 +13,8 @@
         <div class="grid grid-cols-2 gap-4">
             <div class="col-span-2 text-center text-neutral-500 dark:text-neutral-300 text-weight-300">
 
-                <livewire:file-uploader :name="'pdf'"  :text="'Upload PDF'"
-                    :rules="[ 'file', 'max:100000','mimes:pdf,zip,doc' ]" :loadFileName="$pdf" />
+                <livewire:file-uploader :name="'pdf'"  :text="'Upload PDF'" :accept="'application/pdf'"
+                    :rules="[ 'file', 'max:100000','mimes:pdf' ]" :loadFileName="$pdf" />
                 @error('pdf') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
 
             </div>
