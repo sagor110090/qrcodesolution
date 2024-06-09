@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
-use App\Http\Controllers\Auth\EmailVerificationController; 
+use App\Http\Controllers\Auth\EmailVerificationController;
 
 
 
@@ -30,7 +30,7 @@ Route::view('/social-create','dynamic.social-create')->name('social.create');
 Route::view('/invoice-create','dynamic.invoice-create')->name('invoice.create');
 
 
-Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
+Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.login');
 Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
 
 Route::domain('app.' . config('app.domain'))->middleware('auth')->group(function () {
