@@ -9,33 +9,36 @@ use Laravel\Socialite\Facades\Socialite;
 
 class LoginController extends Controller
 {
-    //socialLogin
-    public function socialLogin($social)
+    public function redirectToGoogle()
     {
-        return Socialite::driver($social)->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
-    //handleProviderCallback
-    public function handleProviderCallback($social)
+    public function handleGoogleCallback()
     {
-        $userSocial = Socialite::driver($social)->user();
-        $this->_registerOrLoginUser($userSocial);
-        return redirect()->route('home');
-    }
-
-
-    protected function _registerOrLoginUser($data)
-    {
-        dd($data);
-        $user = User::where('email', $data->email)->first();
-        if (!$user) {
-            $user = new User();
-            $user->name = $data->name;
-            $user->email = $data->email;
-            $user->provider_id = $data->id;
-            $user->password = bcrypt($data->name);
-            $user->save();
+        try {
+            $user = Socialite::driver('google')->user();
+        } catch (\Exception $e) {
+            return redirect('/login');
         }
-        Auth::login($user);
+
+        $existingUser = User::where('email', $user->getEmail())->first();
+
+        if ($existingUser) {
+            // log the user in
+            Auth::login($existingUser, true);
+        } else {
+            // create a new user
+            $newUser = User::create([
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'google_id' => $user->getId(),
+                'password' => encrypt('my-google')
+            ]);
+
+            Auth::login($newUser, true);
+        }
+
+        return redirect()->intended('dashboard');
     }
 }
