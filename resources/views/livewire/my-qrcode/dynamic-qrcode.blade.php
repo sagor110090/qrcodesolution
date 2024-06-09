@@ -72,7 +72,16 @@
 
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-center mt-4">
+                                <div class="flex items-center justify-center mt-4" x-data="{
+                                    copyToClipboard: function (text) {
+                                        loadingStart();
+                                        navigator.clipboard.writeText(text);
+                                        loadingStop();
+                                        alert('Link copied to clipboard');
+
+                                    }
+
+                                }">
                                     <div class="grid items-center justify-center ml-2 text-center">
                                         <p class="text-gray-600 text-md dark:text-gray-200">
                                             <span class="font-bold">{{ $qrcode->scan_count }}</span> Scans
@@ -84,8 +93,12 @@
                                                 submit="false">
                                                 Track
                                             </x-ui.button>
-                                            {{-- share button --}}
-                                            <x-ui.button type="info" size="md" :href="route('qrcode.show', $qrcode->subdomain)" tag='a'>
+                                            {{-- coppy link --}}
+                                            <x-ui.button type="info" size="md" x-on:click="copyToClipboard('{{ route('qrcode.show', $qrcode->subdomain) }}')"
+                                                submit="false">
+                                                Copy
+                                            </x-ui.button>
+                                            <x-ui.button type="info" size="md" :href="route('qrcode.show', $qrcode->subdomain)" tag='a' _target="blank">
                                                 Share
                                             </x-ui.button>
 
