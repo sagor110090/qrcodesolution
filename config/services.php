@@ -34,7 +34,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('REDIRECT_URL')
+        'redirect' => 'https://qrcodesolution.com/login/google/callback'
      ],
      'facebook' => [
         'client_id' => env('FACEBOOK_CLIENT_ID'),
