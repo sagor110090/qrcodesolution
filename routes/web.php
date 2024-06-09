@@ -7,7 +7,6 @@ use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 
 
-
 //
 
 Route::domain(config('app.domain'))->group(function () {
@@ -30,8 +29,9 @@ Route::view('/social-create','dynamic.social-create')->name('social.create');
 Route::view('/invoice-create','dynamic.invoice-create')->name('invoice.create');
 
 
-Route::get('auth/google', [LoginController::class, 'redirectToGoogle'])->name('google.login');
-Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+Route::get('/login/{social}', [LoginController::class, 'socialLogin'])->where('social', 'twitter|facebook|linkedin|google|github|bitbucket')->name('login.social');
+Route::get('/login/{social}/callback', [LoginController::class, 'handleProviderCallback'])->where('social', 'twitter|facebook|linkedin|google|github|bitbucket');
+
 
 Route::domain('app.' . config('app.domain'))->middleware('auth')->group(function () {
     Route::get('my-qrcode/create', App\Livewire\MyQrcode\Create::class)->name('my-qrcode.create')->lazy();
