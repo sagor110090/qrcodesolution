@@ -81,6 +81,15 @@ $authenticate = function () {
 
                                     <x-ui.button type="primary" rounded="md" submit="true">Sign in</x-ui.button>
                                 </form>
+                                <a href="{{ url('auth/google') }}" class="inline-flex items-center justify-center w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                    <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M23.744 12.276c0-.825-.066-1.412-.209-2.033H12v3.851h6.905c-.14 1.163-.917 2.918-2.634 4.082l-.024.15 3.819 2.955.263.027c2.415-2.212 3.815-5.464 3.815-9.032z"></path>
+                                        <path d="M12 24c3.24 0 5.957-1.074 7.942-2.915l-3.782-2.932c-1.073.751-2.444 1.222-4.16 1.222-3.19 0-5.896-2.156-6.861-5.067l-.142.012-3.742 2.917-.048.144c1.98 3.82 5.993 6.619 10.793 6.619z"></path>
+                                        <path d="M5.139 14.412c-.238-.698-.375-1.44-.375-2.212s.137-1.514.375-2.212L1.35 7.071c-.838 1.558-1.323 3.311-1.323 5.129s.485 3.571 1.322 5.13l3.788-2.917z"></path>
+                                        <path d="M12 4.777c1.734 0 3.281.599 4.497 1.775l3.338-3.338C17.951 1.463 15.233 0 12 0 7.2 0 3.187 2.8 1.207 6.618l3.743 2.917c.956-2.911 3.671-5.067 6.861-5.067z"></path>
+                                    </svg>
+                                    Login with Google
+                                </a>
                                 <x-ui.button type="primary" rounded="md" submit="false" tag="a"
                                     href="{{ route('login.social', 'google') }}"
                                     style="margin-top: 10px;background-color: #dd4b39;border-color: #dd4b39;">
