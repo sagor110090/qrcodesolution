@@ -75,10 +75,10 @@ $authenticate = function () {
 
                             <x-ui.button type="primary" rounded="md" submit="true">Sign in</x-ui.button>
                         </form>
-                        {{-- <x-ui.button type="primary" rounded="md" submit="false" tag="a"
+                        <x-ui.button type="primary" rounded="md" submit="false" tag="a"
                             href="{{ route('login.social', 'google') }}" style="margin-top: 10px;background-color: #dd4b39;border-color: #dd4b39;">
                             Sign in with Google
-                        </x-ui.button> --}}
+                        </x-ui.button>
                     </div>
                 @endvolt
             </div>

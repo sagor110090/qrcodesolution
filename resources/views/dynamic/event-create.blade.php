@@ -66,7 +66,7 @@ $setCurrentStep = function ($step) {
                 'event.description.max' => 'Event description must be at most 500 characters',
                 'event_url.url' => 'Event URL must be a valid URL',
                 'event_url.unique' => 'Event URL must be unique',
-                'event_url.alpha' => 'Event URL must be alphabets only',
+                'event_url.alpha' => 'Event URL must be alphabets only (no spaces or special characters like - or _)',
             ],
         );
     } elseif ($step == 'step3') {
@@ -178,8 +178,8 @@ $setCurrentStep = function ($step) {
                             <div class="col-span-12">
                                 <x-input placeholder="Event name" id="name" wire:model="event.name"
                                     class="col-span-6 mt-3" />
-                                <x-input placeholder="Event URL" id="event_url" wire:model="event_url"
-                                    class="col-span-6 mt-3" />
+                                    <x-input placeholder="Event URL" id="event_url" wire:model="event_url"
+                                    suffix=".qrcodesolution.com" class="col-span-6 mt-3" />
                                 <x-textarea placeholder="Description" id="description" wire:model="event.description"
                                     rows="3" class="col-span-6 mt-3 resize-none" />
                             </div>
@@ -223,10 +223,6 @@ $setCurrentStep = function ($step) {
                                     <div class="col-span-6">
                                         <x-datetime-picker placeholder="Date and time" wire:model.defer="event.date_time" />
                                     </div>
-                                    {{-- <div class="col-span-6">
-                                        <x-input placeholder="Duration" id="duration" wire:model="event.duration"
-                                            class="col-span-6" />
-                                    </div> --}}
                                 </div>
 
 

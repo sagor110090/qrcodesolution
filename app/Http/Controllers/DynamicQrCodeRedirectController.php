@@ -44,9 +44,7 @@ class DynamicQrCodeRedirectController extends Controller
                 return view('dynamic.image-preview', ['image' => (object)$qrCode->qr_code_info]);
             } elseif ($qrCode->type == 'file') {
                 if (Storage::disk('public')->exists($qrCode->qr_code_info['file'])) {
-                    // download and redirect
                     $downloadLink = Storage::disk('public')->download($qrCode->qr_code_info['file']);
-                    // dd($downloadLink);
                     return $downloadLink;
                 }
                 abort(404, 'File not found');

@@ -3,11 +3,12 @@
     <x-slot name="title">
         <title> {{ $event->name }}</title>
         <meta name="description" content="{{ $event->description }}">
-        <link rel="icon" href="{{ asset($event->logo_image) }}" type="image/png" sizes="16x16">
+        <link rel="icon" href="{{ asset($event->logo_image ? $event->logo_image : 'images/logo.png') }}" type="image/png" sizes="16x16">
     </x-slot>
     <div class="mx-auto h-[calc(100vh)]">
         <div class="flex flex-col items-center justify-center mb-16 sm:text-center sm:mb-0">
-            <img src="{{ asset($event->banner_image) }}" alt="logo" class="w-full h-[calc(30vh)] object-cover">
+
+            <img src="{{ asset($event->banner_image ? $event->banner_image : 'images/bg.jpeg') }}" alt="logo" class="w-full h-[calc(30vh)] object-cover">
 
             <div class="w-screen p-20 leading-normal text-center text-gray-800 bg-white rounded shadow-lg sm:max-w-xl md:max-w-full lg:max-w-screen-xl"
                 style="background:{{ $event->color }};">

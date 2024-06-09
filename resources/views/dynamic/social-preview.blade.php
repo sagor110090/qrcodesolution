@@ -2,7 +2,7 @@
 
     <x-slot name="title">
         <title> {{ $social->name }}</title>
-        <link rel="icon" href="{{ asset($social->logo_image) }}" type="image/png" sizes="16x16">
+        <link rel="icon" href="{{ asset($event->logo_image ? $event->logo_image : 'images/logo.png') }}" type="image/png" sizes="16x16">
     </x-slot>
     <div class="mx-auto h-[calc(100vh)]">
         <div class="flex flex-col items-center justify-center mb-16 sm:text-center sm:mb-0">

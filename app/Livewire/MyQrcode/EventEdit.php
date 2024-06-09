@@ -90,7 +90,7 @@ class EventEdit extends Component
                     'event.description.max' => 'Event description must be at most 500 characters',
                     'event_url.url' => 'Event URL must be a valid URL',
                     'event_url.unique' => 'Event URL must be unique',
-                    'event_url.alpha' => 'Event URL must be alphabets only',
+                    'event_url.alpha' => 'Event URL must be alphabets only (no spaces or special characters like - or _)',
                 ],
             );
         } elseif ($step == 'step3') {
