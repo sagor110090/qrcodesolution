@@ -126,6 +126,7 @@
                         <x-qrcode.image :image="$image" />
                         <x-qrcode.audio :audio="$audio" />
                         <x-qrcode.video :video="$video" />
+                        <x-qrcode.file :file="$file" />
 
                         <div class="p-6">
                             <div class="mb-2 text-base text-neutral-500 dark:text-neutral-300">

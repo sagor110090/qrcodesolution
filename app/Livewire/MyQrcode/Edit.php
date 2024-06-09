@@ -110,6 +110,9 @@ class Edit extends Component
     //image
     public $image = '';
 
+    //file
+    public $file;
+
 
 
 
@@ -206,6 +209,9 @@ class Edit extends Component
 
         //image
         $this->image = $qrCode->qr_code_info['image'] ?? '';
+
+        //file
+        $this->file = $qrCode->qr_code_info['file'] ?? '';
 
         $this->loadData();
     }
@@ -389,6 +395,14 @@ class Edit extends Component
             $qrCodeInfo = $this->qrCode->qr_code_info;
         }elseif ($this->type == 'social') {
             $qrCodeInfo = $this->qrCode->qr_code_info;
+        } elseif ($this->type == 'file') {
+            $rules = ['file' => 'required'];
+            $this->validate($rules);
+            if ($this->file != $this->qrCode->qr_code_info['file']) {
+                $qrCodeInfo['file'] = Support::uploadFile($this->file, 'file');
+            } else {
+                $qrCodeInfo['file'] = $this->qrCode->qr_code_info['file'];
+            }
         }
 
 
@@ -541,6 +555,9 @@ class Edit extends Component
         } elseif ($this->type == 'audio') {
             $rules = ['audio' => 'required'];
             $this->validate($rules);
+        } elseif ($this->type == 'file') {
+            $rules = ['file' => 'required'];
+            $this->validate($rules);
         }
 
         $data = [
@@ -595,6 +612,8 @@ class Edit extends Component
             $this->video = $file;
         } elseif ($type == 'audio') {
             $this->audio = $file;
+        } elseif ($type == 'file') {
+            $this->file = $file;
         }
     }
 }
