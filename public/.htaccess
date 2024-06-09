@@ -8,8 +8,8 @@
     # Handle Authorization Header
     RewriteCond %{HTTPS:Authorization} .
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTPS:Authorization}]
-    
-    
+
+
 
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
@@ -20,4 +20,9 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+<IfModule mod_php8.c>
+    php_value upload_max_filesize 512M
+    php_value post_max_size 512M
 </IfModule>
