@@ -14,7 +14,7 @@
             <div class="col-span-2 text-center text-neutral-500 dark:text-neutral-300 text-weight-300">
 
                 <livewire:file-uploader :name="'file'" :accept="'file/*'" :text="'Upload File'"
-                    :rules="[ 'file', 'max:100024','mimes:pdf,docx,zip' ]" :loadFileName="$file" />
+                    :rules="[ 'file', 'max:500024','mimes:pdf,docx,zip' ]" :loadFileName="$file" />
                 @error('file') <span class="mt-1 text-sm text-red-500">{{ $message }}</span> @enderror
 
             </div>
