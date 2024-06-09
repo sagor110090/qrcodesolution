@@ -32,19 +32,19 @@ $authenticate = function () {
     class="pointer-events-none relative flex min-h-[calc(100%-1rem)] w-auto translate-y-[-50px] items-center opacity-0 transition-all duration-300 ease-in-out min-[576px]:mx-auto min-[576px]:mt-7 min-[576px]:min-h-[calc(100%-3.5rem)] min-[576px]:max-w-[500px]">
         <div
             class="min-[576px]:shadow-[0_0.5rem_1rem_rgba(#000, 0.15)] pointer-events-auto relative flex w-full flex-col rounded-md border-none bg-white bg-clip-padding text-current shadow-lg outline-none dark:bg-neutral-600">
-            <div class="flex flex-shrink-0 items-center justify-end rounded-t-md  p-4">
+            <div class="flex items-center justify-end flex-shrink-0 p-4 rounded-t-md">
 
                 <button type="button" id="closeModalLogin"
-                    class="box-content rounded-none border-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
+                    class="box-content border-none rounded-none hover:no-underline hover:opacity-75 focus:opacity-100 focus:shadow-none focus:outline-none"
                     data-te-modal-dismiss aria-label="Close">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                        stroke="currentColor" class="h-6 w-6">
+                        stroke="currentColor" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
             <div class="relative flex-auto p-4" data-te-modal-body-ref>
-                <div class="flex flex-col items-stretch justify-center sm:items-center pt-5 pb-5">
+                <div class="flex flex-col items-stretch justify-center pt-5 pb-5 sm:items-center">
                     <div class="sm:mx-auto sm:w-full sm:max-w-md">
                         <x-ui.link href="{{ route('home') }}">
                             <x-ui.logo class="w-auto h-10 mx-auto text-gray-700 fill-current dark:text-gray-100" />
@@ -82,7 +82,7 @@ $authenticate = function () {
                                     <x-ui.button type="primary" rounded="md" submit="true">Sign in</x-ui.button>
                                 </form>
                                 <x-ui.button type="primary" rounded="md" submit="false" tag="a"
-                                    href="{{ route('login.social', 'google') }}"
+                                    href="{{ route('login.social') }}"
                                     style="margin-top: 10px;background-color: #dd4b39;border-color: #dd4b39;">
                                     Sign in with Google
                                 </x-ui.button>
