@@ -33,7 +33,7 @@ class DynamicQrcode extends Component
                 })
                 ->with('qrCodeTracks')
                 ->latest()
-                ->paginate(10)
+                ->paginate(8)
         ]);
     }
 

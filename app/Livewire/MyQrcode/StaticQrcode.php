@@ -26,7 +26,7 @@ class StaticQrcode extends Component
                 return $query->where('name', 'like', '%' . $this->search . '%')
                     ->orWhere('type', 'like', '%' . $this->search . '%');
             })
-            ->latest()->paginate(10)
+            ->latest()->paginate(8)
         ]);
     }
 
