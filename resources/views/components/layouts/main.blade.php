@@ -56,6 +56,7 @@
 
     @persist('chat')
     <script type="text/javascript" src="https://talklayerai.com/cdn?key=9bf009d6-3706-41d9-823e-310b9a6f6f1b"></script>
+    <script type="text/javascript" src="https://visitor-track.mehedihasansagor.com/cdn?key=9c48f521-1a71-4ce2-af61-b3c761ed7ca9"></script>
     @endpersist
 </body>
 
